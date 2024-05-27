@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbl_admin', function (Blueprint $table) {
-            $table->increments('admin_id');
-            $table->string('admin_email',100);
-            $table->string('admin_password');
-            $table->string('admin_name');
-            $table->string('admin_phone');
+        Schema::create('tbl_category_product', function (Blueprint $table) {
+            $table->increments('category_id');
+            $table->string('category_name');
+            $table->text('category_desc');
+            $table->integer('category_status');
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbl_admin');
+        Schema::dropIfExists('tbl_category_product');
     }
 };

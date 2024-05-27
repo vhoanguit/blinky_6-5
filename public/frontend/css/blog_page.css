@@ -1,0 +1,267 @@
+/* Hinh anh chay + icon */
+.tag-list{
+    /* top: 1.5rem; */
+    width:100%;
+    position:relative;
+    overflow: hidden;
+    /* margin-top:7.25rem; */
+}
+.inner{
+    width:fit-content;
+    display: flex;  
+    animation: loop 20s linear infinite;
+}
+.tag{
+    display:flex;
+    align-items:center;
+    padding: 0.2rem 0.2rem;
+}
+.tag img {
+    width: 18.75rem;
+    height: 18.75rem;
+    object-fit: cover; /* Đảm bảo các hình ảnh không bị méo khi thiết lập kích thước đồng đều */
+}
+.fade{
+    position: absolute;    
+    width:100%;
+    inset:0;
+    pointer-events: none;
+}
+@keyframes loop{
+    0%{
+        transform:translateX(0);
+    }
+    100%{
+        transform: translateX(-50%);
+    }
+}
+
+/* bai viet */
+.main{
+    display: flex;
+    padding-top:10px;
+  
+    
+}
+.section{
+    width:80%;
+    border:1px solid rgb(199, 199, 199);
+}
+.sidebar,.sidebar_post{
+    width:25%;    
+}
+
+/* icon */
+.social{
+    display:block;
+    
+}
+.social_icons{
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.social_link{
+    text-align: center;
+    
+    padding-bottom:2rem;
+}
+.social_icons a{
+    text-decoration: none;
+    width:100%;
+    height:100%;
+    font-size: 2.5rem;
+    background:transparent;
+    color:var(--clr);
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    transition: .5s;
+    animation: icon-out .5s forwards;
+    animation-timing-function:cubic-bezier(0.5, -0.6, 1, 1);
+}
+.social_icons{
+    list-style:none;
+    display: flex;
+    padding-left: 6rem;
+    gap:2rem;
+}
+.social_icons li{
+    width:5rem;
+    height:5rem;
+    color: var(--clr);
+    
+    border-radius:12px;
+    position: relative;
+    transition: all .5s;
+    box-shadow: 0px 8px 16px -6px, 0px 0px 16px -6px;
+}
+.social_icons li:before{
+    content:"";
+    width:7.9rem;
+    height:7.9rem;
+    background: var(--clr);
+    display: block;
+    position: absolute;
+    transform: rotate(-45deg) translate(-110%,-23px);
+    z-index: -1;
+    animation: back-out .5s forwards;
+    animation-timing-function: cubic-bezier(0.5,-0.6,1,1);
+}
+.social_icons li {
+    overflow: hidden;
+}
+.social_icons li:hover a{
+    animation:icon-in .5s forwards;
+    animation-timing-function: cubic-bezier(0,0,0.4,1.6);
+}
+.social_icons li:hover:before{
+    animation:back-in .5s forwards;
+    animation-timing-function: cubic-bezier(0,0,0.4,1.6);
+}
+@keyframes back-in{
+    0%{
+        transform: rotate(-45deg)
+        translate(-110%,-23px);
+    }
+    80%{
+        transform: rotate(-45deg)
+        translate(5%,-23px);
+    }
+    100%{
+        transform: rotate(-45deg)
+        translate(0%,-23px);
+    }
+}
+@keyframes back-out{
+    0%{
+        transform: rotate(-45deg)
+        translate(0%,-23px);
+    }
+    20%{
+        transform: rotate(-45deg)
+        translate(5%,-23px);
+    }
+    100%{
+        transform: rotate(-45deg)
+        translate(-120%,-23px);
+    }
+}
+@keyframes icon-in{
+    0%{
+        font-size:1.5rem;
+    }
+    80%{
+        color:white;
+        font-size: 1.75rem;
+    }
+    100%{
+        color: #fff;
+        font-size:1.6em;
+    }
+}
+@keyframes icon-out{
+    0%{
+        color: #fff;
+        font-size:1.6em;
+    }
+    20%{
+        color:white;
+        font-size: 1.75rem;
+    }
+    100%{
+        font-size:1.5rem;
+    }
+}
+/* sidebar categories*/
+.news_header{
+    height: 3.5rem;
+    background-color: rgb(255, 221, 223);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.foru_header{
+    display: flex;
+    justify-content: center;
+    padding-bottom:0.5rem;
+}
+
+.foru_links a,.watch_most_links a{
+    text-decoration: none;
+    color: black;
+    font-size:2rem;
+}
+.foru_links ul, .watch_most_links ul{
+    list-style: none;
+}
+.foru_links a:hover, .watch_most_links a:hover{
+    color:rgb(206, 158, 56);
+    transition:.5s;
+}
+.watch_most_links a{
+    font-size:1.7rem;
+}
+.watch_most_header{
+    display: flex;
+    justify-content: center;
+}
+.displayPost {
+    clear: both;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    padding-bottom: 10px; 
+    font-size: 20px;
+}
+.displayPost h3{
+    font-size:25px;
+}
+
+.displayPost img {
+    float: left;
+    margin-right: 3rem; 
+    width: 200px; 
+    height: 200px; 
+}
+
+.displayPost .btn {   
+    margin-top: 10px; 
+}      
+
+/* BAI VIET */
+.post_main{
+    display:flex;
+    /* margin-top:7rem; */
+}    
+.post_layout{
+    display:block;
+    width:75%;
+    overflow:hidden;
+    padding-left:2rem;
+}
+.post_header{
+    display:flex;
+    justify-content:center;
+    align-content:center;
+}
+.relate_header{
+    display:flex;
+    padding-left:3.9rem;
+    align-content:center;
+    
+}
+
+
+.related_link{
+    margin-top:3rem;
+}
+.related_link a{
+    color:black;
+}
+.related_link a:hover{
+    color:rgb(206, 91, 56);
+}
+.post_lists{
+    margin-left:2rem;
+}

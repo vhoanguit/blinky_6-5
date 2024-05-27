@@ -123,12 +123,15 @@
 										<li><a href="login.html">Login</a></li> 
                                     </ul>
                                 </li> 
-								<li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
+								<li class="dropdown"><a href="#">Bài Viết<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="blog.html">Blog List</a></li>
-										<li><a href="blog-single.html">Blog Single</a></li>
-                                    </ul>
+										@foreach($category_post as $key => $danhmucbaiviet)
+										<li><a href="{{URL::to('/danh-muc-bai-viet/'.$danhmucbaiviet->cate_post_slug)}}">{{$danhmucbaiviet->cate_post_name}}</a></li>
+                                        @endforeach
+									</ul>
                                 </li> 
+
+
 								<li><a href="404.html">404</a></li>
 								<li><a href="contact-us.html">Contact</a></li>
 							</ul>
@@ -354,12 +357,7 @@
 				
 				<div class="col-sm-9 padding-right">
 					@yield('content')
-					
-					
-					
-					
-					
-					
+					@yield('content2')				
 				</div>
 			</div>
 		</div>
@@ -521,7 +519,7 @@
 			</div>
 		</div>
 		
-	</footer><!--/Footer-->
+</footer>
 	
 
   
