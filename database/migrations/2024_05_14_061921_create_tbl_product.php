@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('product_price');
             $table->string('product_image');
             $table->string('product_size');
-            $table->string('product_color');
+            // $table->string('product_color');
             $table->integer('product_status');
-            $table->integer('product_number');
+            // $table->integer('product_number');
             $table->timestamps();
         });
     }

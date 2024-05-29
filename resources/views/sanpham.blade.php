@@ -23,7 +23,7 @@
                         <li><input type="checkbox" onclick="MakeFilter()" class="checkbox_color" name="" id=""> Hồng</li>
                         <li><input type="checkbox" onclick="MakeFilter()" class="checkbox_color" name="" id=""> Xanh lá</li>
                     </ul>
-</form>
+                    </form>
                 </div>
                 <br><hr>
 
@@ -108,4 +108,5 @@
         </div>
     </section>
     <script src="{{asset('public/frontend/js/MakeFilter.js')}}"></script>
+    
 @endsection

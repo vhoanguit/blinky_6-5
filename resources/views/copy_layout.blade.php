@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>Home | E-Shopper</title>
     <link href="{{asset('public/frontend/css/bootstrap.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> 
@@ -12,6 +14,7 @@
     <link href="{{asset('public/frontend/css/main_page.css')}}" rel="stylesheet"> 
     <link href="{{asset('public/backend/css/style-responsive.css')}}" rel="stylesheet"> 
     <link href="{{asset('public/frontend/css/sanpham.css')}}" rel="stylesheet"> 
+    <link href="{{asset('public/frontend/css/sweetalert.css')}}" rel="stylesheet"> 
 
 </head>
 
@@ -41,7 +44,7 @@
                 </div>
                 <div class="top-bar-options-object">
                     <i class="fa-solid fa-cart-shopping"></i>
-                    <a class="top-bar-options-object-title" href="">Giỏ hàng</a>
+                    <a class="top-bar-options-object-title" href="{{URL::to('/shopping-cart')}}">Giỏ hàng</a>
                 </div>
             </div>
         </div>
@@ -92,7 +95,9 @@
 
 	@yield('blog')	
     @yield('product')
-    @yield('inside_product')				
+    @yield('inside_product')		
+    @yield('cart')				
+		
 
     <footer></footer>			
     <script src="{{asset('public/frontend/js/jquery.js')}}"></script>
@@ -101,5 +106,15 @@
 	<script src="{{asset('public/frontend/js/price-range.js')}}"></script>
     <script src="{{asset('public/frontend/js/jquery.prettyPhoto.js')}}"></script>
     <script src="{{asset('public/frontend/js/main.js')}}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- <script>
+        $(document).ready(function(){
+            $('#add_product_to_cart').click(function(){
+                swal("Good job!", "You clicked the button!", "success");
+
+            });
+        });
+
+    </script> -->
 </body>
 </html>

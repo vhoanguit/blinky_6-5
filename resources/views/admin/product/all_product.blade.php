@@ -27,13 +27,13 @@
       </div>
     </div>
     <div class="table-responsive">
-                      <?php
-                            $message = Session::get('message');
-                            if($message){
-                                echo '<span class="text-alert">'.$message.'</span>';
-                                Session::put('message',null);
-                            }
-                            ?>
+        <?php
+              $message = Session::get('message');
+              if($message){
+                  echo '<span class="text-alert">'.$message.'</span>';
+                  Session::put('message',null);
+              }
+        ?>
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
@@ -43,15 +43,12 @@
               </label>
             </th>
             <th>Tên</th>
-            <th>Danh mục</th>
-            <th>Mô tả</th>
-            <th>Nội dung</th>
+            <th>Danh mục</th>     
             <th>Giá</th>
             <th>Hình ảnh</th>
-            <th>Size</th>
             <th>Màu sắc</th>
-            <th>Số lượng</th>
-            <th>Trạng thái</th>           
+            <th>Trạng thái</th>   
+            <th>Thao tác</th>        
             <th style="width:30px;"></th>
           </tr>
         </thead>
@@ -61,13 +58,9 @@
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
             <td>{{ $pro->product_name }}</td>
             <td>{{ $pro->category_name}}</td>
-            <td>{{ $pro->product_desc}}</td>
-            <td>{{ $pro->product_content}}</td>
             <td>{{ $pro->product_price}}</td>
             <td><img src="public/uploads/product/{{$pro->product_image}}" height="100" width="100"></td>
-            <td>{{ $pro->product_size}}</td>
-            <td>{{ $pro->product_status}}</td>
-            <td>{{ $pro->product_number}}</td>
+            <td>{{$pro->product_color }}</td>
 
             <td><span class="text-ellipsis">
                 @if($pro->product_status ==1) <a href="{{URL::to('/unactive-product/'.$pro->product_id)}}"><span style="color:green;font-size:20px" class=" fa fa-thumbs-up"></span></a>          
@@ -78,10 +71,13 @@
            
             <td>
               <a href="{{URL::to('/edit-product/'.$pro->product_id)}}" class="active styling-edit" ui-toggle-class="">
-                <i class="fa fa-pencil-square-o text-success text-active"></i></a>
-              <a onclick="return confirm('Bạn có chắc là muốn xóa sản phẩm` này ko?')" href="{{URL::to('/delete-product/'.$pro->product_id)}}" class="active styling-edit" ui-toggle-class="">
+              <i class="fa-solid fa-pen-to-square"></i></a>
+              <a onclick="return confirm('Bạn có chắc là muốn xóa sản phẩm này ko?')" href="{{URL::to('/delete-product/'.$pro->product_id)}}" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-times text-danger text"></i>
               </a>
+              <a href="{{URL::to('/show-product-details/'.$pro->product_id) }}" class="active styling-edit" ui-toggle-class="">
+              <i class="fa-solid fa-circle-info"></i>                        
+            </a><br>
             </td>
           </tr>
           @endforeach

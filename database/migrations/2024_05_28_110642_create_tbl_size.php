@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('tbl_product', function (Blueprint $table) {
-            $table->dropColumn('product_color');
+        Schema::create('tbl_size', function (Blueprint $table) {
+            $table->increments('size_id');
+            $table->integer('size_value');
+            $table->timestamps();
         });
     }
 
@@ -21,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('tbl_size');
     }
 };

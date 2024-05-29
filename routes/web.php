@@ -42,7 +42,7 @@ Route::get('/san-pham', 'App\Http\Controllers\HomeController@sanpham');
 Route::get('/danh-muc-san-pham/{category_product_id}','App\Http\Controllers\CategoryProduct@show_category_product_home');
 Route::get('/chi-tiet-san-pham/{product_id}','App\Http\Controllers\ProductController@show_inside_product');
 
-Route::post('/filter-products', 'App\Http\Controllers\ProductController@filter_products');
+Route::post('/filter-products', 'App\Http\Controllers\ProductController@filterProducts');
 
 //Chi tiết sản phẩm
 Route::get('/show-product-details/{product_id}','App\Http\Controllers\ProductController@show_product_details');
@@ -75,5 +75,10 @@ Route::get('/bai-viet/{post_slug}','App\Http\Controllers\PostController@bai_viet
 Route::get('/danh-muc-bai-viet/{cate_post_slug}','App\Http\Controllers\PostController@danh_muc_bai_viet');// khi gõ danh_muc_bai_viet/cate_post_slug thì trả về bài viết đó
 // import excel 
 
+
+//Giỏ hàng
+Route::get('/shopping-cart','App\Http\Controllers\CartController@shopping_cart');
+
+Route::post('/add-to-cart','App\Http\Controllers\CartController@addToCart');
 
 ?>

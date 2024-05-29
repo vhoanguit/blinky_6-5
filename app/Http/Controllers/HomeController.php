@@ -33,11 +33,38 @@ class HomeController extends Controller
 
         $category_product=DB::table('tbl_category_product')->where('category_status','1')->orderby('category_id','asc')->get();
         
-        $all_product=DB::table('tbl_product')->where('product_status','1')->orderby('product_id','asc')->get();
+        // $all_product=DB::table('tbl_product')->where('product_status','1')->orderby('product_id','asc')->get();
         
-        $tatcasp = DB::table('tbl_product')->orderBy('product_id','DESC')->get();
+        $tatcasp = DB::table('tbl_product')->where('product_status','1')->orderBy('product_id','DESC')->get();
 
-        return view('sanpham')->with('category',$category_product)->with('product',$all_product)->with('tatcasp',$tatcasp)->with('category_post',$category_post);
+        $min_price=DB::table('tbl_product')->min('product_price');
+        $max_price=DB::table('tbl_product')->max('product_price');
+        $min_price_range=$min_price-100000;
+        $max_price_range=$max_price+100000;
+
+        if(isset($_GET['filter']))
+        {   
+            $filter=$_GET['filter'];
+            for($i=0; $i<count($filter); $i++)
+            {
+                if($i==0) $all_product=$all_product->where('product_color',$filter[$i]);
+                else $all_product=$all_product->orWhere('product_color',$filter[$i]);
+            }
+            //$all_product=$all_product->orderby('product_id','asc')->get();
+
+        }
+
+        if(isset($_GET['price_from']) && ($_GET['price_from']) )
+        {
+            $min_price=$_GET['price_from'];
+            $max_price=$_GET['price_to'];
+
+            $all_product=$all_product->where('product_status','1')->whereBetween('product_price',[$min_price,$max_price]);
+        }
+        return view('sanpham')->with('category',$category_product)
+        ->with('tatcasp',$tatcasp)->with('category_post',$category_post)
+        ->with('min_price_value',$min_price)->with('max_price_value',$max_price)
+        ->with('max_price_range',$max_price_range)->with('min_price_range',$max_price_range);
     }
     public function search(Request $request){
         $category_post = CatePost::orderBy('cate_post_id','DESC')->where('cate_post_status','1')->get(); // k có phân trang nên mình lấy hết bằng hàm get

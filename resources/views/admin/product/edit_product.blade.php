@@ -40,19 +40,31 @@
                                     <label for="exampleInputPassword1">Nội dung sản phẩm</label>
                                     <textarea style="resize:none" rows="6" name="product_content"  class="form-control" id="productContent" >{{$product->product_content}}</textarea>
                                 </div>
+                                
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1"> Kích cỡ</label>
-                                    <select name="product_size" class="form-control input-sm m-bot15" value="{{$product->product_size}}">
-                                        <option value="25">25</option>
-                                        <option value="26">26</option>
-                                        <option value="27">27</option>
-                                        <option value="28">28</option>
-
-                                    </select>                                
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1"> Số lượng</label>
-                                    <input type="number" class="form-control" name="product_number" id="exampleInputEmail1" value="{{$product->product_number}}">
+                                    <label for="exampleInputPassword1">Màu sắc</label>
+                                    <select id="product_color" name="product_color" class="form-control input-sm m-bot15">
+                                        <option value="0">Hồng</option>
+                                        <option value="1">Xanh lam</option>
+                                        <option value="2">Vàng</option>
+                                        <option value="3">Xanh lục</option>
+                                        <option value="4">Đỏ</option>
+                                        <option value="5">Cam</option>
+                                        <option value="6">Tím</option>
+                                        <option value="7">Nâu</option>
+                                        <option value="8">Trắng</option>
+                                    </select>
+                                    <script>
+                                        var color={{ $product->product_color }}
+                                        var selectElement=document.getElementById('product_color');
+                                        for (var i = 0; i < selectElement.options.length; i++) 
+                                        {
+                                            if (selectElement.options[i].value == color) {
+                                                selectElement.selectedIndex = i;
+                                                break;
+                                            }
+                                        }
+                                    </script>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Danh mục sản phẩm</label>
