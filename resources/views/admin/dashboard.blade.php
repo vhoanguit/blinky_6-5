@@ -1,4 +1,3 @@
-@extends('admin_layout') 
-<!-- gọi file admin_layout -->
+@extends('admin_layout')
 @section('admin_content')
-@endsection 
+@endsection

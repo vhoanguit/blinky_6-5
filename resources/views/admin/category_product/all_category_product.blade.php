@@ -6,7 +6,7 @@
       Liệt kê danh mục sản phẩm
     </div>
     <div class="row w3-res-tb">
-      <div class="col-sm-5 m-b-xs">
+      <!-- <div class="col-sm-5 m-b-xs">
         <select class="input-sm form-control w-sm inline v-middle">
           <option value="0">Bulk action</option>
           <option value="1">Delete selected</option>
@@ -14,8 +14,8 @@
           <option value="3">Export</option>
         </select>
         <button class="btn btn-sm btn-default">Apply</button>                
-      </div>
-      <div class="col-sm-4">
+      </div> -->
+      <!-- <div class="col-sm-4">
       </div>
       <div class="col-sm-3">
         <div class="input-group">
@@ -24,7 +24,7 @@
             <button class="btn btn-sm btn-default" type="button">Go!</button>
           </span>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="table-responsive">
     <?php
@@ -45,7 +45,7 @@
             <th>Tên danh mục</th>
             <th>Hiển thị</th>
             <!-- <th>Ngày thêm</th> -->
-            <th style="width:30px;"></th>
+            <th style="width:90px;">Thao tác</th>
           </tr>
         </thead>
         <tbody>
@@ -54,14 +54,14 @@
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
             <td>{{$cate_pro->category_name}}</td>
             <td><span class="text-ellipsis">                
-                @if($cate_pro->category_status ==1) <a href="{{URL::to('/unactive-category-product/'.$cate_pro->category_id)}}"><span style="color:green;font-size:20px" class=" fa fa-thumbs-up"></span></a>          
-                @else <a href="{{URL::to('/active-category-product/'.$cate_pro->category_id)}}"><span style="color:red;font-size:20px" class=" fa fa-thumbs-down"></span></a>          
+                @if($cate_pro->category_status ==1) <a href="{{URL::to('/unactive-category-product/'.$cate_pro->category_id)}}"><i style="color:green" class="fa-solid fa-eye"></i></a>          
+                @else <a href="{{URL::to('/active-category-product/'.$cate_pro->category_id)}}"><i style="color:red" class="fa-solid fa-eye-slash"></i></a>          
               
                 @endif
             </span></td>
             <td>
-                <a href="{{URL::to('/edit-category-product/'.$cate_pro->category_id)}}" style="font-size:22px" class="active" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
-                <a onclick="return confirm('Bạn có chắc là muốn xóa danh mục này không ?')" href="{{URL::to('/delete-category-product/'.$cate_pro->category_id)}}" style="font-size:22px" class="active" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
+                <a href="{{URL::to('/edit-category-product/'.$cate_pro->category_id)}}" style="font-size:16px" class="active" ui-toggle-class=""><i class="fa-solid fa-pen-to-square"></i></a>
+                <a onclick="return confirm('Bạn có chắc là muốn xóa danh mục này không ?')" href="{{URL::to('/delete-category-product/'.$cate_pro->category_id)}}" style="font-size:16px" class="active" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
             </td>
           </tr>
           @endforeach

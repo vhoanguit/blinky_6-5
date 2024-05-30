@@ -13,15 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_product_details', function (Blueprint $table) {
-            // $table->id();
-            $table->integer('product_id');
-            $table->integer('size_id');
-            $table->integer('SL');
-            $table->primary(['product_id', 'size_id']);
-            $table->timestamps();
+        if (!Schema::hasTable('tbl_product_details')) {
+            Schema::create('tbl_product_details', function (Blueprint $table) {
+                // $table->id();
+                $table->integer('product_id');
+                $table->integer('size_id');
+                $table->integer('SL');
+                $table->primary(['product_id', 'size_id']);
+                $table->timestamps();
 
-        });
+            });
+        }
     }
 
     /**

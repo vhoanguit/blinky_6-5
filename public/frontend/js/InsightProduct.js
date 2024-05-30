@@ -241,18 +241,18 @@ let amountElement = document.getElementById('amountnumber');
 
 // Add to cart
 
-// function addToCart() {
+function addToCart() {
     
-//     if (validateSelection()) {
-//         Swal.fire({
-//             icon: 'success',
-//             title: 'Thành công',
-//             text: 'Sản phẩm đã được thêm vào giỏ hàng!'
-//         }).then(() => {
+    if (validateSelection()) {
+        Swal.fire({
+            icon: 'success',
+            title: 'Thành công',
+            text: 'Sản phẩm đã được thêm vào giỏ hàng!'
+        }).then(() => {
             
-//         });
-//     }
-// }
+        });
+    }
+}
 
 // $(document).ready(function(){
 //     $('#add_product_to_cart').click(function(){
@@ -261,7 +261,7 @@ let amountElement = document.getElementById('amountnumber');
 
 //     });
 // });
-function addToCart() {
+function addToCart_test() {
     if (validateSelection()) {
         // const productId = document.getElementById('productid_hidden').value;
         // const quantity = document.getElementById('amountnumber').value;

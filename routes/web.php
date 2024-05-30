@@ -75,6 +75,10 @@ Route::get('/bai-viet/{post_slug}','App\Http\Controllers\PostController@bai_viet
 Route::get('/danh-muc-bai-viet/{cate_post_slug}','App\Http\Controllers\PostController@danh_muc_bai_viet');// khi gõ danh_muc_bai_viet/cate_post_slug thì trả về bài viết đó
 // import excel 
 
+//Gallery thư viện ảnh
+Route::get('/add-gallery/{product_id}','App\Http\Controllers\GalleryController@add_Gallery');
+Route::post('/insert-gallery/{product_id}','App\Http\Controllers\GalleryController@insert_Gallery');
+Route::get('/delete-gallery/{gallery_id}','App\Http\Controllers\GalleryController@delete_Gallery');
 
 //Giỏ hàng
 Route::get('/shopping-cart','App\Http\Controllers\CartController@shopping_cart');

@@ -6,7 +6,7 @@
       Liệt kê sản phẩm
     </div>
     <div class="row w3-res-tb">
-      <div class="col-sm-5 m-b-xs">
+      <!-- <div class="col-sm-5 m-b-xs">
         <select class="input-sm form-control w-sm inline v-middle">
           <option value="0">Bulk action</option>
           <option value="1">Delete selected</option>
@@ -24,7 +24,7 @@
             <button class="btn btn-sm btn-default" type="button">Go!</button>
           </span>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="table-responsive">
         <?php
@@ -63,8 +63,8 @@
             <td>{{$pro->product_color }}</td>
 
             <td><span class="text-ellipsis">
-                @if($pro->product_status ==1) <a href="{{URL::to('/unactive-product/'.$pro->product_id)}}"><span style="color:green;font-size:20px" class=" fa fa-thumbs-up"></span></a>          
-                @else <a href="{{URL::to('/active-product/'.$pro->product_id)}}"><span style="color:red;font-size:20px" class=" fa fa-thumbs-down"></span></a>          
+                @if($pro->product_status ==1) <a href="{{URL::to('/unactive-product/'.$pro->product_id)}}"><i style="color:green" class="fa-solid fa-eye"></i></a>          
+                @else <a href="{{URL::to('/active-product/'.$pro->product_id)}}"><i style="color:red" class="fa-solid fa-eye-slash"></i></a>          
               
                 @endif
             </span></td>
@@ -75,6 +75,7 @@
               <a onclick="return confirm('Bạn có chắc là muốn xóa sản phẩm này ko?')" href="{{URL::to('/delete-product/'.$pro->product_id)}}" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-times text-danger text"></i>
               </a>
+              <a href="{{ URL::to('/add-gallery/'.$pro->product_id) }}" ><i class="fa fa-solid fa-image" style="color: #9E75FF"></i>
               <a href="{{URL::to('/show-product-details/'.$pro->product_id) }}" class="active styling-edit" ui-toggle-class="">
               <i class="fa-solid fa-circle-info"></i>                        
             </a><br>

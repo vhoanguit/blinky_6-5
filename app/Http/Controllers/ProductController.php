@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB; // sử dụng database
 
-
+use App\Models\CatePost;
 use App\Http\Requests;
 use Session; // thu vien sdung session
 use Illuminate\Support\Facades\Redirect; 
@@ -227,6 +227,8 @@ class ProductController extends Controller
     //FE
     public function show_inside_product($product_id)
     {
+        $category_post = CatePost::orderBy('cate_post_id','DESC')->where('cate_post_status','1')->get();
+
         $product_by_id=DB::table('tbl_product')
         ->where('product_status','1')->where('product_id',$product_id)->get();
 
@@ -248,8 +250,9 @@ class ProductController extends Controller
         ->where('tbl_category_product.category_id',$category_id)
         ->whereNotIn('tbl_product.product_id',[$product_id])
         ->orderby('tbl_product.product_id','asc')->limit(12)->get();
-        
-        return view('pages.sanpham.inside_product')->with('product',$product_by_id)->with('related_product',$related_product)->with('cate_of_product',$category_of_product)->with('size',$size_product);
+        $gallery_product=DB::table('tbl_gallery')->where('product_id',$product_id)->get();
+
+        return view('pages.sanpham.inside_product')->with('product',$product_by_id)->with('related_product',$related_product)->with('cate_of_product',$category_of_product)->with('size',$size_product)->with('gallery_product',$gallery_product)->with('category_post',$category_post);
     }
 
     public function filter_products(Request $request )

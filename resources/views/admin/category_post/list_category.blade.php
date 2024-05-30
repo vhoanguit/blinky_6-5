@@ -46,7 +46,7 @@
             <th>Slug</th>
             <th>Trạng thái</th>
             
-            <th style="width:30px;"></th>
+            <th style="width:90px;">Thao tác</th>
           </tr>
         </thead>
         <tbody>
@@ -62,8 +62,8 @@
                 @else 
                     Ẩn
                 @endif -->
-                @if($cate_post->cate_post_status==1) <a href="{{URL::to('/unactive-cate-post/'.$cate_post->cate_post_id)}}"><span style="color:green;font-size:20px" class=" fa fa-thumbs-up"></span></a>          
-                @else <a href="{{URL::to('/active-cate-post/'.$cate_post->cate_post_id)}}"><span style="color:red;font-size:20px" class=" fa fa-thumbs-down"></span></a>          
+                @if($cate_post->cate_post_status==1) <a href="{{URL::to('/unactive-cate-post/'.$cate_post->cate_post_id)}}"><i style="color:green" class="fa-solid fa-eye"></i></a>          
+                @else <a href="{{URL::to('/active-cate-post/'.$cate_post->cate_post_id)}}"><i style="color:red" class="fa-solid fa-eye-slash"></i></a>          
               
                 @endif
 
@@ -71,7 +71,7 @@
             </td>       
             <td>
               <a href="{{URL::to('/edit-category-post/'.$cate_post->cate_post_id)}}" class="active styling-edit" ui-toggle-class="">
-                <i class="fa fa-pencil-square-o text-success text-active"></i></a>
+              <i class="fa-solid fa-pen-to-square"></i></a>
               <a onclick="return confirm('Bạn có chắc muốn xóa bài viết này không?')" href="{{URL::to('/delete-category-post/'.$cate_post->cate_post_id)}}" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-times text-danger text"></i>
               </a>
