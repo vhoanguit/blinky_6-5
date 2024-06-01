@@ -1,12 +1,15 @@
 
 function updateAllTotal() {
-  const orderItems = document.querySelectorAll('.order_item');
-  let total = 0;
-  orderItems.forEach(item => {
-      const price = parseInt(item.querySelector('.order_price').textContent.replace(/\D/g, ''));
-      total += price;
-  });
-  document.querySelector('.all_total').textContent = total.toLocaleString('en-US') + 'đ';
+    const cartItems = document.querySelectorAll('.item');
+    let total = 0;
+    cartItems.forEach(item => {
+        const priceElement = item.querySelector('.price');
+        const quantityElement = item.querySelector('.quantity_values');
+        const price = parseFloat(priceElement.value);
+        const quantity = parseInt(quantityElement.value);
+        total += price * quantity;
+    });
+    document.querySelector('.all_total').textContent = total.toLocaleString('en-US') + 'đ';
 }
 
 function createOrderItemNode(product) {

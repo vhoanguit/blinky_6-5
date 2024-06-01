@@ -186,5 +186,11 @@ class PostController extends Controller
         return Redirect::to('all-post');
 
     }
-    
+    public function tatcabaiviet(){
+        $category_post = CatePost::orderBy('cate_post_id','DESC')->get();
+        $newest_post = Post::orderBy('post_id','DESC')->take(7)->get();
+
+        $baiviet = Post::orderby('post_id','desc')->where('post_status','1')->get();
+        return view('pages.baiviet.tatcabaiviet')->with('baiviet',$baiviet)->with('category_post',$category_post)->with('newest_post',$newest_post);
+    }
 }

@@ -93,10 +93,7 @@
         </div>
 	</header>
 
-	@yield('blog')	
-    @yield('product')
-    @yield('inside_product')		
-    @yield('cart')				
+					
 		
 
     <footer></footer>			

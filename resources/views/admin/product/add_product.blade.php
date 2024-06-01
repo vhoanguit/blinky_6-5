@@ -27,20 +27,7 @@
                                     <input type="text" class="form-control" name="product_price" id="exampleInputEmail1" placeholder="Tên sản phẩm">
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Màu sắc</label>
-                                    <select name="product_color" class="form-control input-sm m-bot15">
-                                        <option value="0">Hồng</option>
-                                        <option value="1">Xanh lam</option>
-                                        <option value="2">Vàng</option>
-                                        <option value="3">Xanh lục</option>
-                                        <option value="4">Đỏ</option>
-                                        <option value="5">Cam</option>
-                                        <option value="6">Tím</option>
-                                        <option value="7">Nâu</option>
-                                        <option value="8">Trắng</option>
-                                    </select>
-                                </div>
+                                
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Hình ảnh sản phẩm</label>
                                     <input type="file" class="form-control" name="product_image" id="exampleInputEmail1">
@@ -68,6 +55,31 @@
                                     <label for="exampleInputPassword1"> Số lượng</label>
                                     <input type="number" class="form-control" name="product_number" id="exampleInputEmail1" placeholder="Sô lượng sản phẩm">
                                 </div> -->
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Màu sắc</label>
+                                    <select name="product_color" class="form-control input-sm m-bot15">
+                                        <option value="0">Hồng</option>
+                                        <option value="1">Xanh lam</option>
+                                        <option value="2">Vàng</option>
+                                        <option value="3">Xanh lục</option>
+                                        <option value="4">Đỏ</option>
+                                        <option value="5">Cam</option>
+                                        <option value="6">Tím</option>
+                                        <option value="7">Nâu</option>
+                                        <option value="8">Trắng</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Mệnh</label>
+                                    <select name="product_element" class="form-control input-sm m-bot15">
+                                        <option value="Kim">Kim</option>
+                                        <option value="Mộc">Mộc</option>
+                                        <option value="Thủy">Thủy</option>
+                                        <option value="Hỏa">Hỏa</option>
+                                        <option value="Thổ">Thổ</option>
+
+                                    </select>
+                                </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Danh mục sản phẩm</label>
                                     <select name="category_id" class="form-control input-sm m-bot15">

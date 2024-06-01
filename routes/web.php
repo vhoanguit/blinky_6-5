@@ -71,6 +71,8 @@ Route::post('/update-post/{post_id}','App\Http\Controllers\PostController@update
 Route::get('/unactive-post/{post_id}','App\Http\Controllers\PostController@unactive_post');
 Route::get('/active-post/{post_id}','App\Http\Controllers\PostController@active_post');
 //Hien thi danh muc bai viet
+Route::get('/tat-ca-bai-viet','App\Http\Controllers\PostController@tatcabaiviet');
+
 Route::get('/bai-viet/{post_slug}','App\Http\Controllers\PostController@bai_viet');
 Route::get('/danh-muc-bai-viet/{cate_post_slug}','App\Http\Controllers\PostController@danh_muc_bai_viet');// khi gõ danh_muc_bai_viet/cate_post_slug thì trả về bài viết đó
 // import excel 
@@ -83,6 +85,6 @@ Route::get('/delete-gallery/{gallery_id}','App\Http\Controllers\GalleryControlle
 //Giỏ hàng
 Route::get('/shopping-cart','App\Http\Controllers\CartController@shopping_cart');
 
-Route::post('/add-to-cart','App\Http\Controllers\CartController@addToCart');
+// Route::post('/add-to-cart','App\Http\Controllers\CartController@addToCart');
 
 ?>

@@ -5,6 +5,8 @@ use DB;
 use Illuminate\Http\Request;
 
 use App\Models\CatePost;
+use App\Models\Post;
+
 class HomeController extends Controller
 {
     // public function index(){
@@ -20,12 +22,12 @@ class HomeController extends Controller
     public function index2(Request $request)
     {
         $category_post = CatePost::orderBy('cate_post_id','DESC')->where('cate_post_status','1')->get(); // k có phân trang nên mình lấy hết bằng hàm get
-        
+        $all_post = Post::where('post_status','1')->orderby('post_id','desc')->limit(4)->get();
         $category_product=DB::table('tbl_category_product')->where('category_status','1')->orderby('category_id','asc')->get();
-        
+        $newest_product = DB::table('tbl_product')->where('product_status','1')->orderby('product_id','desc')->limit(8)->get();
         $all_product=DB::table('tbl_product')->where('product_status','1')->orderby('product_id','asc')->limit(12)->get();
 
-        return view('copy_layout')->with('category',$category_product)->with('product',$all_product)->with('category_post',$category_post);   
+        return view('home')->with('category',$category_product)->with('product',$all_product)->with('category_post',$category_post)->with('all_post',$all_post)->with('newest_product',$newest_product);   
     }
     public function sanpham()
     {

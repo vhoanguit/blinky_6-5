@@ -32,7 +32,7 @@ class CategoryProduct extends Controller
     }
     public function all_category_product(){
         $this->AuthLogin();
-        $cate_product = DB::table('tbl_category_product')->get();
+        $cate_product = DB::table('tbl_category_product')->paginate(10);
         $manage_category_product = view('admin.category_product.all_category_product')->with('cate_product',$cate_product);
         return view('admin_layout')->with('admin.category_product.all_category_product',$manage_category_product); // 
     }

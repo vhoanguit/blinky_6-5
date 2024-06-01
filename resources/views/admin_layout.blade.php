@@ -45,9 +45,7 @@
 	<div class="top-nav clearfix">
 		<!--search & user info start-->
 		<ul class="nav pull-right top-menu">
-			<li>
-				<input type="text" class="form-control search" placeholder=" Search">
-			</li>
+			
 			<!-- user login dropdown start-->
 			<li class="dropdown">
 				<a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -63,8 +61,7 @@
 					<b class="caret"></b>
 				</a>
 				<ul class="dropdown-menu extended logout">
-					<li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
-					<li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
+					
 					<li><a href="{{URL::to('/logout')}}"><i class="fa fa-key"></i> Đăng xuất</a></li>
 				</ul>
 			</li>
@@ -90,8 +87,8 @@
 					
 					<li class="sub-menu">
 						<a href="javascript:;">
-							<i class="fa fa-book"></i>
-							<span>Danh mục sản phẩm</span>
+						<i class="fa-solid fa-list"></i>							
+						<span>Danh mục sản phẩm</span>
 						</a>
 						<ul class="sub">
 							<li><a href="{{URL::to('/add-category-product')}}">Thêm danh mục sản phẩm</a></li>
@@ -100,7 +97,7 @@
 					</li>
 					<li class="sub-menu">
 						<a href="javascript:;">
-							<i class="fa fa-book"></i>
+						<i class="fa-solid fa-tags"></i>
 							<span> Sản phẩm</span>
 						</a>
 						<ul class="sub">
@@ -110,8 +107,8 @@
 					</li>
 					<li class="sub-menu">
 						<a href="javascript:;">
-							<i class="fa fa-book"></i>
-							<span>Danh mục bài viết</span>
+						<i class="fa-solid fa-list"></i>							
+						<span>Danh mục bài viết</span>
 						</a>
 						<ul class="sub">
 							<li><a href="{{URL::to('/add-category-post')}}">Thêm danh mục bài viết</a></li>

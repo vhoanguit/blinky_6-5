@@ -1,49 +1,63 @@
-@extends('copy_layout')
-@section('blog')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh mục bài viết</title>
+    <link href="{{asset('public/frontend/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> 
+	<link href="{{asset('public/frontend/css/blog_page.css')}}" rel="stylesheet"> 
+    <link href="{{asset('public/backend/css/style-responsive.css')}}" rel="stylesheet"> 
+    <link href="{{asset('public/frontend/css/sanpham.css')}}" rel="stylesheet"> 
+    <link href="{{asset('public/frontend/css/sweetalert.css')}}" rel="stylesheet"> 
+
+</head>
+@include('Header')
+<body>
     <div class="tag-list">
         <div class="inner">
             <div class="tag">
-                <img src="{{asset('resources/views/pages/baiviet/img1.jpg')}}" alt="">
+                <img src="{{asset('public/frontend/image/main_img_39.jpg')}}" alt="">
             </div>
             <div class="tag">
-                <img src="{{asset('resources/views/pages/baiviet/img2.jpeg')}}" alt="">
+                <img src="{{asset('public/frontend/image/main_img_13.jpg')}}" alt="">
             </div>
             <div class="tag">
-                <img src="{{asset('resources/views/pages/baiviet/img3.jpg')}}" alt="">
+                <img src="{{asset('public/frontend/image/main_img_16.jpg')}}" alt="">
             </div>
             <div class="tag">
-                <img src="{{asset('resources/views/pages/baiviet/img4.png')}}" alt="" >
+                <img src="{{asset('public/frontend/image/main_img_12.jpg')}}" alt="" >
             </div>
             <div class="tag">
-                <img src="{{asset('resources/views/pages/baiviet/img5.png')}}" alt="" >
+                <img src="{{asset('public/frontend/image/main_img_8.jpg')}}" alt="" >
             </div>
             <div class="tag">
-                <img src="{{asset('resources/views/pages/baiviet/img8.jpg')}}" alt="" >
+                <img src="{{asset('public/frontend/image/main_img_26.jpg')}}" alt="" >
             </div>
             <div class="tag">
-                <img src="{{asset('resources/views/pages/baiviet/img7.jpg')}}" alt="" >
+                <img src="{{asset('public/frontend/image/main_img_22.jpg')}}" alt="" >
             </div>
             <!-- lap lai hinh anh -->
             <div class="tag">
-                <img src="{{asset('resources/views/pages/baiviet/img1.jpg')}}" alt="">
+                <img src="{{asset('public/frontend/image/main_img_39.jpg')}}" alt="">
             </div>
             <div class="tag">
-                <img src="{{asset('resources/views/pages/baiviet/img2.jpeg')}}" alt="">
+                <img src="{{asset('public/frontend/image/main_img_13.jpg')}}" alt="">
             </div>
             <div class="tag">
-                <img src="{{asset('resources/views/pages/baiviet/img3.jpg')}}" alt="">
+                <img src="{{asset('public/frontend/image/main_img_16.jpg')}}" alt="">
             </div>
             <div class="tag">
-                <img src="{{asset('resources/views/pages/baiviet/img4.png')}}" alt="" >
+                <img src="{{asset('public/frontend/image/main_img_12.jpg')}}" alt="" >
             </div>
             <div class="tag">
-                <img src="{{asset('resources/views/pages/baiviet/img5.png')}}" alt="" >
+                <img src="{{asset('public/frontend/image/main_img_8.jpg')}}" alt="" >
             </div>
             <div class="tag">
-                <img src="{{asset('resources/views/pages/baiviet/img8.jpg')}}" alt="" >
+                <img src="{{asset('public/frontend/image/main_img_26.jpg')}}" alt="" >
             </div>
             <div class="tag">
-                <img src="{{asset('resources/views/pages/baiviet/img7.jpg')}}" alt="" >
+                <img src="{{asset('public/frontend/image/main_img_22.jpg')}}" alt="" >
             </div>
         </div>
         <div class="fade"></div>
@@ -133,25 +147,7 @@
         </div>
 
     </div>
-    <!--Code chinh-->
-    <!-- <h2 class="title text-center">Danh muc bai viet</h2>
-
-        <div class="product-image-wrapper">
-        @foreach($post as $key=>$p)
-            <div class="single-products" style="margin:10px 0;">
-                <div class="text-center">
-                    <img style="float:left;widt:30%;padding:5px;width:100px;height:100px" src="{{asset('public/uploads/post/'.$p->post_image)}}" alt="{{$p->post_slug}}"/>
-                    <h4 style="color:#000;padding:5px;">{{$p->post_title}}</h4>
-                    <p>{!!$p->post_desc!!}</p>
-
-                 
-                </div>
-                <a  href="{{url('/bai-viet/'.$p->post_slug)}}" class="btn btn-default bt-sm">Xem bai viet</a>
-            </div>
-        @endforeach
-        </div>  -->
-    <!--Code chinh-->
    
     
-@endsection 
-
+</body>
+</html>

@@ -49,6 +49,8 @@
 }
 .sidebar,.sidebar_post{
     width:25%;    
+    border-right:1px solid rgb(199, 199, 199);
+    border-top: 1px solid rgb(199, 199, 199);
 }
 
 /* icon */
@@ -213,22 +215,31 @@
     overflow: hidden;
     padding-bottom: 10px; 
     font-size: 20px;
+    margin-left:3rem;
 }
 .displayPost h3{
-    font-size:25px;
+    font-size:27px;
 }
 
 .displayPost img {
     float: left;
     margin-right: 3rem; 
-    width: 200px; 
-    height: 200px; 
+    width: 230px; 
+    height: 230px; 
 }
 
 .displayPost .btn {   
     margin-top: 10px; 
+    border:1px solid black;
+    border-radius:5px;
+    font-size:20px;
+    background-color: rgb(255, 221, 223);
 }      
+.displayPost .btn:hover{
+    color:white;
+    background-color: rgb(247, 161, 167);
 
+}
 /* BAI VIET */
 .post_main{
     display:flex;
@@ -264,4 +275,5 @@
 }
 .post_lists{
     margin-left:2rem;
+    
 }

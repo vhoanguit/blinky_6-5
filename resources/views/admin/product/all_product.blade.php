@@ -5,27 +5,7 @@
     <div class="panel-heading">
       Liệt kê sản phẩm
     </div>
-    <div class="row w3-res-tb">
-      <!-- <div class="col-sm-5 m-b-xs">
-        <select class="input-sm form-control w-sm inline v-middle">
-          <option value="0">Bulk action</option>
-          <option value="1">Delete selected</option>
-          <option value="2">Bulk edit</option>
-          <option value="3">Export</option>
-        </select>
-        <button class="btn btn-sm btn-default">Apply</button>                
-      </div>
-      <div class="col-sm-4">
-      </div>
-      <div class="col-sm-3">
-        <div class="input-group">
-          <input type="text" class="input-sm form-control" placeholder="Search">
-          <span class="input-group-btn">
-            <button class="btn btn-sm btn-default" type="button">Go!</button>
-          </span>
-        </div>
-      </div> -->
-    </div>
+    
     <div class="table-responsive">
         <?php
               $message = Session::get('message');
@@ -37,30 +17,33 @@
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
-            <th style="width:20px;">
+            <!-- <th style="width:20px;">
               <label class="i-checks m-b-none">
                 <input type="checkbox"><i></i>
               </label>
-            </th>
-            <th>Tên</th>
+            </th> -->
+            <th style="width:150px;">Tên</th>
             <th>Danh mục</th>     
             <th>Giá</th>
             <th>Hình ảnh</th>
             <th>Màu sắc</th>
+            <th>Mệnh</th>
             <th>Trạng thái</th>   
             <th>Thao tác</th>        
-            <th style="width:30px;"></th>
+            <!-- <th style="width:30px;"></th> -->
           </tr>
         </thead>
         <tbody>
           @foreach($all_product as $key => $pro)
           <tr>
-            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+            <!-- <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td> -->
             <td>{{ $pro->product_name }}</td>
             <td>{{ $pro->category_name}}</td>
             <td>{{ $pro->product_price}}</td>
             <td><img src="public/uploads/product/{{$pro->product_image}}" height="100" width="100"></td>
             <td>{{$pro->product_color }}</td>
+            <td>{{$pro->product_element }}</td>
+
 
             <td><span class="text-ellipsis">
                 @if($pro->product_status ==1) <a href="{{URL::to('/unactive-product/'.$pro->product_id)}}"><i style="color:green" class="fa-solid fa-eye"></i></a>          
@@ -89,7 +72,7 @@
       <div class="row">
         
         <div class="col-sm-5 text-center">
-          <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
+          <!-- <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small> -->
         </div>
         <div class="col-sm-7 text-right text-center-xs">                
           <ul class="pagination pagination-sm m-t-none m-b-none">
