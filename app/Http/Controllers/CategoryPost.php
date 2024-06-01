@@ -86,25 +86,30 @@ class CategoryPost extends Controller
         return Redirect::to('/all-category-post');
     }  
 
-    public function unactive_catepost($cate_post_id){
-        $this->AuthLogin();
-        CatePost::where('cate_post_id',$cate_post_id)->update(['cate_post_status'=>0]);
-        Session::put('message','Ẩn danh mục bài viết thành công');
-        return Redirect::to('all-category-post');
+    // public function unactive_catepost($cate_post_id){
+    //     $this->AuthLogin();
+    //     CatePost::where('cate_post_id',$cate_post_id)->update(['cate_post_status'=>0]);
+    //     Session::put('message','Ẩn danh mục bài viết thành công');
+    //     return Redirect::to('all-category-post');
 
-    }
-    public function active_catepost($cate_post_id){
-        $this->AuthLogin();
-        CatePost::where('cate_post_id',$cate_post_id)->update(['cate_post_status'=>1]);
-        Session::put('message','Hiển thị danh mục bài viết thành công');
-        return Redirect::to('all-category-post');
+    // }
+    // public function active_catepost($cate_post_id){
+    //     $this->AuthLogin();
+    //     CatePost::where('cate_post_id',$cate_post_id)->update(['cate_post_status'=>1]);
+    //     Session::put('message','Hiển thị danh mục bài viết thành công');
+    //     return Redirect::to('all-category-post');
 
-    }
+    // }
     public function import_csv(){
 
     }
     public function export_csv(){
         
     }
-    
+    public function update_cate_post_status(Request $request){
+        $this->AuthLogin();
+        $id = $request->cate_post_id;
+        $status = $request->cate_post_status;   
+        DB::table('tbl_category_post')->where('cate_post_id', $id)->update(['cate_post_status' => $status]);   
+    }
 }

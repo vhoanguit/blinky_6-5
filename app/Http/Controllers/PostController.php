@@ -168,18 +168,18 @@ class PostController extends Controller
         ->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->
         with('post',$post)->with('category_post',$category_post)->with('lienquan',$lienquan);
     }
-    public function unactive_post($post_id){
-        $this->AuthLogin();
-        Post::where('post_id',$post_id)->update(['post_status'=>0]);
-        Session::put('message','Ẩn bài viết thành công');
-        return Redirect::to('all-post');
-    }
-    public function active_post($post_id){
-        $this->AuthLogin();
-        Post::where('post_id',$post_id)->update(['post_status'=>1]);
-        Session::put('message','Hiển thị bài viết thành công');
-        return Redirect::to('all-post');
-    }
+    // public function unactive_post($post_id){
+    //     $this->AuthLogin();
+    //     Post::where('post_id',$post_id)->update(['post_status'=>0]);
+    //     Session::put('message','Ẩn bài viết thành công');
+    //     return Redirect::to('all-post');
+    // }
+    // public function active_post($post_id){
+    //     $this->AuthLogin();
+    //     Post::where('post_id',$post_id)->update(['post_status'=>1]);
+    //     Session::put('message','Hiển thị bài viết thành công');
+    //     return Redirect::to('all-post');
+    // }
     public function tatcabaiviet(){
         $category_post = CatePost::orderBy('cate_post_id','DESC')->get();
         $newest_post = Post::orderBy('post_id','DESC')->take(4)->get();

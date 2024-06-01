@@ -47,18 +47,18 @@ class CategoryProduct extends Controller
         Session::put('message','Thêm danh mục sản phẩm thành công');
         return Redirect::to('add-category-product');
     }
-    public function unactive_category_product($category_pro_id){
-        $this->AuthLogin();
-        DB::table('tbl_category_product')->where('category_id',$category_pro_id)->update(['category_status'=>0]);
-        Session::put('message','Ân danh mục sản phẩm thành công');
-        return Redirect::to('all-category-product');
-    }
-    public function active_category_product($category_pro_id){
-        $this->AuthLogin();
-        DB::table('tbl_category_product')->where('category_id',$category_pro_id)->update(['category_status'=>1]);
-        Session::put('message','Hiển thi danh mục sản phẩm thành công');
-        return Redirect::to('all-category-product');
-    }
+    // public function unactive_category_product($category_pro_id){
+    //     $this->AuthLogin();
+    //     DB::table('tbl_category_product')->where('category_id',$category_pro_id)->update(['category_status'=>0]);
+    //     Session::put('message','Ân danh mục sản phẩm thành công');
+    //     return Redirect::to('all-category-product');
+    // }
+    // public function active_category_product($category_pro_id){
+    //     $this->AuthLogin();
+    //     DB::table('tbl_category_product')->where('category_id',$category_pro_id)->update(['category_status'=>1]);
+    //     Session::put('message','Hiển thi danh mục sản phẩm thành công');
+    //     return Redirect::to('all-category-product');
+    // }
     public function edit_category_product($category_pro_id){
         $this->AuthLogin();
         $edit_category_product = DB::table('tbl_category_product')->where('category_id',$category_pro_id)->get();
@@ -109,6 +109,12 @@ class CategoryProduct extends Controller
         ->with('min_price_value',$min_price)->with('max_price_value',$max_price)
         ->with('max_price_range',$max_price_range)->with('min_price_range',$max_price_range);
         
+    }
+    public function update_cate_product_status(Request $request){
+        $this->AuthLogin();
+        $id = $request->category_id;
+        $status = $request->category_status;   
+        DB::table('tbl_category_product')->where('category_id', $id)->update(['category_status' => $status]);   
     }
     
 }

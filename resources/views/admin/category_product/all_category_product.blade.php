@@ -28,10 +28,11 @@
           <tr>
             <td>{{$cate_pro->category_name}}</td>
             <td><span class="text-ellipsis">                
-                @if($cate_pro->category_status ==1) <a href="{{URL::to('/unactive-category-product/'.$cate_pro->category_id)}}"><i style="color:green" class="fa-solid fa-eye"></i></a>          
-                @else <a href="{{URL::to('/active-category-product/'.$cate_pro->category_id)}}"><i style="color:red" class="fa-solid fa-eye-slash"></i></a>          
-              
-                @endif
+              @if($cate_pro->category_status == 1) 
+                  <i style="color:green" class="fa-solid fa-eye update-cate-pro-status" data-id="{{$cate_pro->category_id}}" data-status="0"></i>          
+              @else 
+                  <i style="color:red" class="fa-solid fa-eye-slash update-cate-pro-status" data-id="{{$cate_pro->category_id}}" data-status="1"></i>          
+              @endif
             </span></td>
             <td>
                 <a href="{{URL::to('/edit-category-product/'.$cate_pro->category_id)}}" style="font-size:16px" class="active" ui-toggle-class=""><i class="fa-solid fa-pen-to-square"></i></a>
@@ -74,4 +75,41 @@
     </footer>
   </div>
 </div>
+<script>
+$(document).ready(function(){
+    $('.update-cate-pro-status').click(function(event){
+        event.preventDefault();
+        var cateproId = $(this).data('id'); // lấy ID bài viết
+        var cateproStatus = $(this).data('status'); // lấy trạng thái mới
+        var element = $(this);
+        $.ajax({
+            url: "{{ url('/update-cate-product-status') }}", // đường dẫn tới route xử lý cập nhật
+            method: 'GET',
+            data:{product_id: cateproId, product_status: cateproStatus},
+            success:function(data){              
+                if(cateproStatus == 1) {
+                  element.removeClass('fa-eye-slash').addClass('fa-eye').css('color', 'green').data('status', 0);
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Thành công',
+                    text: 'Hiển thị danh mục sản phẩm thành công!'
+                  });
+                } 
+                else {
+                  element.removeClass('fa-eye').addClass('fa-eye-slash').css('color', 'red').data('status', 1);
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Thành công',
+                    text: 'Ẩn danh mục sản phẩm thành công!'
+                  });
+                }
+                
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              console.log('AJAX call failed: ' + textStatus + ', ' + errorThrown);
+            }
+        });
+    });
+});
+</script>
 @endsection

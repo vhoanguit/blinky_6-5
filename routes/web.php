@@ -18,8 +18,8 @@ Route::get('/add-category-product','App\Http\Controllers\CategoryProduct@add_cat
 Route::get('/all-category-product','App\Http\Controllers\CategoryProduct@all_category_product');
 Route::post('/save-category-product','App\Http\Controllers\CategoryProduct@save_category_product');
 
-Route::get('/unactive-category-product/{category_pro_id}','App\Http\Controllers\CategoryProduct@unactive_category_product');
-Route::get('/active-category-product/{category_pro_id}','App\Http\Controllers\CategoryProduct@active_category_product');
+// Route::get('/unactive-category-product/{category_pro_id}','App\Http\Controllers\CategoryProduct@unactive_category_product');
+// Route::get('/active-category-product/{category_pro_id}','App\Http\Controllers\CategoryProduct@active_category_product');
 
 Route::get('/edit-category-product/{category_pro_id}','App\Http\Controllers\CategoryProduct@edit_category_product');
 Route::get('/delete-category-product/{category_pro_id}','App\Http\Controllers\CategoryProduct@delete_category_product');
@@ -57,8 +57,8 @@ Route::get('/edit-category-post/{category_post_id}','App\Http\Controllers\Catego
 Route::post('/update-category-post/{cate_id}','App\Http\Controllers\CategoryPost@update_category_post');
 Route::get('/delete-category-post/{cate_id}','App\Http\Controllers\CategoryPost@delete_category_post');
 
-Route::get('/unactive-cate-post/{cate_post_id}','App\Http\Controllers\CategoryPost@unactive_catepost');
-Route::get('/active-cate-post/{cate_post_id}','App\Http\Controllers\CategoryPost@active_catepost');
+// Route::get('/unactive-cate-post/{cate_post_id}','App\Http\Controllers\CategoryPost@unactive_catepost');
+// Route::get('/active-cate-post/{cate_post_id}','App\Http\Controllers\CategoryPost@active_catepost');
 
 // Bai viet
 Route::get('/add-post','App\Http\Controllers\PostController@add_post');
@@ -89,5 +89,7 @@ Route::get('/shopping-cart','App\Http\Controllers\CartController@shopping_cart')
 // Update status
 Route::get('/update-post-status', 'App\Http\Controllers\PostController@update_post_status');
 Route::get('/update-product-status', 'App\Http\Controllers\ProductController@update_product_status');
+Route::get('/update-cate-product-status', 'App\Http\Controllers\CategoryProduct@update_cate_product_status');
+Route::get('/update-cate-post-status', 'App\Http\Controllers\CategoryPost@update_cate_post_status');
 
 ?>

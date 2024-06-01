@@ -91,20 +91,20 @@ class ProductController extends Controller
         Session::put('message','Thêm sản phẩm thành công');
         return Redirect::to('add-product');
     }
-    public function unactive_product($product_id){
-        $this->AuthLogin();
-        DB::table('tbl_product')->where('product_id',$product_id)->update(['product_status'=>0]);
-        Session::put('message','Ẩn sản phẩm thành công');
-        return Redirect::to('all-product');
+    // public function unactive_product($product_id){
+    //     $this->AuthLogin();
+    //     DB::table('tbl_product')->where('product_id',$product_id)->update(['product_status'=>0]);
+    //     Session::put('message','Ẩn sản phẩm thành công');
+    //     return Redirect::to('all-product');
 
-    }
-    public function active_product($product_id){
-        $this->AuthLogin();
-        DB::table('tbl_product')->where('product_id',$product_id)->update(['product_status'=>1]);
-        Session::put('message','Hiển thị sản phẩm thành công');
-        return Redirect::to('all-product');
+    // }
+    // public function active_product($product_id){
+    //     $this->AuthLogin();
+    //     DB::table('tbl_product')->where('product_id',$product_id)->update(['product_status'=>1]);
+    //     Session::put('message','Hiển thị sản phẩm thành công');
+    //     return Redirect::to('all-product');
 
-    }
+    // }
     public function edit_product($product_id){
         $this->AuthLogin();
         $cate_product = DB::table('tbl_category_product')->orderBy('category_id','desc')->get();

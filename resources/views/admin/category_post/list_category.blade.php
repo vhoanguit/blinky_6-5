@@ -57,15 +57,11 @@
             <td>{{ $cate_post->cate_post_name }}</td>
             <td>{{ $cate_post->cate_post_slug }}</td>
             <td>
-                <!-- @if($cate_post->cate_post_status==1)
-                    Hiển thị
-                @else 
-                    Ẩn
-                @endif -->
-                @if($cate_post->cate_post_status==1) <a href="{{URL::to('/unactive-cate-post/'.$cate_post->cate_post_id)}}"><i style="color:green" class="fa-solid fa-eye"></i></a>          
-                @else <a href="{{URL::to('/active-cate-post/'.$cate_post->cate_post_id)}}"><i style="color:red" class="fa-solid fa-eye-slash"></i></a>          
-              
-                @endif
+              @if($cate_post->cate_post_status == 1) 
+                  <i style="color:green" class="fa-solid fa-eye update-cate-post-status" data-id="{{$cate_post->cate_post_id}}" data-status="0"></i>          
+              @else 
+                  <i style="color:red" class="fa-solid fa-eye-slash update-cate-post-status" data-id="{{$cate_post->cate_post_id}}" data-status="1"></i>          
+              @endif
 
 
             </td>       
@@ -96,4 +92,41 @@
     </footer>
   </div>
 </div>
+<script>
+$(document).ready(function(){
+    $('.update-cate-post-status').click(function(event){
+        event.preventDefault();
+        var catepostId = $(this).data('id'); // lấy ID bài viết
+        var catepostStatus = $(this).data('status'); // lấy trạng thái mới
+        var element = $(this);
+        $.ajax({
+            url: "{{ url('/update-cate-post-status') }}", // đường dẫn tới route xử lý cập nhật
+            method: 'GET',
+            data:{product_id: catepostId, product_status: catepostStatus},
+            success:function(data){              
+                if(catepostStatus == 1) {
+                  element.removeClass('fa-eye-slash').addClass('fa-eye').css('color', 'green').data('status', 0);
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Thành công',
+                    text: 'Hiển thị danh mục bài viết thành công!'
+                  });
+                } 
+                else {
+                  element.removeClass('fa-eye').addClass('fa-eye-slash').css('color', 'red').data('status', 1);
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Thành công',
+                    text: 'Ẩn danh mục bài viết thành công!'
+                  });
+                }
+                
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              console.log('AJAX call failed: ' + textStatus + ', ' + errorThrown);
+            }
+        });
+    });
+});
+</script>
 @endsection
