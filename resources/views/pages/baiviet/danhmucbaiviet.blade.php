@@ -74,8 +74,8 @@
                     <div class="displayPost">
                         <div class="">
                             <img style="" src="{{asset('public/uploads/post/'.$p->post_image)}}" alt="{{$p->post_slug}}"/>
-                            <h3 style="color:#000"><b>{{$p->post_title}}</b></h3>
-                            <p>{!!$p->post_desc!!}</p>                     
+                            <h3 style="color:#000;width:95%"><b>{{$p->post_title}}</b></h3>
+                            <p style="width:95%">{!!$p->post_desc!!}</p>                     
                         </div>
                         <a  href="{{url('/bai-viet/'.$p->post_slug)}}" class="btn btn-default bt-sm">Xem bài viết</a>
                     </div>
@@ -130,7 +130,7 @@
             </div>
             <hr>
             <div class="watch_most">
-                <div class="watch_most_header"><h2 style="color:#5f4100;"><b>NEWEST POSTS</b></h2></div>
+                <div class="watch_most_header"><h2 style="color:#5f4100;"><b>LATEST POSTS</b></h2></div>
                 <div class="watch_most_links">
                     <ul>
                     @foreach($newest_post as $key => $baivietmoinhat)

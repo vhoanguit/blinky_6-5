@@ -285,4 +285,10 @@ class ProductController extends Controller
         echo"daasdas";    
         return response()->json(['message' => 'Yêu cầu AJAX đã được xử lý thành công!', 'data' => $data]);
     }
+    public function update_product_status(Request $request){
+        $this->AuthLogin();
+        $product_id = $request->product_id;
+        $product_status = $request->product_status;   
+        DB::table('tbl_product')->where('product_id', $product_id)->update(['product_status' => $product_status]);   
+    }
 }

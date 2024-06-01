@@ -69,10 +69,11 @@ class HomeController extends Controller
         ->with('max_price_range',$max_price_range)->with('min_price_range',$max_price_range);
     }
     public function search(Request $request){
+
         $category_post = CatePost::orderBy('cate_post_id','DESC')->where('cate_post_status','1')->get(); // k có phân trang nên mình lấy hết bằng hàm get
         $keywords = $request->keywords_submit;
         $cate_product = DB::table('tbl_category_product')->where('category_status','1')->orderby('category_id','desc')->get();
-        $search_product = DB::table('tbl_product')->where('product_name','like','%'.$keywords.'%')->get();
+        $search_product = DB::table('tbl_product')->where('product_name','like','%'.$keywords.'%')->where('product_status','1')->get();
         return view('pages.sanpham.search')->with('category',$cate_product)->with('search_product',$search_product)->with('category_post',$category_post);
     }
 

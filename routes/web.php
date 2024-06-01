@@ -30,8 +30,8 @@ Route::get('/add-product','App\Http\Controllers\ProductController@add_product');
 Route::get('/all-product','App\Http\Controllers\ProductController@all_product');
 Route::post('/save-product','App\Http\Controllers\ProductController@save_product');
 
-Route::get('/unactive-product/{product_id}','App\Http\Controllers\ProductController@unactive_product');
-Route::get('/active-product/{product_id}','App\Http\Controllers\ProductController@active_product');
+// Route::get('/unactive-product/{product_id}','App\Http\Controllers\ProductController@unactive_product');
+// Route::get('/active-product/{product_id}','App\Http\Controllers\ProductController@active_product');
 
 Route::get('/edit-product/{product_id}','App\Http\Controllers\ProductController@edit_product');
 Route::get('/delete-product/{product_id}','App\Http\Controllers\ProductController@delete_product');
@@ -68,8 +68,9 @@ Route::get('/delete-post/{post_id}','App\Http\Controllers\PostController@delete_
 Route::get('/edit-post/{post_id}','App\Http\Controllers\PostController@edit_post'); // xoa theo id
 Route::post('/update-post/{post_id}','App\Http\Controllers\PostController@update_post'); // xoa theo id
 
-Route::get('/unactive-post/{post_id}','App\Http\Controllers\PostController@unactive_post');
-Route::get('/active-post/{post_id}','App\Http\Controllers\PostController@active_post');
+// Route::get('/unactive-post/{post_id}','App\Http\Controllers\PostController@unactive_post');
+// Route::get('/active-post/{post_id}','App\Http\Controllers\PostController@active_post');
+
 //Hien thi danh muc bai viet
 Route::get('/tat-ca-bai-viet','App\Http\Controllers\PostController@tatcabaiviet');
 
@@ -85,6 +86,8 @@ Route::get('/delete-gallery/{gallery_id}','App\Http\Controllers\GalleryControlle
 //Giỏ hàng
 Route::get('/shopping-cart','App\Http\Controllers\CartController@shopping_cart');
 
-// Route::post('/add-to-cart','App\Http\Controllers\CartController@addToCart');
+// Update status
+Route::get('/update-post-status', 'App\Http\Controllers\PostController@update_post_status');
+Route::get('/update-product-status', 'App\Http\Controllers\ProductController@update_product_status');
 
 ?>

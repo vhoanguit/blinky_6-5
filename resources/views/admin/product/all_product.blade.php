@@ -46,10 +46,11 @@
 
 
             <td><span class="text-ellipsis">
-                @if($pro->product_status ==1) <a href="{{URL::to('/unactive-product/'.$pro->product_id)}}"><i style="color:green" class="fa-solid fa-eye"></i></a>          
-                @else <a href="{{URL::to('/active-product/'.$pro->product_id)}}"><i style="color:red" class="fa-solid fa-eye-slash"></i></a>          
-              
-                @endif
+            @if($pro->product_status == 1) 
+                <i style="color:green" class="fa-solid fa-eye update-pro-status" data-id="{{$pro->product_id}}" data-status="0"></i>          
+            @else 
+                <i style="color:red" class="fa-solid fa-eye-slash update-pro-status" data-id="{{$pro->product_id}}" data-status="1"></i>          
+            @endif
             </span></td>
            
             <td>
@@ -83,4 +84,41 @@
     </footer>
   </div>
 </div>
+<script>
+$(document).ready(function(){
+    $('.update-pro-status').click(function(event){
+        event.preventDefault();
+        var proId = $(this).data('id'); // lấy ID bài viết
+        var proStatus = $(this).data('status'); // lấy trạng thái mới
+        var element = $(this);
+        $.ajax({
+            url: "{{ url('/update-product-status') }}", // đường dẫn tới route xử lý cập nhật
+            method: 'GET',
+            data:{product_id: proId, product_status: proStatus},
+            success:function(data){              
+                if(proStatus == 1) {
+                  element.removeClass('fa-eye-slash').addClass('fa-eye').css('color', 'green').data('status', 0);
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Thành công',
+                    text: 'Hiển thị sản phẩm thành công!'
+                  });
+                } 
+                else {
+                  element.removeClass('fa-eye').addClass('fa-eye-slash').css('color', 'red').data('status', 1);
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Thành công',
+                    text: 'Ẩn sản phẩm thành công!'
+                  });
+                }
+                
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              console.log('AJAX call failed: ' + textStatus + ', ' + errorThrown);
+            }
+        });
+    });
+});
+</script>
 @endsection
