@@ -83,32 +83,51 @@ class CategoryProduct extends Controller
     }
     public function show_category_product_home($category_product_id)
     {
+        $category_post = CatePost::orderBy('cate_post_id','DESC')->where('cate_post_status','1')->get();
+
         $category_product=DB::table('tbl_category_product')->where('category_status','1')->orderby('category_id','asc')->get();
         
-        $product_by_category=DB::table('tbl_product')->join('tbl_category_product','tbl_product.category_id','=','tbl_category_product.category_id')->where('category_status','1')->where('product_status','1')->where('tbl_product.category_id',$category_product_id);
-        // them bien categroy_post vao de truyen vo trang 
-        $category_post = CatePost::orderBy('cate_post_id','DESC')->where('cate_post_status','1')->get();
+        $this_category_product=DB::table('tbl_category_product')->where('category_status','1')->where('category_id',$category_product_id)->first();
+
+        $all_product=DB::table('tbl_product')->where('category_id',$category_product_id)->where('product_status','1');
 
         $min_price=DB::table('tbl_product')->min('product_price');
         $max_price=DB::table('tbl_product')->max('product_price');
-        $min_price_range=$min_price-100000;
-        $max_price_range=$max_price+100000;
-        
+
+        $min_price_range=$min_price-500000;
+        $max_price_range=$max_price+500000;
+        // $selectedColors;
+        $filter=[];
+
+        if(isset($_GET['filter']))
+        {   
+            $filter=$_GET['filter'];
+            for($i=0; $i<count($filter); $i++)
+            {
+                if($i==0) $all_product=$all_product->where('product_color',$filter[$i]);
+                else $all_product=$all_product->orWhere('product_color',$filter[$i]);
+            }
+            //$all_product=$all_product->orderby('product_id','asc')->get();
+        }
+
         if(isset($_GET['price_from']) && ($_GET['price_from']) )
         {
             $min_price=$_GET['price_from'];
             $max_price=$_GET['price_to'];
-            
-            $product_by_category=$product_by_category->where('product_status','1')
-            ->whereBetween('product_price',[$min_price,$max_price])
-            ->orderby('product_price','asc')->get();
-        }
-        else {$product_by_category=$product_by_category->get();}
 
-        return view('pages.sanpham.show_category_product')->with('category',$category_product)->with('product',$product_by_category)->with('category_post',$category_post)
+            $all_product=$all_product->where('product_status','1')->whereBetween('product_price',[$min_price,$max_price]);
+        }
+
+        $all_product=$all_product
+        ->inRandomOrder()
+        ->paginate(16);
+
+        return view('pages.sanpham.show_category_product')
+        ->with('this_category_product',$this_category_product)
+        ->with('category',$category_product)->with('product',$all_product)
         ->with('min_price_value',$min_price)->with('max_price_value',$max_price)
-        ->with('max_price_range',$max_price_range)->with('min_price_range',$max_price_range);
-        
+        ->with('max_price_range',$max_price_range)->with('min_price_range',$min_price_range)
+        ->with('selectedColors',$filter)->with('category_post',$category_post);
     }
     public function update_cate_product_status(Request $request){
         $this->AuthLogin();

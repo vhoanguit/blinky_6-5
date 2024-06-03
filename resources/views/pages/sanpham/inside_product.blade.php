@@ -15,7 +15,8 @@
 
     @foreach ($product as $key => $pro)
         <section class="inside_product_section">
-
+            {{-- <div class="all-inside_product"> --}}
+            <input type="hidden" id="customer-id" value="{{$login}}">
             <div class="filter_from_product_page">
                 <p>
                     <br>
@@ -77,7 +78,7 @@
                     <div class="product_container">
 
                         <h3 id="title"><b>{{ $pro->product_name }}</b></h3>
-                        <br>
+                        {{-- <br> --}}
                         <div class="price">{{ number_format($pro->product_price) . ' ' . 'VNĐ' }}</div>
 
                         <div class="size_container">
@@ -86,7 +87,7 @@
                             </button> --}}
                             @foreach ($size as $key => $size_pro)
                                 @if ($size_pro->SL > 0)
-                                    <button type="button" class="size" value="{{ $size_pro->size_value }}"
+                                    <button type="button" class="size" value="{{ $size_pro->size_id }}"
                                         onclick="selectSize(this, {{ $size_pro->size_value }}, {{ $size_pro->SL }})">{{ $size_pro->size_value }}
                                     </button>
                                 @else
@@ -106,7 +107,7 @@
                                         <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
                                     </svg>
                                 </button>
-                                <input type="text" name="amountnumber" id="amountnumber" value="1">
+                                <input type="text" name="amountnumber" id="amountnumber" value="1" min="1">
                                 <button class="plus" id="plus_btn" onclick="handlePlus()">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
@@ -200,6 +201,10 @@
             </div>
 
 
+            <!-- <div class="container-title">
+            <p>SẢN PHẨM MỚI NHẤT</p>
+            <hr>
+            </div> -->
             <div class="Product_description">
                 <div class="description_heading">
                     <br>
@@ -252,8 +257,7 @@
                                             src="{{ URL::to('public/uploads/product/' . $related_pro->product_image) }}">
                                     </div>
                                     <div class="product-content">
-                                        <a
-                                            href="{{ URL::to('/chi-tiet-san-pham/' . $pro->product_id) }}">{{ $related_pro->product_name }}</a>
+                                        <a class="product-name" href="{{ URL::to('/chi-tiet-san-pham/' . $pro->product_id) }}">{{ $related_pro->product_name }}</a>
                                         <p>{{ number_format($related_pro->product_price) . ' ' . 'VNĐ' }}</p>
                                     </div>
                                 </div>
@@ -273,6 +277,7 @@
 
     </footer>
 
+    {{-- </section> --}}
     <script type="text/javascript" src="{{ asset('public/frontend/js/InsightProduct.js') }}"></script>
     <script type="text/javascript" src="{{ asset('public/frontend/js/ScriptCardSlider.js') }}"></script>
 
@@ -283,32 +288,28 @@
 
     <script>
         $(document).ready(function() {
+            
             $('#add_product_to_cart').click(function() 
             {
                 const sizeSelected = document.querySelector('.size.selected');
                 if (sizeSelected) 
                 {
+                    var customer = $('#customer-id').val();
                     var proid = $('#productid_hidden').val();
-                    var proname = $('#productname_hidden').val();
-                    var procolor = $('#productcolor_hidden').val();
-                    var proprice = $('#productprice_hidden').val();
                     var prosize= sizeSelected.value;
                     var proquantity=$('#amountnumber').val();
 
                     if (proid){
-                        console.log(proid);
-                        console.log(proname);
-                        console.log(procolor);
-                        console.log(proprice);
-                        console.log(prosize);
-                        console.log(proquantity);
 
                         $.ajax({
                             type: 'GET',
                             url: '',
                             data: {
                                 proid: proid,
-                                action: 'giohang'
+                                prosize: prosize,
+                                customer: customer,
+                                proquantity: proquantity,
+                                action: 'add-to-shopping-cart'
                             },
                             success: function(response) {
                                 // $('#test_text').html(response);
@@ -326,7 +327,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <?php
-    if (isset($_GET['action']) && $_GET['action'] == 'giohang') {
+    if (isset($_GET['action']) && $_GET['action'] == 'add-to-shopping-cart') 
+    {
         // $conn = new mysqli('localhost', 'root', '', 'blinkiy');
         // if ($conn->connect_error) {
         //     die('Connection failed: ' . $conn->connect_error);
@@ -337,6 +339,46 @@
     
         // $conn->query($sql)
         // $conn->close();
+        
+        $product=$_GET['proid'];
+        $size=$_GET['prosize'];
+        $customer=$_GET['customer'];
+        $quantity=$_GET['proquantity'];
+
+        $existingRecord=DB::table('tbl_cart')
+        ->where('product_id', $product)
+        ->where('size_id', $size)
+        ->where('customer_id', $customer)
+        ->first();
+
+        if ($existingRecord === null) 
+        {//nếu rỗng->chưa có->thêm vào
+            $data=[];
+            $data['product_id']=$product;
+            $data['size_id']=$size;
+            $data['customer_id']=$customer;
+            $data['cart_quantity']=$quantity;
+            DB::table('tbl_cart')->insert($data);
+   
+        } 
+        else 
+        { 
+            //tức là đã có thì cộng dồn lên
+            $inventory = DB::table('tbl_cart')->join('tbl_product_details', function ($join) {
+            $join->on('tbl_cart.product_id', '=', 'tbl_product_details.product_id')
+                 ->on('tbl_cart.size_id', '=', 'tbl_product_details.size_id');})
+            ->where('tbl_cart.size_id', $size)
+            ->where('tbl_cart.product_id', $product)
+            ->pluck('SL')
+            ->first();
+
+            $new_quantity=$existingRecord->cart_quantity + $quantity;
+            $new_quantity = min($new_quantity, $inventory);//nếu số lượng chọn lớn hơn tồn kho thì set=tồn kho
+
+            DB::table('tbl_cart')->where('product_id', $product)->where('size_id', $size)->where('customer_id', $customer)
+            ->update(['cart_quantity'=>$new_quantity]);
+        }
+
     }
     ?>
         

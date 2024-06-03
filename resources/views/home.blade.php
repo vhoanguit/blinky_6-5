@@ -31,7 +31,7 @@
                 <div class="top-bar-options">
                     <div class="top-bar-options-object">
                         <i class="fa-solid fa-user"></i>
-                        <a class="top-bar-options-object-title" href="">Tài khoản</a>
+                        <a class="top-bar-options-object-title" href="{{ URL::to('/personal_infor') }}">Tài khoản</a>
                     </div>
                     <div class="top-bar-options-object">
                         <i class="fa-solid fa-heart"></i>
@@ -39,7 +39,7 @@
                     </div>
                     <div class="top-bar-options-object">
                         <i class="fa-solid fa-cart-shopping"></i>
-                        <a class="top-bar-options-object-title" href="{{URL::to('/shopping-cart')}}">Giỏ hàng</a>
+                        <a class="top-bar-options-object-title" href="{{URL::to('/gio-hang')}}">Giỏ hàng</a>
                     </div>
                 </div>
             </div>

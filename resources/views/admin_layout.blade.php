@@ -49,7 +49,7 @@
 			<!-- user login dropdown start-->
 			<li class="dropdown">
 				<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-					<img alt="" src="{{('public/backend/images/2.png')}}">
+                <img class="logo-img" src="{{ asset('public/frontend/image/Logo.jpg') }}">
 					<span class="username">
 					<?php
 						$name = Session::get('admin_name'); // hàm get để lấy biến có tên là 'admin_name' ở bên AdminController

@@ -18,7 +18,7 @@
     
     <div class="post_layout">
         <div class="post_header">
-            <h1><b> {{$meta_title}}</b></h1>
+            <h2><b> {{$meta_title}}</b></h2>
         </div>
         <div class="post_contents">
         @foreach($post as $key=>$p)
@@ -72,7 +72,7 @@
             <hr>
             <div class="relation">
                 <div class="relate_header">
-                    <h2><b>Bài viết khác</b></h2>            
+                    <h2 style="color:#5f4100;"><b>Bài viết khác</b></h2>            
                 </div>
                 
                 <div style="background-color:rgb(206, 91, 56);height:2px;margin-left:4rem"></div>     
@@ -83,7 +83,6 @@
                             <img style="width:6rem; height:6rem;margin-right:1.3rem" src="{{asset('public/uploads/post/'.$baiviet_lienquan->post_image)}}" alt="{{$baiviet_lienquan->post_slug}}"/>
                             <li style="list-style:none; font-size:18px">
                                 <a href="{{url('/bai-viet/'.$baiviet_lienquan->post_slug)}}"><b>{{$baiviet_lienquan->post_title}}</b></a>
-                                <div style="overflow:hidden">{!!$baiviet_lienquan->post_desc!!}</div>
                             </li>                   
                         </div>
                         <hr>
@@ -91,13 +90,6 @@
                     </ul>
                 </div>
             </div>
-            <!-- <div class="watch_most">
-                <div class="watch_most_header"><h2>Xem nhiều</h2></div>
-                <div class="watch_most_links">
-                   
-                </div>
-            </div> -->
-            
 
         </div>
     

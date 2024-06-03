@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 // // FE
 Route::get('/', 'App\Http\Controllers\HomeController@index2'); // goi ham index trong HomeController, khi go localhost/blinky thi hien ra page luon
 Route::get('/trang-chu', 'App\Http\Controllers\HomeController@index2'); // Khi search localhost8080/blinky/trang-chu thì nó se hiện thị trang chủ
-Route::post('/tim-kiem','App\Http\Controllers\HomeController@search'); 
+Route::get('/tim-kiem','App\Http\Controllers\HomeController@search');
 
 // //BE 
 // //admin
@@ -84,7 +84,9 @@ Route::post('/insert-gallery/{product_id}','App\Http\Controllers\GalleryControll
 Route::get('/delete-gallery/{gallery_id}','App\Http\Controllers\GalleryController@delete_Gallery');
 
 //Giỏ hàng
-Route::get('/shopping-cart','App\Http\Controllers\CartController@shopping_cart');
+Route::post('/add-to-cart', 'App\Http\Controllers\ProductController@add_to_cart');
+Route::get('/gio-hang','App\Http\Controllers\CartController@shopping_cart');
+
 
 // Update status
 Route::get('/update-post-status', 'App\Http\Controllers\PostController@update_post_status');
@@ -92,4 +94,78 @@ Route::get('/update-product-status', 'App\Http\Controllers\ProductController@upd
 Route::get('/update-cate-product-status', 'App\Http\Controllers\CategoryProduct@update_cate_product_status');
 Route::get('/update-cate-post-status', 'App\Http\Controllers\CategoryPost@update_cate_post_status');
 
+// login
+Route::get('/login', 'App\Http\Controllers\CheckoutController@login');
+Route::post('/login-customer', 'App\Http\Controllers\CheckoutController@login_customer');
+
+// Register
+Route::get('/register', 'App\Http\Controllers\CheckoutController@register');
+Route::post('/add-customer', 'App\Http\Controllers\CheckoutController@add_customer');
+
+
+// // update-profle
+// Route::post('/update-customer/{customer_id}', 'App\Http\Controllers\CheckoutController@update_customer');
+
+// Route::get('/pages.personal_infor', 'App\Http\Controllers\CheckoutController@personal_infor');
+
+// group này xác định các route cần có customer_id thì mới truy cập được
+Route::group(['middleware' => 'customer'], function () {
+    // update-profle
+    Route::post('/update-customer/{customer_id}', 'App\Http\Controllers\CheckoutController@update_customer');
+    // Các route yêu cầu đăng nhập
+    Route::get('/personal_infor', 'App\Http\Controllers\CheckoutController@personal_infor');
+
+    // logout
+    Route::get('/logout', 'App\Http\Controllers\CheckoutController@logout');
+
+    // Đổi mật khẩu
+    Route::get('/change_pass', 'App\Http\Controllers\CheckoutController@Change_pass');
+    Route::post('/change_pass', 'App\Http\Controllers\CheckoutController@check_change_pass');
+
+    Route::get('/order_management', 'App\Http\Controllers\CheckoutController@Order_management');
+
+    Route::post('/upload-avatar/{customer_id}', 'App\Http\Controllers\CheckoutController@upload_avatar');
+});
+
+
+/// Hàm lấy quận từ thành phố.
+Route::post('/get-districts', 'App\Http\Controllers\CheckoutController@fetchDistrict')->name('fetch_d');
+
+// Quên mật khẩu
+Route::get('/forgot-password', 'App\Http\Controllers\CheckoutController@forgot_password');
+Route::post('/forgot-password', 'App\Http\Controllers\CheckoutController@check_forgot_password');
+
+Route::get('/verify_otp', 'App\Http\Controllers\CheckoutController@verify_otp');
+Route::post('/verify_otp', 'App\Http\Controllers\CheckoutController@check_verify_otp');
+
+Route::get('/reset-password', 'App\Http\Controllers\CheckoutController@reset_password');
+Route::post('/reset-password', 'App\Http\Controllers\CheckoutController@check_reset_password'); 
+
+
+
+use App\Http\Controllers\ShippingController;
+use App\Http\Controllers\AdditionalController;
+use App\Http\Controllers\FileDisplayController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\EmailController;
+
+//thanh toan
+Route::get('/hoa-don', [OrderController::class, 'hoaDon'])->name('hoa_don');
+Route::get('/thanh-toan', [OrderController::class, 'thanhToan'])->name('thanh_toan');
+Route::post('/thanh-toan', [OrderController::class, 'submitThanhToan'])->name('submit_thanh_toan');
+// Route::post('/thanh-toan', [OrderController::class, 'online_checkout'])->name('MoMo');
+
+//bo sung thong tin sau van chuyen
+Route::get('/bo-sung', [AdditionalController::class, 'index'])->name('bo-sung.index');
+Route::post('/bo-sung', [AdditionalController::class, 'store'])->name('bo-sung.store');
+Route::get('/file-display', [FileDisplayController::class, 'index'])->name('fileDisplay');
+
+
+//van chuyen
+Route::get('/shipping', [ShippingController::class, 'index'])->name('shipping.index');
+Route::post('/shipping/fetch-district', [ShippingController::class, 'fetchDistrict'])->name('shipping.fetch_district');
+Route::post('/shipping/store', [ShippingController::class, 'store'])->name('shipping.store');
+
+//gui email
+Route::get('/test-email', [EmailController::class, 'testEmail']);
 ?>

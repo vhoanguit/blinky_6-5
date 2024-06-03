@@ -26,7 +26,7 @@ class AdminController extends Controller
         }
     }
     public function index(){
-        return view('pages.admin_login'); 
+        return view('pages.admin_hienthi.admin_login'); 
     }
     public function show_dashboard(){
         $this->AuthLogin();

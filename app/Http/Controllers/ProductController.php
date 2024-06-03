@@ -31,7 +31,7 @@ class ProductController extends Controller
         $this->AuthLogin();
     	$all_product = DB::table('tbl_product')->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id') 
         //hàm join 2 bảng tbl_product và tbl_category_product với khóa ngoại là category_id
-        ->orderby('tbl_product.product_id')->paginate(50); 
+        ->orderby('tbl_product.product_id','asc')->paginate(25); 
     	$manage_product  = view('admin.product.all_product')->with('all_product',$all_product);
     	return view('admin_layout')->with('admin.product.all_product', $manage_product);
     }
@@ -229,6 +229,8 @@ class ProductController extends Controller
     //FE
     public function show_inside_product($product_id)
     {
+        $customer_id = Session::get('customer_id');
+
         $category_post = CatePost::orderBy('cate_post_id','DESC')->where('cate_post_status','1')->get();
 
         $product_by_id=DB::table('tbl_product')
@@ -254,7 +256,8 @@ class ProductController extends Controller
         ->orderby('tbl_product.product_id','asc')->limit(12)->get();
         $gallery_product=DB::table('tbl_gallery')->where('product_id',$product_id)->get();
 
-        return view('pages.sanpham.inside_product')->with('product',$product_by_id)->with('related_product',$related_product)->with('cate_of_product',$category_of_product)->with('size',$size_product)->with('gallery_product',$gallery_product)->with('category_post',$category_post);
+        return view('pages.sanpham.inside_product')->with('product',$product_by_id)->with('related_product',$related_product)->with('cate_of_product',$category_of_product)->with('size',$size_product)->with('gallery_product',$gallery_product)->with('category_post',$category_post)        ->with('login',$customer_id);
+
     }
 
     public function filter_products(Request $request )

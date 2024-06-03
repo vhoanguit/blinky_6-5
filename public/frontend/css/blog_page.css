@@ -39,8 +39,7 @@
 /* bai viet */
 .main{
     display: flex;
-    padding-top:10px;
-  
+    padding-top:2rem;
     
 }
 .section{
@@ -177,11 +176,11 @@
 }
 /* sidebar categories*/
 .news_header{
-    height: 3.5rem;
+    height: 4.5rem;
     background-color: rgb(255, 221, 223);
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 .foru_header{
     display: flex;
@@ -216,8 +215,8 @@
     width: 100%;
     overflow: hidden;
     padding-bottom: 20px; 
-    font-size: 20px;
-    margin-left:1rem;
+    font-size: 18px;
+    margin-left:3rem;
 }
 .displayPost h3{
     font-size:27px;
@@ -251,12 +250,18 @@
     display:block;
     width:75%;
     overflow:hidden;
-    padding-left:2rem;
+    padding-left:5rem;
+    padding-right: 2rem;
+    border-right:1px solid rgb(199, 199, 199);
+    border-top:1px solid rgb(199, 199, 199);
+
 }
 .post_header{
     display:flex;
     justify-content:center;
     align-content:center;
+    padding-top: 2rem;
+    padding-bottom:2rem;
 }
 .relate_header{
     display:flex;

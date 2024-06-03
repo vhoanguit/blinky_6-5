@@ -1,0 +1,589 @@
+/* Ghi đè font-family của Bootstrap */
+body {
+    font-family: "Times New Roman", Times, serif !important;
+}
+
+body
+{
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: 'DM Sans';
+}
+/*Top-bar*/
+.top-bar
+{
+    width: 100%;
+    max-width: 1920px;
+    height: 85px;
+    display: flex;
+    align-items: center;
+    background-color: #FDFDFB;
+    display: grid;
+    grid-template-columns: 20% 45% 35%;
+}
+.logo
+{
+    height: 50px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 40% 0% 60%;
+}
+
+/*LOGO*/
+.logo-img
+{
+    width: 60%;
+    height: auto;
+    margin-top: -5px;
+    margin-left: 30%;
+}
+.logo-blinkiy
+{
+    margin-top: 4px;
+    font-size: 20px;
+    font-family: 'Arial';
+    font-style: normal;
+    /* color: #DDD9CD; */
+    color: #EF99A2;
+    font-weight: 700;
+}
+.logo-phongthuy
+{
+    margin-top: 29px;
+    font-size: 18px;
+    color: #DAB076;
+    font-weight: medium;
+}
+
+/*SEARCH BAR*/
+.search-bar
+{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.search-bar-cover
+{
+    margin-top: 0.5%;
+    width: 85%;
+    display: flex;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 8% 92%;
+    border: 1px solid #DAB076;
+    border-radius: 50px 50px 50px 50px;
+}
+.search-bar-input
+{
+    width: 90%;
+    height:20px;
+    background-color: #FDFDFB;
+    border: 1px solid #DAB076;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    color: #e08f96;
+    text-indent: 10px;/*để di chuyển value với placeholer sang phải*/
+}
+
+.search-bar-input:focus
+{
+    outline: none;
+}
+.search-bar-input::placeholder
+{
+    color: #e08f96;
+    font-size: 15px;
+}
+i.fa-search
+{
+    font-size: 15px;
+    margin-top: 0;
+    height: 30px;
+    width: 100%;
+    color: #EF99A2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*TOP BAR OPTIONS*/
+.top-bar-options
+{
+    height: 35px;
+    width: 100%;
+    display: flex;
+    align-items: end;
+    margin-bottom: 5px;
+    display: grid;
+    grid-template-columns: 34% 33% 33%;
+}
+.bg-menu-img
+{
+    width: 100%;
+    height: 75px;
+    object-fit: cover;
+}
+i.fa-user, i.fa-cart-shopping, i.fa-heart
+{
+    color: #EF99A2;
+    font-size: 20px;
+}
+.top-bar-options-object
+{
+    display: flex;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 20% 70%;
+}
+.top-bar-options-object-title:hover
+{
+    color: #DAB076;
+}
+.top-bar-options-object-title
+{
+    color: #d4868d;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 19px;
+}
+/* MENU BAR */
+.menu-bar
+{
+    width: 100%;
+    max-width: 1920px;
+    display: grid;
+    grid-template-rows: 0px;
+    /* order: 2; */
+}
+.mainmenu, .product-submenu
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.mainmenu
+{
+    z-index: 1;
+    background: rgba(112, 90, 87, 0.37);
+    height: 75px;
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    /* backdrop-filter: blur(2px); */
+}
+.bg-menu-img
+{
+    width: 100%;
+    height: 75px;
+    object-fit: cover;
+    /* background-color: #FDFDFB; */
+}
+.menu-bar-title
+{
+    display: block;
+    text-decoration: none;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 23px;
+    text-align: center;
+}
+.mainmenu a:hover
+{
+    color: #452525;
+}
+.mainmenu-li
+{
+    height: 75px;
+}
+.mainmenu-li:hover .product-submenu 
+{
+    display: block;
+    max-height: 200px;
+    
+}
+.product-submenu a
+{
+    display: block;
+    text-decoration: none;
+    height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding-left: 20px;
+
+    color: #706c6b;
+}
+.product-submenu a:hover
+{
+    color: #EF99A2;
+    background-color: #edededad;
+}
+.product-submenu
+{
+    background-color: #ffffff;
+    opacity: 0.8;
+    overflow: hidden;
+    max-height: 0;
+    -webkit-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+}
+
+
+/* Mobile width < 740px */
+@media only screen and (max-width: 46.1875em)
+{
+    .top-bar
+    {
+        width: 100%;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        display: grid;
+        grid-template-columns: 30% 30% 40%;
+    }
+    .logo
+    {
+        margin-top: -5px;
+        height: 15px;
+        display: grid;
+        grid-template-columns: 40% 0% 60%;
+    }
+    .logo-img
+    {
+        height: auto;
+        margin-top: -8%;
+        margin-left: 30%;
+    }
+    .logo-blinkiy
+    {
+        margin-top: 0.3px;
+        font-size: 9px;
+    }
+    .logo-phongthuy
+    {
+        margin-top: 13px;
+        font-size: 7px;
+        color: #DAB076;
+    }
+    /*SEARCH BAR*/
+    .search-bar-cover
+    {
+        margin-top: 0.5%;
+        width: 85%;
+        display: flex;
+        align-items: center;
+        display: grid;
+        grid-template-columns: 15% 85%;
+        border: 0.5px solid #DAB076;
+        border-radius: 50px 50px 50px 50px;
+    }
+    .search-bar-input
+    {
+        border-width: 0.5px;
+        width: 85%;
+        height: 8px;
+        line-height: 12px;
+        text-indent: 3px;
+        font-size: 6px;
+    }
+    .search-bar-input::placeholder
+    {
+        line-height: normal; 
+        font-size: 6px;
+    }
+    i.fa-search
+    {
+        /* border: 0.5px solid #373737; */
+        font-size: 6px;
+        height: 12px;
+        width: 100%;
+    }
+    .top-bar-options
+    {
+        
+        width: 100%;
+        display: flex;
+        align-items: center;
+        display: grid;
+        grid-template-columns: 33% 33% 33%;
+    }
+    i.fa-user, i.fa-cart-shopping, i.fa-heart
+    {
+        margin-top: 5px;
+        font-size: 7px;
+    }
+    .top-bar-options-object-title
+    {
+        margin-top: 5px;
+        margin-bottom: 0;
+        font-size: 8px;
+    }
+    .top-bar-options-object
+    {
+        display: grid;
+        grid-template-columns: 20% 80%;
+        
+    }
+    /* MENU BAR */
+    .mainmenu
+    {
+        z-index: 1;
+        height: 40px;
+    }
+    .bg-menu-img
+    {
+        width: 100%;
+        height: 40px;
+        object-fit: cover;
+    }
+    .menu-bar-title
+    {
+        height: 40px;
+        font-size: 10px;
+    }
+    .mainmenu-li
+    {
+        height: 40px;
+    }
+    .product-submenu a
+    {
+        height: 30px;
+        font-size: 10px;
+    }
+} 
+/* Tablet */
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em)
+{
+    .top-bar
+    {
+        width: 100%;
+        height: 70px;
+        display: grid;
+        grid-template-columns: 22% 40% 38%;
+    }
+    .logo
+    {
+        height: 70px;
+        display: flex;
+        align-items: center;
+        display: grid;
+        grid-template-columns: 40% 0% 60%;
+    }
+    .logo-img
+    {
+        margin-top: 4px;
+        width: 55%;
+        height: auto;
+        margin-left: 30%;
+    }
+    .logo-blinkiy
+    {
+        margin-top: 0.5px;
+        font-size: 14px;
+    }
+    .logo-phongthuy
+    {
+        margin-top: 34px;
+        font-size: 13px;
+        color: #DAB076;
+    }
+    /*SEARCH BAR*/
+    .search-bar-cover
+    {
+        margin-top: 0.5%;
+        width: 85%;
+        display: flex;
+        align-items: center;
+        display: grid;
+        grid-template-columns: 10% 90%;
+        border: 0.5px solid #DAB076;
+        border-radius: 50px 50px 50px 50px;
+    }
+    .search-bar-input
+    {
+        width: 85%;
+        height: 15px;
+        line-height: 12px;
+        border: 0.5px solid #DAB076;
+        border-top: none;
+        border-right: none;
+        border-bottom: none;
+        text-indent: 3px;
+        font-size: 10px;
+    }
+    .search-bar-input::placeholder
+    {
+        line-height: normal; 
+        font-size: 10px;
+    }
+    i.fa-search
+    {
+        font-size: 10px;
+        height: 23px;
+        width: 100%;
+    }
+    .top-bar-options
+    {
+        height: 30px;
+        /* height: 100%; */
+        width: 100%;
+        display: flex;
+        align-items: center;
+        display: grid;
+        grid-template-columns: 33% 33% 33%;
+    }
+    .bg-menu-img
+    {
+        width: 100%;
+        height: 30px;
+
+    }
+    i.fa-user, i.fa-cart-shopping, i.fa-heart
+    {
+        margin-top: 5px;
+        /* color: #F7ECDB; */
+        font-size: 15px;
+    }
+    .top-bar-options-object-title
+    {
+        margin-top: 5px;
+        margin-bottom: 0;
+        /* color: #F7ECDB; */
+        font-size: 15px;
+    }
+    .top-bar-options-object
+    {
+        display: grid;
+        grid-template-columns: 20% 80%;
+        
+    }
+    /* MENU BAR */
+    .mainmenu
+    {
+        z-index: 1;
+        height: 60px;
+        /* backdrop-filter: blur(2px); */
+    }
+    .bg-menu-img
+    {
+        width: 100%;
+        height: 60px;
+        object-fit: cover;
+    }
+    .menu-bar-title
+    {
+        height: 60px;
+        font-size: 17px;
+    }
+    .mainmenu-li
+    {
+        height: 60px;
+    }
+    .product-submenu a
+    {
+        height: 45px;
+        font-size: 17px;
+    }
+} 
+
+
+/* SECTION */
+.btn-more {
+    background-color: #b84c65;
+    /* Màu nền */
+    border-color: #b84c65;
+    /* Màu viền */
+    color: #fff;
+    /* Màu chữ */
+    border-radius: 5px;
+    /* Bo góc */
+    padding: 8px 16px;
+    /* Kích thước nội dung */
+    font-size: 16px;
+    /* Kích thước chữ */
+    cursor: pointer;
+    /* Con trỏ chuột khi hover */
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+    /* Thời gian chuyển đổi */
+}
+
+
+.btn-register{
+    background-color: #F1A4AC;
+    /* Màu nền */
+    border-color: #F1A4AC;
+    /* Màu viền */
+    color: #fff;
+    /* Màu chữ */
+    border-radius: 5px;
+    /* Bo góc */
+    padding: 8px 16px;
+    /* Kích thước nội dung */
+    font-size: 16px;
+    /* Kích thước chữ */
+    cursor: pointer;
+    /* Con trỏ chuột khi hover */
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+    /* Thời gian chuyển đổi */
+}
+
+.btn-more:hover, .btn-register:hover {
+    background-color: #ff8592;
+    /* Màu nền khi hover */
+    border-color: #ff8592;
+    /* Màu viền khi hover */
+    color: #fff;
+    /* Màu chữ khi hover */
+}
+
+.regist_title {
+    color: #DAB076;
+}
+
+.form-control {
+    border: 1px solid #DAB076;
+}
+
+
+.login-form{
+    padding: 20px;
+    border: 1px solid #d3ced2;
+    margin: 25px 0;
+    text-align: left;
+    border-radius: 5px;
+}
+
+.register-form{
+    padding: 20px;
+    border: 1px solid #d3ced2;
+    margin: 25px 0;
+    text-align: left;
+    border-radius: 5px;
+}
+p.text-alert {
+    color: red;
+    font-size: 14px;
+    width: 100%;
+    /* text-align: center; */
+    font-weight: bold;
+}
+
+.form-group{
+    margin-bottom: 1.2rem ;
+}
+
+.alert-danger {
+    margin-top: 15px;
+    margin-bottom: 0px;
+}
