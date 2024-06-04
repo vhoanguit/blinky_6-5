@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;Epilogue:ital,wght@0,100..900;Poly:ital@0;1;Dongle&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body>
 
@@ -68,15 +70,23 @@
             </div>
         </form>
         @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Thành công',
+                text: '{{ session('success') }}'
+            });
+        </script>
         @endif
 
         @if (session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Lỗi',
+                text: '{{ session('error') }}'
+            });
+        </script>
         @endif
     </section>
 
