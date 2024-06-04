@@ -16,7 +16,6 @@
                     ?>
                     <div class="position-center">
                         <form role="form" action="{{ URL::to('/update-product-details/'.$pro_id) }}" method="POST" enctype="multipart/form-data">
-                            {{-- enctype="multipart/form-data": để thêm ảnh --}}
                         {{ csrf_field() }} 
                         @foreach ($edit_product as $key => $pro)
                         <div class="form-group">

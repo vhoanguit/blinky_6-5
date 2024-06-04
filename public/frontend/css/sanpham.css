@@ -129,8 +129,8 @@
 }
 
 .product-image img {
-  width: 260px;
-  height: 260px;
+  width: 220px;
+  height: 220px;
   border: 0px solid white;
   border-radius: 5px 5px 5px 5px;
   object-fit: cover;
@@ -259,7 +259,7 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  gap: 70px 52px;
+  gap: 40px 32px;
 }
 
 

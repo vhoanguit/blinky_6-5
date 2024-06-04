@@ -17,8 +17,8 @@
     padding: 0.2rem 0.2rem;
 }
 .tag img {
-    width: 18.75rem;
-    height: 18.75rem;
+    width: 21.75rem;
+    height: 21.75rem;
     object-fit: cover; /* Đảm bảo các hình ảnh không bị méo khi thiết lập kích thước đồng đều */
 }
 .fade{
@@ -42,10 +42,7 @@
     padding-top:2rem;
     
 }
-.section{
-    width:80%;
-    border:1px solid rgb(199, 199, 199);
-}
+
 .sidebar,.sidebar_post{
     width:25%;    
     border-right:1px solid rgb(199, 199, 199);
@@ -62,11 +59,7 @@
     flex-wrap: wrap;
 
 }
-.social_link{
-    text-align: center;
-    
-    padding-bottom:2rem;
-}
+
 .social_icons a{
     text-decoration: none;
     width:100%;
@@ -175,21 +168,14 @@
     }
 }
 /* sidebar categories*/
-.news_header{
-    height: 4.5rem;
-    background-color: rgb(255, 221, 223);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.foru_header{
-    display: flex;
-    justify-content: center;
-    padding-bottom:0.5rem;
-}
+
 .watch_most_links{
     width: 90%;
 }
+.watch_most_links li{
+    margin-bottom: 2rem;
+}
+
 .foru_links a,.watch_most_links a{
     text-decoration: none;
     color: black;
@@ -199,8 +185,8 @@
     list-style: none;
 }
 .foru_links a:hover, .watch_most_links a:hover{
-    color:rgb(206, 158, 56);
-    transition:.5s;
+    color:rgb(255, 103, 179);
+    
 }
 .watch_most_links a{
     font-size:1.7rem;
@@ -263,12 +249,7 @@
     padding-top: 2rem;
     padding-bottom:2rem;
 }
-.relate_header{
-    display:flex;
-    padding-left:3.9rem;
-    align-content:center;
-    
-}
+
 
 
 .related_link{
@@ -281,3 +262,75 @@
     color:rgb(206, 91, 56);
 }
 
+/* Bổ sung 4/6 */
+.social,.foru,.watch_most{
+    margin-bottom:4rem;
+}
+.social_link{
+    /* text-align: center;
+    padding-bottom:2rem; */
+    display: flex;
+    align-items: center;
+    margin-bottom:2rem;
+}
+.foru_header{
+    display: flex;
+    align-items: center;
+    margin-bottom:2rem;
+}
+.watch_most_header,.relate_header{
+    display: flex;
+    align-items: center;
+    margin-top:2rem;
+
+}
+.social_link h2, .foru_header h2,.watch_most_header h2,.relate_header h2{
+    font-family: 'Paytone One', sans-serif;
+    font-weight: medium;
+    color: #ddab64;
+}
+.social_link hr{
+    width:20%;
+    margin-top: 2.5rem;
+    background-image: linear-gradient(to right, #fdd5d9,#feadb5, #f9bec4);
+    /* #f9bec4 */
+    height: 5px;
+    border: none;
+}
+.foru_header hr{
+    width:20%;
+    margin-top: 2.5rem;
+    background-image: linear-gradient(to right, #fdd5d9,#feadb5, #f9bec4);
+    /* #f9bec4 */
+    height: 5px;
+    border: none;
+}
+.watch_most_header hr{
+    background-image: linear-gradient(to right, #fdd5d9,#feadb5, #f9bec4);
+    /* #f9bec4 */
+    height: 5px;
+    border: none;
+    width:10%;
+}
+.relate_header hr{
+    background-image: linear-gradient(to right, #fdd5d9,#feadb5, #f9bec4);
+    /* #f9bec4 */
+    height: 5px;
+    border: none;
+    width:15%;
+}
+.news_header{
+    height: 4.5rem;
+    background-color: rgb(255, 221, 223);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Paytone One', sans-serif;
+    font-weight: medium;
+    color: #d68a1f;
+}
+.section{
+    width:80%;
+    border:1px solid rgb(199, 199, 199);
+    border-right:2px solid  rgb(255, 221, 223);
+}

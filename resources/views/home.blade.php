@@ -7,7 +7,10 @@
         <title>Trang Chủ</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">       
+        <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@400;700&family=Francois+One&family=Paytone+One&family=Sigmar&family=Tilt+Neon&family=Saira+Stencil+One&display=swap" rel="stylesheet">
+        
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
         <link href="{{asset('public/frontend/css/StyleHomePage.css')}}" rel="stylesheet">
         <link href="{{asset('public/frontend/css/StyleHeader.css')}}" rel="stylesheet">
@@ -30,7 +33,9 @@
                 </div>
                 <div class="top-bar-options">
                     <div class="top-bar-options-object">
-                        <i class="fa-solid fa-user"></i>
+                        <a href="{{ URL::to('/personal_infor') }}">
+                            <i class="fa-solid fa-user"></i>
+                        </a>
                         <a class="top-bar-options-object-title" href="{{ URL::to('/personal_infor') }}">Tài khoản</a>
                     </div>
                     <div class="top-bar-options-object">
@@ -38,8 +43,10 @@
                         <a class="top-bar-options-object-title" href="">Yêu thích</a>
                     </div>
                     <div class="top-bar-options-object">
+                    <a href="{{ URL::to('/gio-hang') }}">
                         <i class="fa-solid fa-cart-shopping"></i>
-                        <a class="top-bar-options-object-title" href="{{URL::to('/gio-hang')}}">Giỏ hàng</a>
+                    </a>                        
+                    <a class="top-bar-options-object-title" href="{{URL::to('/gio-hang')}}">Giỏ hàng</a>
                     </div>
                 </div>
             </div>

@@ -31,8 +31,10 @@
     <div class="sidebar_post">
             <div class="social">
                 <div class="social_link">
-                <h2 style="color:#5f4100;"><b>SOCIAL</b></h2>                
-            </div>
+                    <hr>
+                <h2><b>SOCIAL</b></h2>         
+                    <hr>             
+                </div>
                 
                 <div class="groupicon">
                     <ul class="social_icons">
@@ -55,9 +57,12 @@
                 </div>
                 
             </div>
-            <hr>
             <div class="foru">
-                <div class="foru_header"><h2 style="color:#5f4100;"><b>FOR YOU</b></h2></div>
+                <div class="foru_header">
+                    <hr>
+                    <h2><b>FOR YOU</b></h2> 
+                    <hr>               
+                </div>
                 <div class="foru_links">
                     <ul>                       
                         @foreach($category_post as $key => $danhmucbaiviet)
@@ -69,13 +74,13 @@
                     </ul>
                 </div>
             </div>
-            <hr>
             <div class="relation">
                 <div class="relate_header">
-                    <h2 style="color:#5f4100;"><b>Bài viết khác</b></h2>            
+                    <hr>
+                    <h2><b>Bài viết khác</b></h2>    
+                    <hr>        
                 </div>
                 
-                <div style="background-color:rgb(206, 91, 56);height:2px;margin-left:4rem"></div>     
                 <div class="related_link">
                     <ul>
                         @foreach($lienquan as $key => $baiviet_lienquan)

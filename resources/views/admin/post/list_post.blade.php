@@ -42,9 +42,9 @@
                 <input type="checkbox"><i></i>
               </label>
             </th> -->
-            <th style="width:50px;">Tên</th>
+            <th style="width:200px;">Tên</th>
             <th>Hình ảnh</th>
-            <th style="width:50px;">Mô tả</th>
+            <th style="width:300px;">Mô tả</th>
             <th>Danh mục</th>
             <th>Trạng thái</th>           
             <th style="width:90px;">Thao tác</th>
@@ -62,9 +62,9 @@
             <td>
                 
             @if($post->post_status == 1) 
-                <i style="color:green" class="fa-solid fa-eye update-post-status" data-id="{{$post->post_id}}" data-status="0"></i>          
+                <i style="color:green; cursor:pointer" class="fa-solid fa-eye update-post-status" data-id="{{$post->post_id}}" data-status="0"></i>          
             @else 
-                <i style="color:red" class="fa-solid fa-eye-slash update-post-status" data-id="{{$post->post_id}}" data-status="1"></i>          
+                <i style="color:red; cursor:pointer" class="fa-solid fa-eye-slash update-post-status" data-id="{{$post->post_id}}" data-status="1"></i>          
             @endif
 
             </td>          
@@ -87,7 +87,7 @@
         </div>
         <div class="col-sm-7 text-right text-center-xs">                
           <ul class="pagination pagination-sm m-t-none m-b-none">
-            {!!$all_post->links()!!}
+          {{ $all_post->links('pagination::bootstrap-4') }}
           </ul>
         </div>
       </div>

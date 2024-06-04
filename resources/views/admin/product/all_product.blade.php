@@ -47,9 +47,9 @@
 
             <td><span class="text-ellipsis">
             @if($pro->product_status == 1) 
-                <i style="color:green" class="fa-solid fa-eye update-pro-status" data-id="{{$pro->product_id}}" data-status="0"></i>          
+                <i style="color:green; cursor:pointer" class="fa-solid fa-eye update-pro-status" data-id="{{$pro->product_id}}" data-status="0"></i>          
             @else 
-                <i style="color:red" class="fa-solid fa-eye-slash update-pro-status" data-id="{{$pro->product_id}}" data-status="1"></i>          
+                <i style="color:red; cursor:pointer" class="fa-solid fa-eye-slash update-pro-status" data-id="{{$pro->product_id}}" data-status="1"></i>          
             @endif
             </span></td>
            
@@ -77,7 +77,7 @@
         </div>
         <div class="col-sm-7 text-right text-center-xs">                
           <ul class="pagination pagination-sm m-t-none m-b-none">
-             {!!$all_product->links()!!}
+          {{ $all_product->links('pagination::bootstrap-4') }}
           </ul>
         </div>
       </div>

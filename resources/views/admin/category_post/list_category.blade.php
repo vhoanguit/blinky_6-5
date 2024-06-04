@@ -58,9 +58,9 @@
             <td>{{ $cate_post->cate_post_slug }}</td>
             <td>
               @if($cate_post->cate_post_status == 1) 
-                  <i style="color:green" class="fa-solid fa-eye update-cate-post-status" data-id="{{$cate_post->cate_post_id}}" data-status="0"></i>          
+                  <i style="color:green; cursor:pointer" class="fa-solid fa-eye update-cate-post-status" data-id="{{$cate_post->cate_post_id}}" data-status="0"></i>          
               @else 
-                  <i style="color:red" class="fa-solid fa-eye-slash update-cate-post-status" data-id="{{$cate_post->cate_post_id}}" data-status="1"></i>          
+                  <i style="color:red; cursor:pointer" class="fa-solid fa-eye-slash update-cate-post-status" data-id="{{$cate_post->cate_post_id}}" data-status="1"></i>          
               @endif
 
 

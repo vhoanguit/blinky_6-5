@@ -22,6 +22,10 @@ body
     display: grid;
     grid-template-columns: 20% 45% 35%;
 }
+.top-bar a
+{
+    text-decoration: none;
+}
 .logo
 {
     height: 50px;
@@ -52,8 +56,10 @@ body
 {
     margin-top: 29px;
     font-size: 18px;
+    font-family: 'Arial';
+    /* font-family: 'Saira Stencil One', sans-serif; */
     color: #DAB076;
-    font-weight: medium;
+    font-weight: bold;
 }
 
 /*SEARCH BAR*/
@@ -132,7 +138,12 @@ i.fa-user, i.fa-cart-shopping, i.fa-heart
     display: grid;
     grid-template-columns: 20% 70%;
 }
-.top-bar-options-object-title:hover
+.top-bar-options-object:hover .fa-cart-shopping,
+.top-bar-options-object:hover .top-bar-options-object-title,
+.top-bar-options-object:hover .fa-heart,
+.top-bar-options-object:hover .top-bar-options-object-title,
+.top-bar-options-object:hover .fa-user,
+.top-bar-options-object:hover .top-bar-options-object-title
 {
     color: #DAB076;
 }
@@ -140,7 +151,8 @@ i.fa-user, i.fa-cart-shopping, i.fa-heart
 {
     color: #d4868d;
     text-decoration: none;
-    font-weight: bold;
+    /* font-weight: bold; */
+    font-weight: light;
     font-size: 19px;
 }
 /* MENU BAR */
@@ -177,8 +189,9 @@ i.fa-user, i.fa-cart-shopping, i.fa-heart
     align-items: center;
     justify-content: center;
     color: white;
-    font-weight: bold;
+    font-weight: 500;
     font-size: 23px;
+    letter-spacing: 1.25px;
     text-align: center;
 }
 .mainmenu a:hover
@@ -200,13 +213,12 @@ i.fa-user, i.fa-cart-shopping, i.fa-heart
     display: block;
     text-decoration: none;
     height: 50px;
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 16px;
     display: flex;
     align-items: center;
     justify-content: left;
     padding-left: 20px;
-
+    font-weight: 50;
     color: #706c6b;
 }
 .product-submenu a:hover
@@ -217,6 +229,8 @@ i.fa-user, i.fa-cart-shopping, i.fa-heart
 .product-submenu
 {
     background-color: #ffffff;
+    border: 0.5px solid #DAB076;
+    border-top: none;
     opacity: 0.8;
     overflow: hidden;
     max-height: 0;

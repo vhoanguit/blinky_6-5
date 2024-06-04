@@ -15,51 +15,23 @@
 </head>
 <body>
     @include('Header')
-<div class="tag-list">
-        <div class="inner">
-        <div class="tag">
-                <img src="{{asset('public/frontend/image/main_img_39.jpg')}}" alt="">
-            </div>
+    <div class="tag-list">
+        <div class="inner">           
+            @foreach($imagePostSlider as $key => $sliderImg)
             <div class="tag">
-                <img src="{{asset('public/frontend/image/main_img_13.jpg')}}" alt="">
+            <a href="{{ URL::to('/chi-tiet-san-pham/'. $sliderImg->product_id) }}">
+                <img src="{{ URL::to('public/uploads/product/' . $sliderImg->product_image) }}" alt="">
+            </a>            
             </div>
+            @endforeach
+           <!-- Lặp lại hình ảnh  -->
+            @foreach($imagePostSlider as $key => $sliderImg)
             <div class="tag">
-                <img src="{{asset('public/frontend/image/main_img_16.jpg')}}" alt="">
+                <a href="{{ URL::to('/chi-tiet-san-pham/' . $sliderImg->product_id) }}">
+                <img src="{{ URL::to('public/uploads/product/' . $sliderImg->product_image) }}" alt="">
+                </a>
             </div>
-            <div class="tag">
-                <img src="{{asset('public/frontend/image/main_img_12.jpg')}}" alt="" >
-            </div>
-            <div class="tag">
-                <img src="{{asset('public/frontend/image/main_img_8.jpg')}}" alt="" >
-            </div>
-            <div class="tag">
-                <img src="{{asset('public/frontend/image/main_img_26.jpg')}}" alt="" >
-            </div>
-            <div class="tag">
-                <img src="{{asset('public/frontend/image/main_img_22.jpg')}}" alt="" >
-            </div>
-            <!-- lap lai hinh anh -->
-            <div class="tag">
-                <img src="{{asset('public/frontend/image/main_img_39.jpg')}}" alt="">
-            </div>
-            <div class="tag">
-                <img src="{{asset('public/frontend/image/main_img_13.jpg')}}" alt="">
-            </div>
-            <div class="tag">
-                <img src="{{asset('public/frontend/image/main_img_16.jpg')}}" alt="">
-            </div>
-            <div class="tag">
-                <img src="{{asset('public/frontend/image/main_img_12.jpg')}}" alt="" >
-            </div>
-            <div class="tag">
-                <img src="{{asset('public/frontend/image/main_img_8.jpg')}}" alt="" >
-            </div>
-            <div class="tag">
-                <img src="{{asset('public/frontend/image/main_img_26.jpg')}}" alt="" >
-            </div>
-            <div class="tag">
-                <img src="{{asset('public/frontend/image/main_img_22.jpg')}}" alt="" >
-            </div>
+            @endforeach
         </div>
         <div class="fade"></div>
     </div>
@@ -73,23 +45,26 @@
             <div class="post_lists">
                 @foreach($baiviet as $key=>$p)
                     <div class="displayPost">
-                        <div class="">
-                            <img style="" src="{{asset('public/uploads/post/'.$p->post_image)}}" alt="{{$p->post_slug}}"/>
+                    <a style="text-decoration: none; color:black"  href="{{url('/bai-viet/'.$p->post_slug)}}">
+                        <div class="singlePost">
+                            <img style="object-fit:cover" src="{{asset('public/uploads/post/'.$p->post_image)}}" alt="{{$p->post_slug}}"/>
                             <h3 style="color:#000;width:95%"><b>{{$p->post_title}}</b></h3>
                             <p style="width:95%">{!!$p->post_desc!!}</p>                     
                         </div>
-                        <a  href="{{url('/bai-viet/'.$p->post_slug)}}" class="btn btn-default bt-sm">Xem bài viết</a>
+                    </a>
                     </div>
                 @endforeach
             </div> 
         <!--Code chinh-->
-            
+        {{ $baiviet->links('pagination::bootstrap-4') }}
         </div>
 
         <div id="sidebar" class="sidebar">
             <div class="social">
                 <div class="social_link">
-                <h2 style="color:#5f4100;"><b>SOCIAL</b></h2>                
+                    <hr>
+                    <h2><b>SOCIAL</b></h2>         
+                    <hr>      
                 </div>
                 
                 <div class="groupicon">
@@ -113,15 +88,18 @@
                 </div>
                 
             </div>
-            <hr>
             <div class="foru">
-            <div class="foru_header"><h2 style="color:#5f4100;"><b>FOR YOU</b></h2></div>
+            <div class="foru_header">
+                <hr>
+                <h2><b>FOR YOU</b></h2>
+                <hr>
+            </div>
                 <div class="foru_links">
                     
                     <ul>
                     @foreach($category_post as $key => $danhmucbaiviet)
                     <li>
-                        <i class="fa-solid fa-angles-left" style="color:rgb(206, 158, 56)"></i>
+                        <i class="fa-solid fa-angles-left" style="color:rgb(255, 103, 179)"></i>
                         <a href="{{URL::to('/danh-muc-bai-viet/'.$danhmucbaiviet->cate_post_slug)}}"><b>{{$danhmucbaiviet->cate_post_name}}</b></a>
                         
                     </li>
@@ -129,16 +107,20 @@
                     </ul>
                 </div>
             </div>
-            <hr>
             <div class="watch_most">
-                <div class="watch_most_header"><h2 style="color:#5f4100;"><b>LATEST POSTS</b></h2></div>
+                <div class="watch_most_header">
+                    <hr>
+                    <h2><b>LATEST POSTS</b></h2>
+                    <hr>
+                </div>
                 <div class="watch_most_links">
                     <ul>
                     @foreach($newest_post as $key => $baivietmoinhat)
                     <li>
-                        <i class="fa-solid fa-angles-right" style="color:rgb(206, 158, 56)"></i>
-                        <a href="{{URL::to('/bai-viet/'.$baivietmoinhat->post_slug)}}">{{$baivietmoinhat->post_title}}</a>
-                        
+                    <a href="{{URL::to('/bai-viet/'.$baivietmoinhat->post_slug)}}">
+                        <i class="fa-solid fa-angles-right" style="color:rgb(255, 103, 179)"></i>
+                            <span><b>{{$baivietmoinhat->post_title}}</b></span>
+                        </a>
                     </li>
                     @endforeach
                     </ul>

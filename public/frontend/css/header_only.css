@@ -7,7 +7,6 @@ body
     margin-bottom: 0;
     display: flex;
     flex-direction: column;
-    font-family: 'DM Sans';
     
 }
 /*Top-bar*/
@@ -21,6 +20,10 @@ body
     background-color: #FDFDFB;
     display: grid;
     grid-template-columns: 20% 45% 35%;
+}
+.top-bar a
+{
+    text-decoration: none !important;
 }
 .logo
 {
@@ -53,7 +56,7 @@ body
     margin-top: 29px;
     font-size: 18px;
     color: #DAB076;
-    font-weight: medium;
+    font-weight: bold;
 }
 
 /*SEARCH BAR*/
@@ -149,9 +152,10 @@ i.fa-user, i.fa-cart-shopping, i.fa-heart
 }
 .top-bar-options-object-title
 {
+    font-family: 'Paytone One', sans-serif;
     color: #d4868d;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: light;
     font-size: 19px;
 }
 /* MENU BAR */
@@ -187,6 +191,7 @@ i.fa-user, i.fa-cart-shopping, i.fa-heart
 }
 .menu-bar-title
 {
+    font-family: 'Paytone One', sans-serif;
     display: block;
     text-decoration: none;
     height: 75px;
@@ -194,8 +199,9 @@ i.fa-user, i.fa-cart-shopping, i.fa-heart
     align-items: center;
     justify-content: center;
     color: white;
-    font-weight: bold;
+    font-weight: 500;
     font-size: 23px;
+    letter-spacing: 1.25px;
     text-align: center;
 }
 .mainmenu a:hover
@@ -214,18 +220,17 @@ i.fa-user, i.fa-cart-shopping, i.fa-heart
 }
 .product-submenu a
 {
+    font-family: 'Paytone One', sans-serif;
     display: block;
     text-decoration: none;
     height: 50px;
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 16px;
     display: flex;
     align-items: center;
     justify-content: left;
     padding-left: 20px;
-
+    font-weight: 50;
     color: #706c6b;
-
 }
 .product-submenu a:hover
 {

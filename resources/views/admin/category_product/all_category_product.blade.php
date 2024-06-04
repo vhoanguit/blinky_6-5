@@ -29,9 +29,9 @@
             <td>{{$cate_pro->category_name}}</td>
             <td><span class="text-ellipsis">                
               @if($cate_pro->category_status == 1) 
-                  <i style="color:green" class="fa-solid fa-eye update-cate-pro-status" data-id="{{$cate_pro->category_id}}" data-status="0"></i>          
+                  <i style="color:green; cursor:pointer" class="fa-solid fa-eye update-cate-pro-status" data-id="{{$cate_pro->category_id}}" data-status="0"></i>          
               @else 
-                  <i style="color:red" class="fa-solid fa-eye-slash update-cate-pro-status" data-id="{{$cate_pro->category_id}}" data-status="1"></i>          
+                  <i style="color:red; cursor:pointer" class="fa-solid fa-eye-slash update-cate-pro-status" data-id="{{$cate_pro->category_id}}" data-status="1"></i>          
               @endif
             </span></td>
             <td>

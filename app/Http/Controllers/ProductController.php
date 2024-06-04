@@ -31,7 +31,7 @@ class ProductController extends Controller
         $this->AuthLogin();
     	$all_product = DB::table('tbl_product')->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id') 
         //hàm join 2 bảng tbl_product và tbl_category_product với khóa ngoại là category_id
-        ->orderby('tbl_product.product_id','asc')->paginate(25); 
+        ->orderby('tbl_product.product_id','asc')->paginate(10); 
     	$manage_product  = view('admin.product.all_product')->with('all_product',$all_product);
     	return view('admin_layout')->with('admin.product.all_product', $manage_product);
     }
@@ -47,7 +47,7 @@ class ProductController extends Controller
         $data['product_status'] = $request->product_status;
         $data['product_element'] = $request->product_element;
 
-        $data['category_id'] = $request->category_id;
+        $data['category_id'] = $request->cate_product;
         $data['product_color'] = $request->product_color;
         // $data['product_size'] = $request->product_size;
         // $data['product_number'] = $request->product_number;
@@ -125,8 +125,8 @@ class ProductController extends Controller
         $data['product_price'] = $request->product_price;
         $data['product_desc'] = $request->product_desc;
         $data['product_content'] = $request->product_content;
-        $data['category_id'] = $request->category_id;
-        $data['product_status'] = $request->product_status;
+        $data['category_id'] = $request->cate_product;
+        // $data['product_status'] = $request->product_status;
         $get_image = $request->file('product_image');
         
         if($get_image){
