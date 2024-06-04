@@ -1,0 +1,27 @@
+table, tr{
+    width: 100%;
+}
+.contact_STT{
+    width: 3%;
+    text-align: center;
+}
+.contact_Ten, .contact_TieuDe{
+    width: 15%;
+    text-align: center;
+}
+.contact_SDT{
+    width: 10%;
+    text-align: center;
+}
+.contact_HoatDong{
+    width: 5%;
+    text-align: center;
+}
+.contact_Email{
+    width: 22%;
+    text-align: center;
+}
+.contact_CauHoi{
+    width: 30%;
+    text-align: center;
+}

@@ -6,6 +6,16 @@ Route::get('/', 'App\Http\Controllers\HomeController@index2'); // goi ham index 
 Route::get('/trang-chu', 'App\Http\Controllers\HomeController@index2'); // Khi search localhost8080/blinky/trang-chu thì nó se hiện thị trang chủ
 Route::get('/tim-kiem','App\Http\Controllers\HomeController@search');
 
+// Send email route
+// Route::get('/test-email', 'App\Http\Controllers\SendEmailController@testEmail');
+Route::post('/send-email-to-customer', 'App\Http\Controllers\SendEmailController@sendEmailToCustomer')->name('send.email.to.customer');
+// Contact reply route
+Route::get('/contact_reply', 'App\Http\Controllers\ContactController@contact_reply')->name('contact_reply');
+Route::get('/contact_replied', 'App\Http\Controllers\ContactController@contact_replied')->name('contact_replied');
+Route::get('/phan-hoi/{id}', 'App\Http\Controllers\ContactController@reply')->name('phan_hoi');
+Route::get('/lich-su-phan-hoi/{id}', 'App\Http\Controllers\ContactController@history')->name('lich_su_phan_hoi');
+Route::get('/contact', 'App\Http\Controllers\ContactController@input')->name('lien_he');
+Route::post('/contact/store', 'App\Http\Controllers\ContactController@store')->name('contact.store');
 // //BE 
 // //admin
 Route::get('/admin','App\Http\Controllers\AdminController@index');
@@ -149,23 +159,23 @@ use App\Http\Controllers\FileDisplayController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\EmailController;
 
-//thanh toan
-Route::get('/hoa-don', [OrderController::class, 'hoaDon'])->name('hoa_don');
-Route::get('/thanh-toan', [OrderController::class, 'thanhToan'])->name('thanh_toan');
-Route::post('/thanh-toan', [OrderController::class, 'submitThanhToan'])->name('submit_thanh_toan');
-// Route::post('/thanh-toan', [OrderController::class, 'online_checkout'])->name('MoMo');
+// Thanh toán
+Route::get('/hoa-don', 'App\Http\Controllers\OrderController@hoaDon')->name('hoa_don');
+Route::get('/thanh-toan', 'App\Http\Controllers\OrderController@thanhToan')->name('thanh_toan');
+Route::post('/thanh-toan', 'App\Http\Controllers\OrderController@submitThanhToan')->name('submit_thanh_toan');
+// Route::post('/thanh-toan', 'App\Http\Controllers\OrderController@online_checkout')->name('MoMo');
 
-//bo sung thong tin sau van chuyen
-Route::get('/bo-sung', [AdditionalController::class, 'index'])->name('bo-sung.index');
-Route::post('/bo-sung', [AdditionalController::class, 'store'])->name('bo-sung.store');
-Route::get('/file-display', [FileDisplayController::class, 'index'])->name('fileDisplay');
+// Bổ sung thông tin sau vận chuyển
+Route::get('/bo-sung', 'App\Http\Controllers\AdditionalController@index')->name('bo-sung.index');
+Route::post('/bo-sung', 'App\Http\Controllers\AdditionalController@store')->name('bo-sung.store');
+Route::get('/file-display', 'App\Http\Controllers\FileDisplayController@index')->name('fileDisplay');
 
+// Vận chuyển
+Route::get('/shipping', 'App\Http\Controllers\ShippingController@index')->name('shipping.index');
+Route::post('/shipping/fetch-district', 'App\Http\Controllers\ShippingController@fetchDistrict')->name('shipping.fetch_district');
+Route::post('/shipping/store', 'App\Http\Controllers\ShippingController@store')->name('shipping.store');
 
-//van chuyen
-Route::get('/shipping', [ShippingController::class, 'index'])->name('shipping.index');
-Route::post('/shipping/fetch-district', [ShippingController::class, 'fetchDistrict'])->name('shipping.fetch_district');
-Route::post('/shipping/store', [ShippingController::class, 'store'])->name('shipping.store');
+// Gửi email
+Route::get('/test-email', 'App\Http\Controllers\EmailController@testEmail');
 
-//gui email
-Route::get('/test-email', [EmailController::class, 'testEmail']);
 ?>

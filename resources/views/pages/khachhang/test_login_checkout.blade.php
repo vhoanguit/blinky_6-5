@@ -19,4 +19,5 @@
     </div>
     
 </body>
+@include('Footer')
 </html>

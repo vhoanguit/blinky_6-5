@@ -26,6 +26,8 @@
     <!-- summernote editor -->
 	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	</head>
 <body>
 	<section id="container">
@@ -125,6 +127,27 @@
 							<li><a href="{{URL::to('/all-post')}}">Tất cả bài viết</a></li>    
 						</ul>
 					</li>
+					<li class="sub-menu">
+						<a href="javascript:;">
+							<i class="fa fa-book"></i>
+							<span>Danh mục Liên hệ</span>
+						</a>
+						<ul class="sub">
+							<li><a href="{{URL::to('/contact_reply')}}">Liên hệ chưa phản hồi</a></li>   
+							<li><a href="{{URL::to('/contact_replied')}}">Liên hệ đã phản hồi</a></li> 
+						</ul>
+					</li>
+					<li class="sub-menu">
+						<a href="javascript:;">
+							<i class="fa fa-book"></i>
+							<span>Quản lý đơn hàng</span>
+						</a>
+						<ul class="sub">
+							<li><a href="{{URL::to('/order-not-process-yet')}}">Đơn hàng chưa xử lý</a></li>   
+							<li><a href="{{URL::to('/order-not-delivered-yet')}}">Đơn hàng chưa giao tới</a></li> 
+							<li><a href="{{URL::to('/order-delivered')}}">Đơn hàng đã được giao</a></li> 
+						</ul>
+					</li>
 				</ul> 
 			</div>
 			
@@ -219,7 +242,6 @@
 
             });			
 	</script>
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	
 </body>
 </html>

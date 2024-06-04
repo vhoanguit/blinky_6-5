@@ -1,0 +1,119 @@
+
+footer {
+    margin-top: 0;
+    font-family: "Poly", serif;
+    background-color: #FBFBFA;
+    box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.15);
+    border-left: none;
+    border-bottom: none;
+    border-right: none;
+    height: 250px;
+}
+
+.section_container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 20px 200px;
+    /* margin-top: 15px; */
+}
+
+.footer_section {
+    /* background-color: aquamarine; */
+    margin-left: 15%;
+    font-size: 18px;
+    display: grid;
+    grid-template-columns: 100%;
+    /* grid-template-rows: 20px; */
+    width: 80%;
+}
+
+.footer_section a {
+    text-decoration: none;
+    color: #503A3A;
+}
+
+.footer_section_content {
+    margin-bottom: 18px;
+    font-family: 'Dongle', sans-serif;
+    color: #503A3A;
+    font-size: 18px;
+    font-weight: 500;
+}
+.section_content
+{
+    width: 90%;
+}
+
+.footer_section_title {
+    font-size: 20px;
+    font-weight: medium;
+    letter-spacing: 0.5px;
+    font-family: 'Paytone One', sans-serif;
+    color : #DAB076;
+    margin-top: 20px ;
+    margin-bottom: 20px;
+}
+.footer_section_content a:hover
+{
+    color: #EF99A2;
+}
+
+.fa-brands {
+    margin-right: 1.5%;
+}
+
+.footer_section img {
+    width: 10%;
+    margin-right: 2%;
+    margin-bottom: -1%;
+}
+
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em)
+{
+    .footer_section_title
+    {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+    .footer_section_content {
+        font-size: 15px;
+        font-weight: medium;
+        letter-spacing: 0.5px;
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+    footer 
+    {
+        margin-top: 0;
+        height: 150px;
+    }
+    .section_container {
+        grid-template-columns: 25% 25% 25% 25%;
+        grid-template-rows: 15px 130px;
+    }
+}
+@media only screen and (max-width: 46.1875em)
+{
+    .footer_section_title
+    {
+        font-size: 10px;
+        margin-bottom: 8px;
+    }
+    .footer_section_content {
+        font-size: 7px;
+        font-weight: medium;
+        letter-spacing: 0.5px;
+        margin-top: 8px;
+        margin-bottom: 10px;
+    }
+    footer 
+    {
+        margin-top: 0;
+        height: 150px;
+    }
+    .section_container {
+        grid-template-columns: 25% 25% 25% 25%;
+        grid-template-rows: 15px 130px;
+    }
+}

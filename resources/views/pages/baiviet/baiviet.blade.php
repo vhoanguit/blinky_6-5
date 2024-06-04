@@ -100,4 +100,6 @@
     
     
 </div>   
-</body></html>
+</body>
+@include('Footer')
+</html>

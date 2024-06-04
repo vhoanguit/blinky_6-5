@@ -198,5 +198,6 @@
     }
     ?>
 </body>
+@include('Footer')
 
 </html>

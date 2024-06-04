@@ -181,5 +181,6 @@
 </script>
 
 </body>
+@include('Footer')
 
 </html>

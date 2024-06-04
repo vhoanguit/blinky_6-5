@@ -30,5 +30,6 @@
     </div>
     <script type="text/javascript" src="{{asset('public/frontend/js/personal_infor.js') }}"></script>
 </body>
+@include('Footer')
 
 </html>

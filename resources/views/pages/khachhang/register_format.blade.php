@@ -18,3 +18,4 @@
     <section>
         @yield('content')
     </section>
+    @include('Footer')

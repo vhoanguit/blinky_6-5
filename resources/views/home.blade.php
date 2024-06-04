@@ -239,7 +239,9 @@
         </div>
     </section>
     
+    
+    </body>
+    @include('Footer')
     <script type="text/javascript" src="{{asset('public/frontend/js/ScriptCardSlider.js') }}"></script>
     <script type="text/javascript" src="{{asset('public/frontend/js/ScriptHomePage.js') }}"></script>
-    </body>
 </html>

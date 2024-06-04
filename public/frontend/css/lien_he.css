@@ -1,0 +1,134 @@
+
+.title_2LH{
+    height: 130px;
+    font-family: "Epilogue", sans-serif;
+    /* margin-top: 211px;  */
+    display: flex;
+    align-items: center;
+    background-color: rgb(255, 224, 236);
+    /* background-color: rgb(193, 161, 121); */
+}
+.title_2LH_content{
+    width: auto;
+    margin: 0;
+    color: #F985A9;
+    font-family: Dongle;
+    font-size: 80px; 
+    margin-left: 5%;
+}
+.LHmain{
+    font-family: "Epilogue", sans-serif;
+    display: flex;
+    flex-direction: row;
+    font-size: 20px;
+    background-color: #FBFBFA;
+}
+.Forminstruction{
+    font-family: "Epilogue", sans-serif;
+    font-size: 20px;
+
+}
+.formside{
+    flex: 5;
+    margin: 5%;
+    background-color: white;
+    box-shadow: 0px 4px 8px 0 rgba(0,0,0,0.1), 0px -4px 8px 0 rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+
+}
+.sbc{
+    margin-top: 2%;
+    margin-left: 7%;
+    margin-right: 7%;
+    margin-bottom: 7%;
+}
+.form_row {
+    display: flex;
+    /* align-items: center;  */
+    margin-bottom: 10px; 
+    min-height: 8%;
+    margin-top: 3%;
+    margin-bottom: 3%;;
+}
+.form_row label{
+    width: 25%;
+}
+.form_row input {
+    flex-grow: 1;
+    border-radius: 5px;
+    border: 1px solid black;
+    height: 35px;
+}
+.form_row textarea {
+    flex-grow: 1;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+.Submit_button{
+    max-width: 50%;
+    margin-top: 10px;
+    font-size: 20px;
+    font-family: "Epilogue", sans-serif;
+    color: white;
+    width: 10%;
+    height: 30px;
+    background-color: #F985A9;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px 0 rgba(0,0,0,0.1);
+}
+.Submit_button:hover{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+.Submit_form{
+    display: flex;
+    justify-content: center;
+}
+.Storei4{
+    flex: 3;
+    margin-top: 5%;
+    margin-right: 5%;
+    margin-bottom: 15%;
+    background-color: white;
+    box-shadow: 0px 4px 8px 0 rgba(0,0,0,0.1), 0px -4px 8px 0 rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+}
+.i4_cont{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.Storei4 button{
+    border: none;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    height: 70px;
+    width: 70px;
+    box-shadow: 0px 4px 8px 0 rgba(0,0,0,0.1);
+    margin: 3px;
+}
+.Storei4 button:hover{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+.Storei4 img{
+    padding-right: 3%;
+}
+.formm textarea{
+    width: 130%;
+    border: 1px solid rgb(166, 165, 165);
+    border-radius: 5px;
+
+}
+.submit_action{
+    color: red;
+    margin: 0;
+    word-wrap:break-word;
+}

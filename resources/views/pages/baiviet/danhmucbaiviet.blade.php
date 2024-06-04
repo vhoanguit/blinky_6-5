@@ -132,4 +132,6 @@
    
     
 </body>
+@include('Footer')
+
 </html>

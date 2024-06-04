@@ -19,15 +19,20 @@
                         <input type="file" class="form-control" name="file[]" multiple style="margin-top: 5px">
                         <br>
                         <input type="submit" name="upload" value="Tải ảnh" class="btn btn-success btn-m">
-                        <?php
-                        $message = Session::get('message'); // hàm get để lấy biến có tên là 'message' ở bên AdminController
-                        if ($message) {
-                            // neu ton tai message
-                            echo '<span class="text-alert">' . $message . '</span>'; // in ra tin nhan
-                            Session::put('message', null); //cho hien thi 1 lan thoi
-                        }
-                        ?>
+                        
                     </div>
+                    @if(Session::get('message_gallery'))
+                    <script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Thành công',
+                            text: '{{ Session::get('message_gallery') }}'
+                        });
+                    </script>
+                    <?php
+                        Session::put('message_gallery',null);
+                    ?>
+                    @endif
                     
                 </div>
             </form>

@@ -20,12 +20,13 @@ class ProductController extends Controller
             return Redirect::to('admin')->send();
         }
     }
-    public function add_product(){
+    public function add_product()
+    {
         $this->AuthLogin();
-        $cate_product = DB::table('tbl_category_product')->orderBy('category_id','desc')->get();
+        $category_product=DB::table('tbl_category_product')->orderby('category_id','asc')->get();
         $size=DB::table('tbl_size')->orderby('size_id','asc')->get();
 
-    	return view('admin.product.add_product')->with('cate_product',$cate_product)->with('size', $size);
+        return view('admin.product.add_product')->with('category_product', $category_product)->with('size', $size);
     }
     public function all_product(){
         $this->AuthLogin();
@@ -35,42 +36,35 @@ class ProductController extends Controller
     	$manage_product  = view('admin.product.all_product')->with('all_product',$all_product);
     	return view('admin_layout')->with('admin.product.all_product', $manage_product);
     }
-    public function save_product(Request $request){
+    public function save_product(Request $request)
+    {
         $this->AuthLogin();
-        
-       
-    	$data = array();
-    	$data['product_name'] = $request->product_name;
-        $data['product_price'] = $request->product_price;
-    	$data['product_desc'] = $request->product_desc;
-    	$data['product_content'] = $request->product_content;
-        $data['product_status'] = $request->product_status;
-        $data['product_element'] = $request->product_element;
+        $data=array();
+        $data['product_name']=$request->product_name;
+        $data['product_price']=$request->product_price;
+        $data['product_desc']=$request->product_desc;
+        $data['product_status']=$request->product_status;
+        $data['product_content']=$request->product_content;
+        // $data['product_size']=$request->product_size;
+        $data['product_color']=$request->product_color;
+        $data['product_element']=$request->product_element;
+        $data['category_id']=$request->cate_product;
 
-        $data['category_id'] = $request->cate_product;
-        $data['product_color'] = $request->product_color;
-        // $data['product_size'] = $request->product_size;
-        // $data['product_number'] = $request->product_number;
-        
-        $get_image= $request->file('product_image');
-        
-        if($get_image){
-            $get_name_image = $get_image->getClientOriginalName();
-            $name_image = current(explode('.',$get_name_image));
-            $new_image = $name_image.rand(0,999).'.'.$get_image->getClientOriginalExtension();
-            $get_image ->move('public/uploads/product',$new_image);
+        $get_image=$request->file('product_image');
+        if($get_image)
+        {
+            $get_name_image=$get_image->getClientOriginalName();//khi dùng getClientOriginalName() nó sẽ lấy toàn bộ tên, bao gồm cả đuôi mở rộng(VD: lấy cả a.jpg)
+            $name_image=current(explode('.',$get_name_image));//explode hàm để cắt tên tính từ dấu . để cắt đuôi mở rộng đi
+                                                              //hàm current để lấy chuỗi đầu tiên (VD: a.jpg được thách thành 2 đoạn là a vs jpg thì nó lấy a(chuỗi đầu tiên))
+            $new_image=$name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();// getClientOriginalExtension(): hàm để lấy đuôi mở rộng (png, jpg,...)
+            $get_image->move('public/uploads/product',$new_image);
+            
             $data['product_image']=$new_image;
-
-            // DB::table('tbl_product')->insert($data);   
-            // Session::put('message','Thêm sản phẩm thành công');
-            // return Redirect::to('add-product');
         }
-        // $data['product_image']='';
-    	// DB::table('tbl_product')->insert($data);   
-    	// Session::put('message','Thêm sản phẩm thành công');
-    	// return Redirect::to('add-product');
-
         else $data['product_image']='';
+
+        // DB::table('tbl_product')->insert($data);
+
         $size_index=DB::table('tbl_size')->orderby('size_id','asc')->pluck('size_id');
         
         $p_id=DB::table('tbl_product')->insertGetId($data);
