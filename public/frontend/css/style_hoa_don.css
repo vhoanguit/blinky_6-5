@@ -1,0 +1,247 @@
+
+.invoice {
+    font-family: 'Times New Roman', Times, serif;
+    width: 75%;
+    margin: 3% auto;
+    border: 1px solid #ddd;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size: 20px;
+}
+
+.invoice h1 {
+    text-align: center;
+    color: #333;
+}
+
+.invoice_section {
+    margin-bottom: 20px;
+}
+
+.invoice_section h2 {
+    font-size: 1.2em;
+    color: #666;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.invoice_section p {
+    font-size: 0.95em;
+    color: #555;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.item img {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+}
+
+.item_name {
+    font-weight: bold;
+    color: #333;
+}
+
+.item_color, .item_size, .item_quantity, .item_total {
+    margin-left: 20px;
+}
+
+.item_color, .item_size, .item_quantity, .item_total {
+    font-size: 0.9em;
+    color: #777;
+}
+
+.invoice_section .item p {
+    margin: 0;
+}
+
+.invoice_section .item p.item_name {
+    margin-bottom: 5px;
+}
+
+.invoice_section:last-child p {
+    font-size: 1em;
+    font-weight: bold;
+    color: #333;
+}
+
+.invoice_section:last-child p:last-child {
+    font-size: 1.2em;
+    color: #e74c3c;
+}
+
+/* Mobile width < 740px */
+@media only screen and (max-width: 46.1875em)
+{
+    .invoice {
+        font-family: 'Times New Roman', Times, serif;
+        width: 75%;
+        margin: 3% auto;
+        border: 1px solid #ddd;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        font-size: 12px;
+    }
+    
+    .invoice h1 {
+        text-align: center;
+        color: #333;
+    }
+    
+    .invoice_section {
+        margin-bottom: 20px;
+    }
+    
+    .invoice_section h2 {
+        font-size: 1.2em;
+        color: #666;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+    }
+    
+    .invoice_section p {
+        font-size: 0.95em;
+        color: #555;
+    }
+    
+    .item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
+    }
+    
+    .item img {
+        width: 100px;
+        height: 100px;
+        margin-right: 20px;
+    }
+    
+    .item_name {
+        font-weight: bold;
+        color: #333;
+    }
+    
+    .item_color, .item_size, .item_quantity, .item_total {
+        margin-left: 20px;
+    }
+    
+    .item_color, .item_size, .item_quantity, .item_total {
+        font-size: 0.9em;
+        color: #777;
+    }
+    
+    .invoice_section .item p {
+        margin: 0;
+    }
+    
+    .invoice_section .item p.item_name {
+        margin-bottom: 5px;
+    }
+    
+    .invoice_section:last-child p {
+        font-size: 1em;
+        font-weight: bold;
+        color: #333;
+    }
+    
+    .invoice_section:last-child p:last-child {
+        font-size: 1.2em;
+        color: #e74c3c;
+    }
+    
+
+} 
+/* Tablet */
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em)
+{
+    .invoice {
+        font-family: 'Times New Roman', Times, serif;
+        width: 75%;
+        margin: 3% auto;
+        border: 1px solid #ddd;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        font-size: 15px;
+    }
+    
+    .invoice h1 {
+        text-align: center;
+        color: #333;
+    }
+    
+    .invoice_section {
+        margin-bottom: 20px;
+    }
+    
+    .invoice_section h2 {
+        font-size: 1.2em;
+        color: #666;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+    }
+    
+    .invoice_section p {
+        font-size: 0.95em;
+        color: #555;
+    }
+    
+    .item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
+    }
+    
+    .item img {
+        width: 100px;
+        height: 100px;
+        margin-right: 20px;
+    }
+    
+    .item_name {
+        font-weight: bold;
+        color: #333;
+    }
+    
+    .item_color, .item_size, .item_quantity, .item_total {
+        margin-left: 20px;
+    }
+    
+    .item_color, .item_size, .item_quantity, .item_total {
+        font-size: 0.9em;
+        color: #777;
+    }
+    
+    .invoice_section .item p {
+        margin: 0;
+    }
+    
+    .invoice_section .item p.item_name {
+        margin-bottom: 5px;
+    }
+    
+    .invoice_section:last-child p {
+        font-size: 1em;
+        font-weight: bold;
+        color: #333;
+    }
+    
+    .invoice_section:last-child p:last-child {
+        font-size: 1.2em;
+        color: #e74c3c;
+    }
+    
+} 

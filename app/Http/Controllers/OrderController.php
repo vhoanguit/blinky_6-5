@@ -36,9 +36,9 @@ class OrderController extends Controller
         $file = Session::get('file_input', '');
 
         // Lấy tên tỉnh
-        $tinh = DB::table('TINH')->where('MaTinh', $province)->value('TenTinh');
+        $tinh = DB::table('province')->where('province_id', $province)->value('province_name');
         // Lấy tên huyện
-        $huyen = DB::table('HUYEN')->where('MaHuyen', $district)->value('TenHuyen');
+        $huyen = DB::table('district')->where('district_id', $district)->value('district_name');
 
         return view('pages.thanhtoan.thanh_toan', compact('hoten', 'email', 'sdt', 'province', 'district', 'address', 'apartment', 'note', 'file', 'tinh', 'huyen'));
     }
@@ -132,8 +132,8 @@ class OrderController extends Controller
         $note = Session::get('note', '') ?? ''; // Đặt giá trị mặc định là chuỗi rỗng nếu $note là null
         $file = Session::get('file_input', '');
         $pttt = $request->input('pttt');
-        $huyen = DB::table('HUYEN')->where('MaHuyen', $district)->value('TenHuyen');
-        $tinh = DB::table('TINH')->where('MaTinh', $province)->value('TenTinh');
+        $huyen = DB::table('district')->where('district_id', $district)->value('district_name');
+        $tinh = DB::table('province')->where('province_id', $province)->value('province_name');
         $triGia = 0;
 
         $date = now();

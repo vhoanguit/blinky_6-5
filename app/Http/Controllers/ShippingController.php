@@ -10,47 +10,47 @@ class ShippingController extends Controller
 {
     public function index()
     {
-        $provinces = DB::table('tinh')->get();
+        $provinces = DB::table('province')->get();
         return view('pages.thanhtoan.shipping', compact('provinces'));
     }
 
     public function fetchDistrict(Request $request)
     {
-        Log::info('Received AJAX request', ['province' => $request->province]);
+        // Log::info('Received AJAX request', ['province' => $request->province]);
 
         if ($request->ajax()) {
-            $districts = DB::table('huyen')->where('MaTinh', $request->province)->get();
+            $districts = DB::table('district')->where('province_id', $request->province)->get();
             $response = '<option value="">Chọn quận, huyện</option>';
             foreach ($districts as $district) {
-                $response .= '<option value="' . $district->MaHuyen . '">' . $district->TenHuyen . '</option>';
+                $response .= '<option value="' . $district->district_id . '">' . $district->district_name . '</option>';
             }
             return response($response);
         }
     }
 
     public function store(Request $request)
-{
-    $validatedData = $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|max:255',
-        'phone_num' => 'required|regex:/(0)[0-9]{9}/',
-        'province' => 'required|string|max:255',
-        'district' => 'required|string|max:255',
-        'address' => 'required|string|max:255',
-        'apartment' => 'nullable|string|max:255',
-    ]);
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone_num' => 'required|regex:/(0)[0-9]{9}/',
+            'province' => 'required|string|max:255',
+            'district' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'apartment' => 'nullable|string|max:255',
+        ]);
 
-    session([
-        'name' => $request->name,
-        'email' => $request->email,
-        'phone_num' => $request->phone_num,
-        'province' => $request->province,
-        'district' => $request->district,
-        'address' => $request->address,
-        'apartment' => $request->apartment,
-    ]);
+        session([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone_num' => $request->phone_num,
+            'province' => $request->province,
+            'district' => $request->district,
+            'address' => $request->address,
+            'apartment' => $request->apartment,
+        ]);
 
-    return redirect()->route('bo-sung.index');  // Chuyển hướng đến trang bổ sung
-}
+        return redirect()->route('bo-sung.index');  // Chuyển hướng đến trang bổ sung
+    }
 
 }

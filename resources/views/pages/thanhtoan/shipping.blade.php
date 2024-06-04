@@ -32,7 +32,7 @@
                 <select id="province" name="province" required>
                     <option value="">Chọn tỉnh thành</option>
                     @foreach($provinces as $province)
-                        <option value="{{ $province->MaTinh }}">{{ $province->TenTinh }}</option>
+                        <option value="{{ $province->province_id }}">{{ $province->province_name }}</option>
                     @endforeach
                 </select>
             </td>

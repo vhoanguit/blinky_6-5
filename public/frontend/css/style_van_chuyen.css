@@ -1,0 +1,203 @@
+.process {
+    display: flex;
+    flex-direction: row;
+    max-width: 100%;
+    height: auto;
+    margin-top: 2%;
+    margin-left: 1.7%;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.current {
+    color: rgba(239, 153, 162, 1);
+}
+
+.instruction {
+    padding: 1% 0;
+    font-size: 20px;
+}
+
+.details {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    width: 60%;
+    height: auto;
+    margin: 3.75% auto;
+    padding: 5%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+.header_details {
+    font-size: 40px;
+    font-weight: bold;
+    margin-top: 0%;
+    padding-bottom: 1%;
+    color: rgba(239, 153, 162, 1);
+    font-family: "Times New Roman", Times, serif;
+}
+
+.details p {
+    margin-bottom: 10px;
+}
+
+.details p a {
+    color: rgba(239, 153, 162, 1);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.details p a:hover {
+    color: rgb(228, 105, 117);
+}
+
+.details p a:active {
+    color: rgb(216, 48, 185);
+}
+
+.details label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.details input {
+    padding: 1%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 1.25%;
+}
+
+.input_container {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    align-items: center;
+}
+
+.input_container td {
+    width: 50%;
+    padding: 0.5% 0;
+}
+
+#name,
+#address,
+#apartment {
+    width: 95%;
+}
+
+#email,
+#phone_num {
+    width: 90%;
+}
+
+#province,
+#district {
+    width: 92%;
+    resize: none;
+    font-size: 18.5px;
+    margin: 5% 0;
+}
+
+input {
+    font-size: 20px;
+}
+
+option {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+input[type="text"]:focus,
+input[type="tel"]:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+select {
+    margin: 1% 0;
+    width: 100%;
+    padding: 1%;
+    border-radius: 5px;
+    border-color: #ddd;
+}
+
+.submit_button {
+    align-items: center;
+}
+
+.submit_button input {
+    color: white;
+    background-color: rgba(245, 156, 166, 0.88);
+    padding: 2% 3%;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.submit_button input:hover {
+    background-color: rgba(236, 118, 132, 0.88) ;
+}
+
+.submit_button input::after {
+    background-color: rgba(226, 67, 86, 0.88) ;
+}
+
+/* Mobile width < 740px */
+@media only screen and (max-width: 46.1875em)
+{
+    .process {
+        font-size: 13.5px;
+    }
+    
+    .instruction {
+        font-size: 18px;
+    }
+    
+    .details {
+        font-size: 15px;
+    }
+    .header_details {
+        font-size: 30px;
+    }
+    #province,
+    #district {
+        font-size: 15px;
+    }
+    input {
+        font-size: 15px;
+    }
+    .submit_button input {
+        font-size: 12.5px;
+    }
+} 
+/* Tablet */
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em)
+{
+    .process {
+        font-size: 15px;
+    }
+    
+    .instruction {
+        padding: 1% 0;
+        font-size: 17px;
+    }
+    
+    .details {
+        font-size: 16px;
+    }
+    
+    .header_details {
+        font-size: 40px;
+    }
+    
+    #province,
+    #district {
+        font-size: 15px;
+    }
+    
+    .submit_button input {
+        font-size: 15px;
+    }
+} 
