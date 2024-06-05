@@ -334,3 +334,8 @@
     border:1px solid rgb(199, 199, 199);
     border-right:2px solid  rgb(255, 221, 223);
 }
+.pagination{
+    display: flex;
+    justify-content: center;
+    font-size: larger;
+}

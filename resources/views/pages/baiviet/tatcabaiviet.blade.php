@@ -55,8 +55,9 @@
                     </div>
                 @endforeach
             </div> 
-        <!--Code chinh-->
-        {{ $baiviet->links('pagination::bootstrap-4') }}
+        <div class="pagination">
+            {{ $baiviet->links('pagination::bootstrap-4') }}
+        </div>
         </div>
 
         <div id="sidebar" class="sidebar">

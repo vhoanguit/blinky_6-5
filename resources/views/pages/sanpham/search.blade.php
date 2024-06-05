@@ -28,7 +28,7 @@
                     </div>
                 @endforeach
                 <div class="category"> 
-                    <a class="category-title-1" href=" {{ URL::to('/san-pham') }}">Xem tất cả</a>
+                    <!-- <a class="category-title-1" href=" {{ URL::to('/san-pham') }}">Xem tất cả</a> -->
                 </div> 
                 <br><hr>
 

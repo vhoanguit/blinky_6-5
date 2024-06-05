@@ -54,7 +54,9 @@
                     </div>
                 @endforeach
             </div> 
-        <!--Code chinh-->
+        <div class="pagination">
+            {{ $post->links('pagination::bootstrap-4') }}
+        </div>
             
         </div>
 

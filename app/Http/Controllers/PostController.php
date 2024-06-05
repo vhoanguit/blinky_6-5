@@ -140,7 +140,7 @@ class PostController extends Controller
             //--seo
         }
         $imagePostSlider = DB::table('tbl_product')->orderbyRaw('RAND()')->limit(8)->get();
-        $post = Post::with('cate_post')->where('post_status',1)->where('cate_post_id',$cate_id)->paginate(10);
+        $post = Post::with('cate_post')->where('post_status',1)->where('cate_post_id',$cate_id)->paginate(3);
         $newest_post = Post::orderBy('post_id','DESC')->take(4)->get();
         return view('pages.baiviet.danhmucbaiviet')->with('category_product',$category_product)
         ->with('meta_keywords',$meta_keywords)
@@ -191,7 +191,7 @@ class PostController extends Controller
         $category_post = CatePost::orderBy('cate_post_id','DESC')->get();
         $newest_post = Post::orderBy('post_id','DESC')->take(4)->get();
         $imagePostSlider = DB::table('tbl_product')->orderbyRaw('RAND()')->limit(8)->get();
-        $baiviet = Post::orderby('post_id','desc')->where('post_status','1')->paginate(5);
+        $baiviet = Post::orderby('post_id','desc')->where('post_status','1')->paginate(3);
         return view('pages.baiviet.tatcabaiviet')->with('baiviet',$baiviet)->with('category_post',$category_post)
         ->with('newest_post',$newest_post)->with('imagePostSlider',$imagePostSlider);
     }
