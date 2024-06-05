@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB; // sử dụng database
-
+use App\Models\Post;
 
 use App\Http\Requests;
 use Session; // thu vien sdung session
@@ -28,10 +28,7 @@ class AdminController extends Controller
     public function index(){
         return view('pages.admin_hienthi.admin_login'); 
     }
-    public function show_dashboard(){
-        $this->AuthLogin();
-        return view('admin.dashboard');
-    }
+    
     public function dashboard_login(Request $request){
         $admin_email = $request->admin_email ; // lấy trường name="admin_email" trong yêu cầu được gửi lên do ng dùng nhập
         $admin_password = $request->admin_password;
@@ -57,4 +54,11 @@ class AdminController extends Controller
         Session::put('admin_id',null);
         return Redirect::to('/admin');     
     }
+    public function show_dashboard(){
+        $this->AuthLogin();
+        $post_views = Post::orderby('post_views','desc')->take(5)->get();
+        $product_views = DB::table('tbl_product')->orderby('product_views','desc')->take(5)->get();
+        return view('admin.dashboard')->with('post_views',$post_views)->with('product_views',$product_views);
+    }
+    
 }

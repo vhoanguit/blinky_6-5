@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB; // sử dụng database
-
+use Auth;
 use App\Models\CatePost;
 use App\Http\Requests;
 use Session; // thu vien sdung session
@@ -240,7 +240,12 @@ class ProductController extends Controller
         foreach($product_by_id as $key => $pro)
         {
             $category_id=$pro->category_id;
+            $product_id = $pro->product_id;
         }
+        $productGetView = DB::table('tbl_product')->where('product_id', $product_id)->first();
+        DB::table('tbl_product')
+        ->where('product_id', $product_id)
+        ->update(['product_views' => $productGetView->product_views + 1]);
 
         $related_product=DB::table('tbl_product')
         ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
@@ -287,5 +292,35 @@ class ProductController extends Controller
         $product_id = $request->product_id;
         $product_status = $request->product_status;   
         DB::table('tbl_product')->where('product_id', $product_id)->update(['product_status' => $product_status]);   
+    }
+    public function add_to_cart(Request $request)
+    {
+        $product_id = $request->product_id;
+        $quantity = $request->quantity;
+
+        $customer_id = Session::get('customer_id');
+
+        if($customer_id) {
+            // Thêm vào giỏ hàng của người dùng đăng nhập
+            $data = [
+                'customer_id' => $customer_id,
+                'product_id' => $product_id,
+                'quantity' => $quantity
+            ];
+
+            DB::table('tbl_cart')->insert($data);
+        } else {
+            // Lưu vào session
+            $cart = Session::get('cart');
+            if(!$cart) {
+                $cart = [];
+            }
+
+            $cart[$product_id] = $quantity;
+
+            Session::put('cart', $cart);
+        }
+
+        return Redirect::to('/chi-tiet-san-pham/{product_id}');
     }
 }

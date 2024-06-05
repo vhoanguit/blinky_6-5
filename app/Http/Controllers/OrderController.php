@@ -10,17 +10,26 @@ use App\Mail\OrderDetailsMail;
 
 class OrderController extends Controller
 {
+    public function checkout()
+    {
+        view('checkout');
+    }
     public function hoaDon()
     {
         $id = Session::get('id');
-        $order = DB::table('hoadon_vanglai')->where('MaHDVL', $id)->first();
+        $order = DB::table('tbl_customer_order')->where('order_id', $id)->first();
+        $orderDetails = DB::table('tbl_order_details')->where('order_id', $id)->get();
+        $customer = DB::table('tbl_customers')->where('customer_id', $order->customer_id)->first();
 
         if (!$order) {
-            // Nếu không tìm thấy đơn hàng, bạn có thể điều hướng đến một trang lỗi hoặc hiển thị một thông báo.
             return redirect()->route('thanh_toan')->with('error', 'Không tìm thấy hóa đơn.');
         }
 
-        return view('pages.thanhtoan.hoa_don', ['order' => $order]);
+        return view('pages.hoa_don', [
+            'order' => $order,
+            'orderDetails' => $orderDetails,
+            'customer' => $customer
+        ]);
     }
 
     public function thanhToan()
@@ -34,14 +43,22 @@ class OrderController extends Controller
         $apartment = Session::get('apartment', '');
         $note = Session::get('note', '');
         $file = Session::get('file_input', '');
-
-        // Lấy tên tỉnh
+    
         $tinh = DB::table('province')->where('province_id', $province)->value('province_name');
-        // Lấy tên huyện
         $huyen = DB::table('district')->where('district_id', $district)->value('district_name');
-
-        return view('pages.thanhtoan.thanh_toan', compact('hoten', 'email', 'sdt', 'province', 'district', 'address', 'apartment', 'note', 'file', 'tinh', 'huyen'));
+    
+        $cart = Session::get('cart', []); // Lấy giỏ hàng từ session, mặc định là một mảng rỗng nếu không có gì trong session
+    
+        // Tính tổng tiền
+        $total = 0;
+        foreach ($cart as $item) {
+            $total += $item['product_price'] * $item['product_quantity'];
+        }
+    
+        return view('pages.thanhtoan.thanh_toan', compact('hoten', 'email', 'sdt', 'province', 'district', 'address', 'apartment', 'note', 'file', 'tinh', 'huyen', 'cart', 'total'));
     }
+    
+
 
     function execPostRequest($url, $data)
     {
@@ -62,66 +79,89 @@ class OrderController extends Controller
         return $result;
     }
 
-    public function online_checkout()
+    public function momo_payment(Request $request)
     {
-        if (isset ($_POST['cod'])){
+        $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
 
-        }else if(isset ($_POST['payUrl'])){
-            $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
+        $partnerCode = 'MOMOBKUN20180529';
+        $accessKey = 'klm05TvNBzhg7h7j';
+        $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
+        $orderInfo = "Thanh toán qua ATM MoMo";
+        $amount = "10000";
+        $orderId = time() ."";
+        $redirectUrl = route('hoa_don');
+        $ipnUrl = route('hoa_don');
+        $extraData = "";
 
+        $requestId = time() . "";
+        $requestType = "payWithATM";
+        $rawHash = "accessKey=" . $accessKey . "&amount=" . $amount . "&extraData=" . $extraData . "&ipnUrl=" . $ipnUrl . "&orderId=" . $orderId . "&orderInfo=" . $orderInfo . "&partnerCode=" . $partnerCode . "&redirectUrl=" . $redirectUrl . "&requestId=" . $requestId . "&requestType=" . $requestType;
+        $signature = hash_hmac("sha256", $rawHash, $secretKey);
 
-            $partnerCode = 'MOMOBKUN20180529';
-            $accessKey = 'klm05TvNBzhg7h7j';
-            $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
-            $orderInfo = "Thanh toán qua MoMo";
-            $amount = "10000";
-            $orderId = time() ."";
-            $redirectUrl = "https://webhook.site/b3088a6a-2d17-4f8d-a383-71389a6c600b";//trả về trang khi thanh toán thành công
-            $ipnUrl = "https://webhook.site/b3088a6a-2d17-4f8d-a383-71389a6c600b";
-            $extraData = "";
-                $partnerCode = $partnerCode;
-                $accessKey = $accessKey;
-                $serectkey = $secretKey;
-                $orderId = $orderId; // Mã đơn hàng
-                $orderInfo = $orderInfo;
-                $amount = $amount;
-                $ipnUrl = $ipnUrl;
-                $redirectUrl = $redirectUrl;
-                $extraData = $extraData;
-            
-                $requestId = time() . "";
-                $requestType = "payWithATM";
-                $extraData = ($_POST["extraData"] ? $_POST["extraData"] : "");
-                //before sign HMAC SHA256 signature
-                $rawHash = "accessKey=" . $accessKey . "&amount=" . $amount . "&extraData=" . $extraData . "&ipnUrl=" . $ipnUrl . "&orderId=" . $orderId . "&orderInfo=" . $orderInfo . "&partnerCode=" . $partnerCode . "&redirectUrl=" . $redirectUrl . "&requestId=" . $requestId . "&requestType=" . $requestType;
-                $signature = hash_hmac("sha256", $rawHash, $serectkey);
-                $data = array('partnerCode' => $partnerCode,
-                    'partnerName' => "Test",
-                    "storeId" => "MomoTestStore",
-                    'requestId' => $requestId,
-                    'amount' => $amount,
-                    'orderId' => $orderId,
-                    'orderInfo' => $orderInfo,
-                    'redirectUrl' => $redirectUrl,
-                    'ipnUrl' => $ipnUrl,
-                    'lang' => 'vi',
-                    'extraData' => $extraData,
-                    'requestType' => $requestType,
-                    'signature' => $signature);
-                $result = $this->execPostRequest($endpoint, json_encode($data));
-                $jsonResult = json_decode($result, true);  // decode json
-            
-                //Just a example, please check more in there
-            
-                header('Location: ' . $jsonResult['payUrl']);
-            
-        }else if(isset ($_POST['vnpay'])){
+        $data = array(
+            'partnerCode' => $partnerCode,
+            'partnerName' => "BLINKIY",
+            "storeId" => "BLINKIY",
+            'requestId' => $requestId,
+            'amount' => $amount,
+            'orderId' => $orderId,
+            'orderInfo' => $orderInfo,
+            'redirectUrl' => $redirectUrl,
+            'ipnUrl' => $ipnUrl,
+            'lang' => 'vi',
+            'extraData' => $extraData,
+            'requestType' => $requestType,
+            'signature' => $signature
+        );
+        $result = $this->execPostRequest($endpoint, json_encode($data));
+        $jsonResult = json_decode($result, true);
 
-        }
+        return redirect()->to($jsonResult['payUrl']);
+    }
+
+    public function momoqr_payment(Request $request)
+    {
+        $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
+
+        $partnerCode = 'MOMOBKUN20180529';
+        $accessKey = 'klm05TvNBzhg7h7j';
+        $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
+
+        $orderInfo = "Thanh toán qua mã QR MoMo";
+        $amount = "10000";
+        $orderId = time() ."";
+        $redirectUrl = route('hoa_don');
+        $ipnUrl = route('hoa_don');
+        $extraData = "";
+        $requestId = time() . "";
+        $requestType = "captureWallet";
+        $rawHash = "accessKey=" . $accessKey . "&amount=" . $amount . "&extraData=" . $extraData . "&ipnUrl=" . $ipnUrl . "&orderId=" . $orderId . "&orderInfo=" . $orderInfo . "&partnerCode=" . $partnerCode . "&redirectUrl=" . $redirectUrl . "&requestId=" . $requestId . "&requestType=" . $requestType;
+        $signature = hash_hmac("sha256", $rawHash, $secretKey);
+
+        $data = array(
+            'partnerCode' => $partnerCode,
+            'partnerName' => "Test",
+            "storeId" => "MomoTestStore",
+            'requestId' => $requestId,
+            'amount' => $amount,
+            'orderId' => $orderId,
+            'orderInfo' => $orderInfo,
+            'redirectUrl' => $redirectUrl,
+            'ipnUrl' => $ipnUrl,
+            'lang' => 'vi',
+            'extraData' => $extraData,
+            'requestType' => $requestType,
+            'signature' => $signature
+        );
+        $result = $this->execPostRequest($endpoint, json_encode($data));
+        $jsonResult = json_decode($result, true);
+
+        return redirect()->to($jsonResult['payUrl']);
     }
 
     public function submitThanhToan(Request $request)
     {
+        // Lấy thông tin từ session và request
         $hoten = Session::get('name', '');
         $email = Session::get('email', '');
         $sdt = Session::get('phone_num', '');
@@ -129,50 +169,76 @@ class OrderController extends Controller
         $district = Session::get('district', '');
         $address = Session::get('address', '');
         $apartment = Session::get('apartment', '');
-        $note = Session::get('note', '') ?? ''; // Đặt giá trị mặc định là chuỗi rỗng nếu $note là null
+        $note = Session::get('note', '') ?? '';
         $file = Session::get('file_input', '');
         $pttt = $request->input('pttt');
-        $huyen = DB::table('district')->where('district_id', $district)->value('district_name');
+
+        // Lấy tên tỉnh và huyện từ DB
         $tinh = DB::table('province')->where('province_id', $province)->value('province_name');
-        $triGia = 0;
+        $huyen = DB::table('district')->where('district_id', $district)->value('district_name');
 
-        $date = now();
+        $cart = Session::get('cart', []); // Lấy giỏ hàng từ session
 
-        // Generate random ID with format HDVLxxxxxx
-        function generateRandomId($length = 6)
-        {
-            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            $charactersLength = strlen($characters);
-            $randomString = 'HDVL';
-            for ($i = 0; $i < $length; $i++) {
-                $randomString .= $characters[rand(0, $charactersLength - 1)];
-            }
-            return $randomString;
+        // Tính tổng tiền
+        $total = 0;
+        foreach ($cart as $item) {
+            $total += $item['product_price'] * $item['product_quantity'];
         }
 
-        $id = generateRandomId();
+        // Tạo dữ liệu địa chỉ đầy đủ
         $fullAddress = ($apartment ? $apartment . ', ' . $address : $address) . ', ' . $huyen . ', ' . $tinh;
 
-        DB::table('hoadon_vanglai')->insert([
-            'MaHDVL' => $id,
-            'TenKH' => $hoten,
-            'Email' => $email,
-            'SDT' => $sdt,
-            'DiaChi' => $fullAddress,
-            'Note' => $note ?: '', // Đảm bảo rằng Note không bao giờ là null
-            'File' => $file ?: '',
-            'TriGia' => $triGia,
-            'NgDH' => $date,
-            'PTTT' => $pttt,
+        // Tạo order mới trong bảng tbl_customer_order
+        $orderId = DB::table('tbl_customer_order')->insertGetId([
+            'customer_id' => '', // Ensure this is set correctly
+            'customer_name' => $hoten,
+            'customer_email' => $email,
+            'customer_phone' => $sdt,
+            'customer_address' => $fullAddress,
+            'order_notes' => $note,
+            'order_files' => $file,
+            'order_total_price' => $total,
+            'order_date' => now(),
+            'payment_opt' => $pttt,
+            'order_status' => 'Pending',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
+        
 
-        // Lưu ID vào session
-        Session::put('id', $id);
+        // Lưu chi tiết đơn hàng vào bảng tbl_order_details
+        foreach ($cart as $item) {
+            DB::table('tbl_order_details')->insert([
+                'order_id' => $orderId,
+                'product_id' => $item['product_id'],
+                'product_quantity' => $item['product_quantity'],
+                'product_price' => $item['product_price'],
+                'total_price' => $item['product_price'] * $item['product_quantity'],
+                'created_at' => now(),
+                'updated_at' => now(),
+                'size_id' => $item['size_id']
+            ]);
+        }
+        
 
-        // Gửi email xác nhận đơn hàng
-        $order = DB::table('hoadon_vanglai')->where('MaHDVL', $id)->first();
+        // Lưu orderId vào session để dùng ở trang hóa đơn
+        Session::put('id', $orderId);
+
+        // Gửi email chi tiết đơn hàng
+        $order = DB::table('tbl_customer_order')->where('order_id', $orderId)->first();
         Mail::to($email)->send(new OrderDetailsMail($order));
 
-        return redirect()->route('hoa_don');
+        // Xử lý chuyển hướng dựa trên phương thức thanh toán
+        switch ($pttt) {
+            case 1:
+                return $this->momoqr_payment($request);
+            case 2:
+                return $this->momo_payment($request);
+            case 3:
+                return redirect()->route('hoa_don');
+            default:
+                return redirect()->route('thanh_toan')->with('error', 'Phương thức thanh toán không hợp lệ.');
+        }
     }
+
 }

@@ -167,7 +167,12 @@ class PostController extends Controller
             $meta_title = $p->post_title;
             $cate_id = $p->cate_post_id;
             $category_id = $p->cate_post_id;
+            $post_id = $p->post_id;
         }
+        // update view moi lan bam vo bai viet 
+        $postGetView = Post::where('post_id',$post_id)->first();
+        $postGetView->post_views = $postGetView->post_views +1;
+        $postGetView->save();
         $lienquan = Post::with('cate_post')->where('post_status',1)->where('cate_post_id',$category_id)
         ->take(10)->get(); // lấy tất cả bài viết liên quan trừ bài viết hiện tại đang xem ra
 

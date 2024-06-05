@@ -96,7 +96,7 @@ Route::get('/delete-gallery/{gallery_id}','App\Http\Controllers\GalleryControlle
 //Giỏ hàng
 Route::post('/add-to-cart', 'App\Http\Controllers\ProductController@add_to_cart');
 Route::get('/gio-hang','App\Http\Controllers\CartController@shopping_cart');
-
+Route::post('/save-cart','App\Http\Controllers\CartController@save_cart')->name('cart.save');
 
 // Update status
 Route::get('/update-post-status', 'App\Http\Controllers\PostController@update_post_status');
@@ -138,8 +138,6 @@ Route::group(['middleware' => 'customer'], function () {
 });
 
 
-/// Hàm lấy quận từ thành phố.
-Route::post('/get-districts', 'App\Http\Controllers\CheckoutController@fetchDistrict')->name('fetch_d');
 
 // Quên mật khẩu
 Route::get('/forgot-password', 'App\Http\Controllers\CheckoutController@forgot_password');
@@ -177,5 +175,15 @@ Route::post('/shipping/store', 'App\Http\Controllers\ShippingController@store')-
 
 // Gửi email
 Route::get('/test-email', 'App\Http\Controllers\EmailController@testEmail');
+
+/// Hàm lấy quận từ thành phố.
+Route::post('/get-districts', 'App\Http\Controllers\CheckoutController@fetchDistrict')->name('fetch_d');
+Route::get('/order-not-process-yet', 'App\Http\Controllers\OrderManagerController@order_not_process_yet')->name('order_not_process_yet');
+Route::get('/order-not-delivered-yet', 'App\Http\Controllers\OrderManagerController@order_not_delivered_yet')->name('order_not_delivered_yet');
+Route::get('/order-delivered', 'App\Http\Controllers\OrderManagerController@order_delivered')->name('order_delivered');
+
+// Các route cho xử lý qua đêm (overnight) với phương thức GET
+Route::get('/accept-order/{id}', 'App\Http\Controllers\OrderManagerController@accept_order');
+Route::get('/order-delivered/{id}', 'App\Http\Controllers\OrderManagerController@admin_order_delivered');
 
 ?>

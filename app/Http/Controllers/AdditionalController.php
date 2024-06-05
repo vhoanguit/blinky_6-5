@@ -22,6 +22,7 @@ class AdditionalController extends Controller
 
     $note = $request->input('mo_ta');
     $filePath = null;
+    $new_file = null;
 
     if ($request->hasFile('file_input')) {
         $get_file = $request->file('file_input');

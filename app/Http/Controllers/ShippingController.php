@@ -16,7 +16,7 @@ class ShippingController extends Controller
 
     public function fetchDistrict(Request $request)
     {
-        // Log::info('Received AJAX request', ['province' => $request->province]);
+        Log::info('Received AJAX request', ['province' => $request->province]);
 
         if ($request->ajax()) {
             $districts = DB::table('district')->where('province_id', $request->province)->get();
