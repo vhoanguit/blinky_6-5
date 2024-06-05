@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderDetailsMail;
-
+use App\Models\DataPerDay;
 class OrderController extends Controller
 {
     public function checkout()
@@ -204,6 +204,7 @@ class OrderController extends Controller
             'created_at' => now(),
             'updated_at' => now()
         ]);
+        
         
 
         // Lưu chi tiết đơn hàng vào bảng tbl_order_details

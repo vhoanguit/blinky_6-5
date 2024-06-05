@@ -201,7 +201,7 @@ class PostController extends Controller
         $category_post = CatePost::orderBy('cate_post_id','DESC')->get();
         $newest_post = Post::orderBy('post_id','DESC')->take(4)->get();
         $imagePostSlider = DB::table('tbl_product')->orderbyRaw('RAND()')->limit(8)->get();
-        $baiviet = Post::orderby('post_id','desc')->where('post_status','1')->paginate(3);
+        $baiviet = Post::orderby('post_id','desc')->where('post_status','1')->paginate(4);
         return view('pages.baiviet.tatcabaiviet')->with('baiviet',$baiviet)->with('category_post',$category_post)
         ->with('newest_post',$newest_post)->
         with('imagePostSlider',$imagePostSlider)

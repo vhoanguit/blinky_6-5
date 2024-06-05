@@ -11,12 +11,12 @@
                 <p class="logo-phongthuy">PHONG THỦY</p>
             </div>
             <div class="search-bar">
-                <div class="search-bar-cover">
-                    <i class="fas fa-search"></i>
-                    <input type="input" class="search-bar-input" id="search-bar-input" name="search-bar-input"
-                        placeholder="Tìm kiếm" />
+                    <div class="search-bar-cover">
+                        <i class="fas fa-search"></i>
+                        <input type="input" class="search-bar-input" id="search-bar-input" name="search-bar-input" placeholder="Tìm kiếm"/>
+                    </div>
                 </div>
-            </div>
+           
             <div class="top-bar-options">
                 <div class="top-bar-options-object">
                     <i class="fa-solid fa-user"></i>
@@ -70,7 +70,7 @@
                     </ul>
                 </li>
                 <li class="mainmenu-li">
-                    <a class="menu-bar-title" href="">LIÊN HỆ</a>
+                    <a class="menu-bar-title" href="{{ URL::to('/contact/') }}">LIÊN HỆ</a>
                 </li>
             </ul>
         </nav>

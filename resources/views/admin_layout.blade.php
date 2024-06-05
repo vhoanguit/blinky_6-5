@@ -28,6 +28,12 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<!--Datepicker-->
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
+<!--ChartJs-->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 	</head>
 <body>
 	<section id="container">
@@ -242,6 +248,17 @@
 
             });			
 	</script>
+	<script>
+		$(function(){
+			$("#datepicker").datepicker();
+
+		});
+		$(function(){
+			$("#datepicker2").datepicker();
+
+		});
+	</script>
+	
 	
 </body>
 </html>
