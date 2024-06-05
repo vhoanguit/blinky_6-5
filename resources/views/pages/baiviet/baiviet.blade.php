@@ -74,6 +74,30 @@
                     </ul>
                 </div>
             </div>
+            <div class="top_view">
+                <div class="top_view_header">
+                    <hr>
+                    <h2><b>TOP VIEW</b></h2>
+                    <hr>
+                </div> 
+                <div class="top_view_links">
+                    <ul>
+                    @foreach($topview as $key => $top)
+                    <li>
+                        <a href="{{URL::to('/bai-viet/'.$top->post_slug)}}">
+                            <div style="display:flex">
+                                <img style="object-fit:cover;width:70px;height:70px;margin-right:10px"  src="{{asset('public/uploads/post/'.$top->post_image)}}" alt="{{$top->post_slug}}"/>
+                                <div>
+                                    <p><b>{{$top->post_title}}</b></p>
+                                    <p><em>{{$top->post_views}} lượt xem</em></p>
+                                </div>
+                            </div>               
+                        </a>
+                    </li>
+                    @endforeach
+                    </ul>
+                </div> 
+            </div>
             <div class="relation">
                 <div class="relate_header">
                     <hr>
@@ -95,6 +119,8 @@
                     </ul>
                 </div>
             </div>
+            
+
 
         </div>
     

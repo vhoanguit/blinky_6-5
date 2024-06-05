@@ -169,29 +169,40 @@
 }
 /* sidebar categories*/
 
-.watch_most_links{
+.latest_links{
     width: 90%;
 }
-.watch_most_links li{
+.latest_links li{
     margin-bottom: 2rem;
 }
 
-.foru_links a,.watch_most_links a{
+.foru_links a,.latest_links a{
     text-decoration: none;
     color: black;
     font-size:2rem;
 }
-.foru_links ul, .watch_most_links ul{
+.latest_links a {
+    text-decoration: none;
+    color: black;
+    font-size:1.4rem;
+}
+.top_view_links a{
+    text-decoration: none;
+    color: black;
+    font-size:1.5rem;
+}
+.top_view_links li {
+    margin-top:1.5rem;
+}
+.foru_links ul, .latest_links ul, .top_view_links ul{
     list-style: none;
 }
-.foru_links a:hover, .watch_most_links a:hover{
+.foru_links a:hover, .latest_links a:hover, .top_view_links a:hover{
     color:rgb(255, 103, 179);
     
 }
-.watch_most_links a{
-    font-size:1.7rem;
-}
-.watch_most_header{
+
+.latest_header{
     display: flex;
     justify-content: center;
 }
@@ -262,8 +273,9 @@
     color:rgb(206, 91, 56);
 }
 
+
 /* Bổ sung 4/6 */
-.social,.foru,.watch_most{
+.social,.foru,.latest{
     margin-bottom:4rem;
 }
 .social_link{
@@ -278,13 +290,13 @@
     align-items: center;
     margin-bottom:2rem;
 }
-.watch_most_header,.relate_header{
+.latest_header,.relate_header,.top_view_header{
     display: flex;
     align-items: center;
     margin-top:2rem;
 
 }
-.social_link h2, .foru_header h2,.watch_most_header h2,.relate_header h2{
+.social_link h2, .foru_header h2,.latest_header h2,.relate_header h2,.top_view_header h2{
     font-family: 'Paytone One', sans-serif;
     font-weight: medium;
     color: #ddab64;
@@ -305,7 +317,7 @@
     height: 5px;
     border: none;
 }
-.watch_most_header hr{
+.latest_header hr{
     background-image: linear-gradient(to right, #fdd5d9,#feadb5, #f9bec4);
     /* #f9bec4 */
     height: 5px;
@@ -313,6 +325,13 @@
     width:10%;
 }
 .relate_header hr{
+    background-image: linear-gradient(to right, #fdd5d9,#feadb5, #f9bec4);
+    /* #f9bec4 */
+    height: 5px;
+    border: none;
+    width:15%;
+}
+.top_view_header hr{
     background-image: linear-gradient(to right, #fdd5d9,#feadb5, #f9bec4);
     /* #f9bec4 */
     height: 5px;

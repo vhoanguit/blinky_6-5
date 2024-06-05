@@ -40,7 +40,7 @@ class PostController extends Controller
         $post->post_meta_keywords= $data['post_meta_keywords'];
         $post->cate_post_id = $data['cate_post_id'];
         $post->post_status= $data['post_status'];
-
+        $post->post_views = '0';
         $get_image = $request->file('post_image');
      
         if($get_image){
@@ -125,6 +125,7 @@ class PostController extends Controller
     // HÀM HIỂN THỊ BÀI VIẾT Ở DANH MỤC BÀI VIẾT
     public function danh_muc_bai_viet(Request $request,$post_slug){
         $category_post = CatePost::orderBy('cate_post_id','DESC')->where('cate_post_status','1')->get();
+        $top_views = Post::orderBy('post_views','DESC')->take(4)->get();
 
         $catego_post = CatePost::where('cate_post_slug', $post_slug)->first();// điều kiện where để lấy $post_slug khớp với cate_post_slug ở URL và lấy dòng đầu tiên khớp
         // product
@@ -140,7 +141,7 @@ class PostController extends Controller
             //--seo
         }
         $imagePostSlider = DB::table('tbl_product')->orderbyRaw('RAND()')->limit(8)->get();
-        $post = Post::with('cate_post')->where('post_status',1)->where('cate_post_id',$cate_id)->paginate(3);
+        $post = Post::with('cate_post')->where('post_status',1)->where('cate_post_id',$cate_id)->paginate(4);
         $newest_post = Post::orderBy('post_id','DESC')->take(4)->get();
         return view('pages.baiviet.danhmucbaiviet')->with('category_product',$category_product)
         ->with('meta_keywords',$meta_keywords)
@@ -150,13 +151,15 @@ class PostController extends Controller
         ->with('category_post',$category_post)
         ->with('catego_post',$catego_post)
         ->with('newest_post',$newest_post)
-        ->with('imagePostSlider',$imagePostSlider); 
+        ->with('imagePostSlider',$imagePostSlider)
+        ->with('topview',$top_views);
+ 
     }
 
 
     public function bai_viet(Request $request, $post_slug){
         $category_post = CatePost::orderBy('cate_post_id','DESC')->get();
-
+        $top_views = Post::orderBy('post_views','DESC')->take(4)->get();
         $category_product = DB::table('tbl_category_product')->where('category_status','1')->orderby('category_id','desc')->get();
 
         $post = Post::with('cate_post')->where('post_status',1)->where('post_slug',$post_slug)->take(1)->get();
@@ -178,7 +181,8 @@ class PostController extends Controller
 
         return view('pages.baiviet.baiviet')->with('category_product',$category_product)
         ->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->
-        with('post',$post)->with('category_post',$category_post)->with('lienquan',$lienquan);
+        with('post',$post)->with('category_post',$category_post)->with('lienquan',$lienquan)
+        ->with('topview',$top_views);
     }
     // public function unactive_post($post_id){
     //     $this->AuthLogin();
@@ -193,12 +197,15 @@ class PostController extends Controller
     //     return Redirect::to('all-post');
     // }
     public function tatcabaiviet(){
+        $top_views = Post::orderBy('post_views','DESC')->take(4)->get();
         $category_post = CatePost::orderBy('cate_post_id','DESC')->get();
         $newest_post = Post::orderBy('post_id','DESC')->take(4)->get();
         $imagePostSlider = DB::table('tbl_product')->orderbyRaw('RAND()')->limit(8)->get();
         $baiviet = Post::orderby('post_id','desc')->where('post_status','1')->paginate(3);
         return view('pages.baiviet.tatcabaiviet')->with('baiviet',$baiviet)->with('category_post',$category_post)
-        ->with('newest_post',$newest_post)->with('imagePostSlider',$imagePostSlider);
+        ->with('newest_post',$newest_post)->
+        with('imagePostSlider',$imagePostSlider)
+        ->with('topview',$top_views);
     }
     public function toggle_post_status(Request $request) {
         $this->AuthLogin();

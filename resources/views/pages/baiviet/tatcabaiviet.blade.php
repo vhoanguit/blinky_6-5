@@ -108,25 +108,55 @@
                     </ul>
                 </div>
             </div>
-            <div class="watch_most">
-                <div class="watch_most_header">
+            <div class="top_view">
+                <div class="top_view_header">
+                    <hr>
+                    <h2><b>TOP VIEW</b></h2>
+                    <hr>
+                </div> 
+                <div class="top_view_links">
+                    <ul>
+                    @foreach($topview as $key => $top)
+                    <li>
+                        <a href="{{URL::to('/bai-viet/'.$top->post_slug)}}">
+                            <div style="display:flex">
+                                <img style="object-fit:cover;width:70px;height:70px;margin-right:10px"  src="{{asset('public/uploads/post/'.$top->post_image)}}" alt="{{$top->post_slug}}"/>
+                                <div>
+                                    <p><b>{{$top->post_title}}</b></p>
+                                    <p><em>{{$top->post_views}} lượt xem</em></p>
+                                </div>
+                            </div>               
+                        </a>
+                    </li>
+                    @endforeach
+                    </ul>
+                </div> 
+            </div>
+            <div class="latest">
+                <div class="latest_header">
                     <hr>
                     <h2><b>LATEST POSTS</b></h2>
                     <hr>
                 </div>
-                <div class="watch_most_links">
+                <div class="latest_links">
                     <ul>
                     @foreach($newest_post as $key => $baivietmoinhat)
                     <li>
-                    <a href="{{URL::to('/bai-viet/'.$baivietmoinhat->post_slug)}}">
-                        <i class="fa-solid fa-angles-right" style="color:rgb(255, 103, 179)"></i>
-                            <span><b>{{$baivietmoinhat->post_title}}</b></span>
+                        <a href="{{URL::to('/bai-viet/'.$baivietmoinhat->post_slug)}}">
+                            <div style="display:flex">
+                                <img style="object-fit:cover;width:70px;height:70px;margin-right:10px"  src="{{asset('public/uploads/post/'.$baivietmoinhat->post_image)}}" alt="{{$baivietmoinhat->post_slug}}"/>
+                                <div>
+                                    <p><b>{{$baivietmoinhat->post_title}}</b></p>
+                                    <p><em>{{$baivietmoinhat->post_views}} lượt xem</em></p>
+                                </div>
+                            </div>               
                         </a>
                     </li>
                     @endforeach
                     </ul>
                 </div>
             </div>
+            
 
         </div>
 

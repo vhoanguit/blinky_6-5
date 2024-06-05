@@ -49,7 +49,7 @@ class ProductController extends Controller
         $data['product_color']=$request->product_color;
         $data['product_element']=$request->product_element;
         $data['category_id']=$request->cate_product;
-
+        $request->product_views = '0';
         $get_image=$request->file('product_image');
         if($get_image)
         {
