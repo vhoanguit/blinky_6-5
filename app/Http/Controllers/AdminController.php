@@ -60,5 +60,23 @@ class AdminController extends Controller
         $product_views = DB::table('tbl_product')->orderby('product_views','desc')->take(5)->get();
         return view('admin.dashboard')->with('post_views',$post_views)->with('product_views',$product_views);
     }
+    // public function filter(Request $request){
+    //     $data = $request->all();
+    //     $from_date=$data['from_date'];
+    //     $to_date = $data['to_date'];
+    //     $getDay = DB::table('tbl_customer_order')
+    //     ->select(DB::raw('DATE(order_date) as order_date'), DB::raw('SUM(order_total_price) as revenue'))
+    //     ->whereBetween('order_date', [$from_date, $to_date])
+    //     ->groupBy(DB::raw('DATE(order_date)'))
+    //     ->orderBy('order_date', 'ASC')
+    //     ->get();        
+    //     foreach($getDay as $key => $val){
+    //         $chart_data[] = array(
+    //             'time' => $val ->order_date,
+    //             'revenue'=>$val -> revenue
+    //         );
+    //     }
+    //     return response()->json($chart_data);
+    // }
     
 }

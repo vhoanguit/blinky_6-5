@@ -200,4 +200,6 @@ Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('add-to-
 Route::post('/remove-favorite', [FavouriteController::class, 'removeFavorite'])->name('remove-favorite')->middleware(CustomerMiddleware::class);
 
 Route::post('/add-shopping-cart', [CartController::class, 'add_shopping_cart'])->name('add_shopping_cart');
+
+Route::get('filter-by-date','App\Http\Controllers\AdminController@filter')
 ?>
