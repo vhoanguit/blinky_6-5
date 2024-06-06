@@ -4,9 +4,11 @@
     max-width: 100%;
     height: auto;
     margin-top: 2%;
-    margin-left: 1.7%;
-    font-size: 20px;
-    font-weight: bold;
+    margin-left: 3%;
+    font-size: 17px;
+    font-weight: lighter ;
+    font-family: 'Arial', sans-serif;
+    color: #D0933E;
 }
 
 .current {
@@ -17,25 +19,44 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: white;
     border-radius: 10px;
     padding: 1.217%;
     max-width: 86%;
     height: 100%;
     margin: 4% auto;
-    font-family:'Times New Roman', Times, serif;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    margin-top: 3%;
+    /* font-family:'Times New Roman', Times, serif; */
+
 }
 
+.confirm-container
+{
+    width: 90%;
+    height: auto;
+    margin-left: 5%;
+}
 .confirm {
+    width: 50%;
     font-size: 20px;
-    flex: 3;
+    /* flex: 3; */
     margin-left: 2%;
 }
-
+.confirm_info
+{
+    font-family: 'Dongle', sans-serif;
+    font-size: 17px;
+}
 .confirm_header,
 .payment_opt_header {
-    font-size: 30px;
-    color:rgba(239, 153, 162, 1)
+    font-family: 'Paytone One', sans-serif;
+    font-weight: lighter;
+    letter-spacing: 1px;
+    font-size: 25px;
+    color:rgba(239, 153, 162, 1);
 }
 
 .confirm hr {
@@ -43,9 +64,22 @@
 }
 
 .payment_opt {
+    
     display: flex;
     flex-direction: column;
     font-size: 20px;
+}
+.opt label
+{
+    font-family: 'Dongle', sans-serif;
+    font-size: 17px;
+
+}
+.info_header
+{
+    font-family: 'Paytone One', sans-serif;
+    color:rgba(239, 153, 162, 1);
+    letter-spacing: 0.5px;
 }
 
 input[type="radio"] {
@@ -57,11 +91,13 @@ input[type="radio"] {
 }
 
 .info_container {
+    /* background-color: aquamarine; */
     flex: 4;
     margin-left: 4%;
     justify-self: center;
     margin-top: 5%;
-    max-width: 70%;
+    width: 100%;
+    /* max-width: 70%; */
     height: auto;
     display: flex;
     flex-direction: column;
@@ -70,11 +106,13 @@ input[type="radio"] {
 
 .info {
     margin: 2.537% auto;
+    margin-top: 0;
     background-color: white;
     padding: 2.723%;
-    max-width: 100%;
+    width: 80%;
     height: auto;
     border: 1px solid black;
+    font-size: 20px;
 }
 
 .info hr {
@@ -167,15 +205,18 @@ input[type="radio"] {
     margin: 5% auto;
     font-size: 20px;
     font-weight: bold;
-    color: rgba(239, 153, 162, 1);
+    color: #f7b557;
 }
 
 .items_total,
 .shipping_fee {
+    font-family: 'Dongle', sans-serif;
+    font-size: 16px;
     display: grid;
     grid-template-columns: repeat(2, 50%);
     width: 97%;
     margin: 1.125% 0;
+
 }
 
 .total,
@@ -191,9 +232,11 @@ input[type="radio"] {
     align-self: center;
     justify-self: center;
     margin: 5% auto;
-    font-size: 25px;
+    font-size: 23px;
     font-weight: bold;
-    color: rgba(239, 153, 162, 1);
+    /* color: rgba(239, 153, 162, 1); */
+    color: #f7b557;
+    font-family: 'Dongle', sans-serif;
 }
 
 .sum {
@@ -245,6 +288,7 @@ input[type="radio"] {
 
 .pay button {
     margin-top: 2.5%;
+    margin-bottom: 5%;
     padding: 3.2% 5%;
     background-color: rgba(239, 153, 162, 1);
     color: #fff;
@@ -253,15 +297,14 @@ input[type="radio"] {
     width: 90%;
     height: auto;
     font-size: 18px;
+    border-radius: 5px 5px 5px 5px;
 }
 
-.pay button:hover {
-    background-color: #ec6ad2;
+.pay button:hover
+{
+    background-color: #f7b557;
 }
 
-.pay button:active {
-    background-color: red;
-}
 
 /* Mobile width < 740px */
 @media only screen and (max-width: 46.1875em)

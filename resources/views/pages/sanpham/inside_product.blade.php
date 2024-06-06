@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sản phẩm | Blinkiy</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="{{ asset('public/frontend/css/StyleInsideProduct.css') }}" rel="stylesheet">
+
 </head>
+
 <body>
+
     @include('Header')
+
     @foreach ($product as $key => $pro)
         <section class="inside_product_section">
             {{-- <div class="all-inside_product"> --}}
-            <input type="hidden" id="customer-id" value="{{$login}}">
+            <input type="hidden" id="customer-id" value="{{ $login }}">
             <div class="filter_from_product_page">
                 <p>
                     <br>
@@ -104,7 +109,8 @@
                                         <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
                                     </svg>
                                 </button>
-                                <input type="text" name="amountnumber" id="amountnumber" value="1" min="1">
+                                <input type="text" name="amountnumber" id="amountnumber" value="1"
+                                    min="1">
                                 <button class="plus" id="plus_btn" onclick="handlePlus()">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
@@ -122,9 +128,9 @@
                                     
                                     echo "<p>$sum" . ' sản phẩm có sẵn</p>';
                                     ?>
-                                    
+
                                 </div>
-                                <input type="hidden" id="total_inventory" value="{{$sum}}" >
+                                <input type="hidden" id="total_inventory" value="{{ $sum }}">
                             </div>
 
                         </div>
@@ -139,11 +145,16 @@
                                 {{-- @csrf --}}
                                 <button type="button" id="add_product_to_cart" onclick="addToCart()">
                                     <!-- <span class="cart-icon">🛒</span> -->
-                                    <input type="hidden" id="productid_hidden" name="productid_hidden" value="{{ $pro->product_id }}">
-                                    <input type="hidden" id="productname_hidden" name="productname_hidden" value="{{ $pro->product_name }}">
-                                    <input type="hidden" id="productcolor_hidden" name="productcolor_hidden" value="{{ $pro->product_color }}">
-                                    <input type="hidden" id="productprice_hidden" name="productprice_hidden" value="{{ $pro->product_price }}">
-                                    <input type="hidden" id="productimage_hidden" name="productimage_hidden" value="{{ $pro->product_image }}">
+                                    <input type="hidden" id="productid_hidden" name="productid_hidden"
+                                        value="{{ $pro->product_id }}">
+                                    <input type="hidden" id="productname_hidden" name="productname_hidden"
+                                        value="{{ $pro->product_name }}">
+                                    <input type="hidden" id="productcolor_hidden" name="productcolor_hidden"
+                                        value="{{ $pro->product_color }}">
+                                    <input type="hidden" id="productprice_hidden" name="productprice_hidden"
+                                        value="{{ $pro->product_price }}">
+                                    <input type="hidden" id="productimage_hidden" name="productimage_hidden"
+                                        value="{{ $pro->product_image }}">
 
                                     <span class="cart-icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -177,7 +188,7 @@
                     </div>
 
                     <div class="favorite_container">
-                        <button id="favorite_product" onclick="toggleFavorite()" class="favorite_button">
+                        {{-- <button id="favorite_product" onclick="toggleFavorite()" class="favorite_button">
                             <span>
                                 <svg id="heart_svg" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor" class="bi-heart" viewBox="0 0 16 16">
@@ -190,7 +201,33 @@
                             <span class="favorite_product_text">
                                 Yêu thích
                             </span>
-                        </button>
+                        </button> --}}
+                        @if ($isFavorite)
+                            <button id="favorite_product" onclick="toggleFavorite({{ $pro->product_id }})"
+                                class="favorite_button">
+                                <span>
+                                    <svg id="heart_svg" xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" fill="currentColor" class="bi-heart-fill"
+                                        viewBox="0 0 16 16">
+                                        <path id="heart_path"
+                                            d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314Z" />
+                                    </svg>
+                                </span>
+                                <span class="favorite_product_text">Yêu thích</span>
+                            </button>
+                        @else
+                            <button id="favorite_product" onclick="toggleFavorite({{ $pro->product_id }})"
+                                class="favorite_button">
+                                <span>
+                                    <svg id="heart_svg" xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" fill="currentColor" class="bi-heart" viewBox="0 0 16 16">
+                                        <path id="heart_path"
+                                            d="M8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
+                                    </svg>
+                                </span>
+                                <span class="favorite_product_text">Yêu thích</span>
+                            </button>
+                        @endif
                     </div>
 
 
@@ -205,25 +242,25 @@
             <div class="Product_description">
                 <div class="description_heading">
                     <br>
-                    <h4>MÔ TẢ SẢN PHẨM</h4>
+                    <h4>Mô tả sản phẩm</h4>
                     <hr>
                 </div>
                 <br>
                 <div class="restof_description">
-                    <p>
+                    {{-- <p>
                         <b>Sơ lược:&nbsp;</b>
-                    </p>
+                    </p> --}}
                     <p class="text_content">
-                        <span style="font-family: 'Arial',sans-serif;">
+                        <span style="font-family: 'Dongle', sans-serif;">
                             {!! $pro->product_content !!}
                         </span>
                     </p>
                     <br>
-                    <p>
+                    {{-- <p>
                         <b>Mô tả chi tiết:&nbsp;</b>
-                    </p>
+                    </p> --}}
                     <p class="text_content">
-                        <span style="font-family: 'Arial',sans-serif;">
+                        <span style="font-family: 'Dongle', sans-serif;">
                             {!! $pro->product_desc !!}
                         </span>
                     </p>
@@ -237,7 +274,7 @@
     <div class="related_product">
         <section class="product-category">
             <div class="container-title">
-                <p>SẢN PHẨM LIÊN QUAN</p>
+                <p>Sản phẩm liên quan</p>
                 <hr>
             </div>
 
@@ -254,7 +291,8 @@
                                             src="{{ URL::to('public/uploads/product/' . $related_pro->product_image) }}">
                                     </div>
                                     <div class="product-content">
-                                        <a class="product-name" href="{{ URL::to('/chi-tiet-san-pham/' . $pro->product_id) }}">{{ $related_pro->product_name }}</a>
+                                        <a class="product-name"
+                                            href="{{ URL::to('/chi-tiet-san-pham/' . $pro->product_id) }}">{{ $related_pro->product_name }}</a>
                                         <p>{{ number_format($related_pro->product_price) . ' ' . 'VNĐ' }}</p>
                                     </div>
                                 </div>
@@ -269,7 +307,10 @@
 
         </section>
     </div>
+
     @include('Footer')
+
+    {{-- </section> --}}
     <script type="text/javascript" src="{{ asset('public/frontend/js/InsightProduct.js') }}"></script>
     <script type="text/javascript" src="{{ asset('public/frontend/js/ScriptCardSlider.js') }}"></script>
 
@@ -280,31 +321,54 @@
 
     <script>
         $(document).ready(function() {
-            
-            $('#add_product_to_cart').click(function() 
-            {
+
+            $('#add_product_to_cart').click(function() {
+                // alert('sdas');
                 const sizeSelected = document.querySelector('.size.selected');
-                if (sizeSelected) 
-                {
+                if (sizeSelected) {
                     var customer = $('#customer-id').val();
                     var proid = $('#productid_hidden').val();
-                    var prosize= sizeSelected.value;
-                    var proquantity=$('#amountnumber').val();
-
-                    if (proid){
+                    var prosize = sizeSelected.value;
+                    var proquantity = $('#amountnumber').val();
+                    // console.log(customer);
+                    // console.log(proid);
+                    // console.log(prosize);
+                    // console.log(proquantity);
+                    if (proid) {
 
                         $.ajax({
-                            type: 'GET',
-                            url: '',
+                            type: 'POST',
+                            url: "{{ url('/add-shopping-cart') }}",
                             data: {
                                 proid: proid,
                                 prosize: prosize,
                                 customer: customer,
                                 proquantity: proquantity,
-                                action: 'add-to-shopping-cart'
+                                _token: '{{ csrf_token() }}'
                             },
                             success: function(response) {
-                                // $('#test_text').html(response);
+                                console.log('Thêm vào giỏ hàng thành công')
+                            },
+                            error: function(jqXHR, textStatus, errorThrown) {
+                                console.log('AJAX call failed: ' + textStatus + ', ' +
+                                    errorThrown);
+                            }
+                        });
+
+                        $.ajax({
+                            type: 'POST',
+                            url: "{{ url('/your-cart') }}",
+                            data: {
+                                _token: '{{ csrf_token() }}'
+                            },
+                            success: function(response) {
+                                console.log('Cập nhật số lượng sản phẩm hiển thị trên ô giỏ hàng thành công');
+                                if (parseInt(response.number) < 99) 
+                                {
+                                    $('#cart-shopping-quantity').text(response.number);
+                                } else {
+                                    $('#cart-shopping-quantity').text('99+');
+                                }
                             },
                             error: function(jqXHR, textStatus, errorThrown) {
                                 console.log('AJAX call failed: ' + textStatus + ', ' +
@@ -318,66 +382,82 @@
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <?php
-    if (isset($_GET['action']) && $_GET['action'] == 'add-to-shopping-cart') 
-    {
-        // $conn = new mysqli('localhost', 'root', '', 'blinkiy');
-        // if ($conn->connect_error) {
-        //     die('Connection failed: ' . $conn->connect_error);
-        // }
-        // $conn->set_charset('utf8');
-        // // $str = "insert into tbl_product VALUES ('$product_id', '$category_id', '$product_name', '$product_desc', '$product_content', '$product_price', '$product_image', '$product_color', '$category_status')";
-        // $sql = "INSERT INTO tbl_product(product_id, category_id, product_name, product_desc, product_content, product_price, product_image, product_color, product_status) VALUES ('52' , '1' , 'Vòng Tay đá thạch anh đào mix charm bạc mặt trăng ngôi sao' , 'a' , 'b' , '752000' , 'main_img_1.jpg' , '1' , '1' )";
-    
-        // $conn->query($sql)
-        // $conn->close();
-        
-        $product=$_GET['proid'];
-        $size=$_GET['prosize'];
-        $customer=$_GET['customer'];
-        $quantity=$_GET['proquantity'];
+    <script>
+        //Cho nút yêu thích
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
-        $existingRecord=DB::table('tbl_cart')
-        ->where('product_id', $product)
-        ->where('size_id', $size)
-        ->where('customer_id', $customer)
-        ->first();
-
-        if ($existingRecord === null) 
-        {//nếu rỗng->chưa có->thêm vào
-            $data=[];
-            $data['product_id']=$product;
-            $data['size_id']=$size;
-            $data['customer_id']=$customer;
-            $data['cart_quantity']=$quantity;
-            DB::table('tbl_cart')->insert($data);
-   
-        } 
-        else 
-        { 
-            //tức là đã có thì cộng dồn lên
-            $inventory = DB::table('tbl_cart')->join('tbl_product_details', function ($join) {
-            $join->on('tbl_cart.product_id', '=', 'tbl_product_details.product_id')
-                 ->on('tbl_cart.size_id', '=', 'tbl_product_details.size_id');})
-            ->where('tbl_cart.size_id', $size)
-            ->where('tbl_cart.product_id', $product)
-            ->pluck('SL')
-            ->first();
-
-            $new_quantity=$existingRecord->cart_quantity + $quantity;
-            $new_quantity = min($new_quantity, $inventory);//nếu số lượng chọn lớn hơn tồn kho thì set=tồn kho
-
-            DB::table('tbl_cart')->where('product_id', $product)->where('size_id', $size)->where('customer_id', $customer)
-            ->update(['cart_quantity'=>$new_quantity]);
+        // Favorite button
+        function toggleFavorite(product_id) 
+        {
+            var heartSvg = document.getElementById("heart_svg");
+            var heartPath = document.getElementById("heart_path");
+            var isFavorite = {{ $isFavorite ? 'true' : 'false' }};
+            // Gửi yêu cầu AJAX để cập nhật yêu thích
+            if (heartSvg.classList.contains("bi-heart")) 
+            {
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ url('/toggle-favorite') }}',
+                    data: {
+                        product_id: product_id,
+                        _token: '{{ csrf_token() }}'
+                        // _token: $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                                // Thay đổi sang biểu tượng trái tim đầy
+                                heartSvg.classList.remove("bi-heart");
+                                heartSvg.classList.add("bi-heart-fill");
+                                // Thay đổi dòng path để tô đậm trái tim
+                                heartPath.setAttribute("d",
+                                    "M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"
+                                );
+                            console.log("Sản phẩm đã được thêm vào trang yêu thích!");
+                        } else {
+                            console.log(response.message);
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log('AJAX call failed: ' + textStatus + ', ' + errorThrown);
+                    }
+                });
+            } 
+            else
+            {
+                //Gửi yêu cầu AJAX để xóa sản phẩm khỏi danh sách yêu thích
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ url('/remove-favorite') }}',
+                    data: {
+                        product_id: product_id,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                                // Thay đổi sang biểu tượng trái tim rỗng
+                                heartSvg.classList.remove("bi-heart-fill");
+                                heartSvg.classList.add("bi-heart");
+                                // Thay đổi dòng path để trái tim trở về rỗng
+                                heartPath.setAttribute("d",
+                                    "m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"
+                                );
+                            console.log("Sản phẩm đã được xóa khỏi danh sách yêu thích!");
+                        } else {
+                            console.log(response.message);
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log('AJAX call failed: ' + textStatus + ', ' + errorThrown);
+                    }
+                });
+            }
         }
-
-    }
-    ?>
-
-
+    </script>
 
 </body>
-
-
 
 </html>

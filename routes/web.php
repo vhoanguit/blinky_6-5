@@ -186,4 +186,18 @@ Route::get('/order-delivered', 'App\Http\Controllers\OrderManagerController@orde
 Route::get('/accept-order/{id}', 'App\Http\Controllers\OrderManagerController@accept_order');
 Route::get('/order-delivered/{id}', 'App\Http\Controllers\OrderManagerController@admin_order_delivered');
 
+//Yêu thích
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\FavouriteController;
+use App\Http\Middleware\CustomerMiddleware;
+
+Route::post('/toggle-favorite', 'App\Http\Controllers\ProductController@toggleFavorite')->name('toggle.favorite');
+
+//Route::post('/toggle-favorite', [ProductController::class, 'toggleFavorite'])->name('toggle.favorite'); // khi ấn yêu thích trong ctsp
+Route::post('/delete-favorite', [ProductController::class, 'removeFavorite'])->name('remove.favorite'); // khi bỏ yêu thích trong ctsp
+Route::get('/favourite-product', [FavouriteController::class, 'getFavoritesByCustomer'])->middleware(CustomerMiddleware::class);
+Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart')->middleware(CustomerMiddleware::class);
+Route::post('/remove-favorite', [FavouriteController::class, 'removeFavorite'])->name('remove-favorite')->middleware(CustomerMiddleware::class);
+
+Route::post('/add-shopping-cart', [CartController::class, 'add_shopping_cart'])->name('add_shopping_cart');
 ?>

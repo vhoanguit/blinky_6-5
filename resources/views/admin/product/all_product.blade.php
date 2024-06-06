@@ -7,59 +7,59 @@
     </div>
     
     <div class="table-responsive">
-        <?php
-              $message = Session::get('message');
-              if($message){
-                  echo '<span class="text-alert">'.$message.'</span>';
-                  Session::put('message',null);
-              }
-        ?>
+    @if(Session::get('message'))
+      <script>
+          Swal.fire({
+              icon: 'success',
+              title: 'Thành công',
+              text: '{{ Session::get('message') }}'
+          });
+          
+      </script>
+      <?php
+          Session::put('message',null);
+      ?>
+    @endif
       <table class="table table-striped b-t b-light">
         <thead>
-          <tr>
-            <!-- <th style="width:20px;">
-              <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
-              </label>
-            </th> -->
-            <th style="width:150px;">Tên</th>
-            <th>Danh mục</th>     
-            <th>Giá</th>
-            <th>Hình ảnh</th>
-            <th>Màu sắc</th>
-            <th>Mệnh</th>
-            <th>Trạng thái</th>   
-            <th>Thao tác</th>        
-            <!-- <th style="width:30px;"></th> -->
-          </tr>
+        <tr style="height: 50px">
+              <th style=" display: table-cell; vertical-align: middle; width:50px;">STT</th>
+              <th style=" display: table-cell; vertical-align: middle; width: 425px;">Tên sản phẩm</th>
+              <th style=" display: table-cell; vertical-align: middle;">Giá</th>
+              <th style=" display: table-cell; vertical-align: middle;">Màu sắc</th>
+              <th style=" display: table-cell; vertical-align: middle;">Hình ảnh sản phẩm</th>
+              <th style=" display: table-cell; vertical-align: middle;">Danh mục sản phẩm</th>
+              <th style=" display: table-cell; vertical-align: middle;">Hiển thị</th>
+              <th style=" display: table-cell; vertical-align: middle;">Thao tác</th>           
+            </tr>
         </thead>
         <tbody>
           @foreach($all_product as $key => $pro)
           <tr>
-            <!-- <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td> -->
-            <td>{{ $pro->product_name }}</td>
-            <td>{{ $pro->category_name}}</td>
-            <td>{{ $pro->product_price}}</td>
-            <td><img src="public/uploads/product/{{$pro->product_image}}" height="100" width="100"></td>
-            <td>{{$pro->product_color }}</td>
-            <td>{{$pro->product_element }}</td>
-
-
-            <td><span class="text-ellipsis">
-            @if($pro->product_status == 1) 
-                <i style="color:green; cursor:pointer" class="fa-solid fa-eye update-pro-status" data-id="{{$pro->product_id}}" data-status="0"></i>          
-            @else 
-                <i style="color:red; cursor:pointer" class="fa-solid fa-eye-slash update-pro-status" data-id="{{$pro->product_id}}" data-status="1"></i>          
-            @endif
-            </span></td>
+          <td style=" display: table-cell; text-align: center; vertical-align: middle;">
+                {{ ($all_product->currentPage() - 1) * $all_product->perPage() + $key + 1 }}</td>
+              <td style=" display: table-cell; vertical-align: middle; ">{{$pro->product_name }}</td>
+              <td style=" display: table-cell; vertical-align: middle; ">{{$pro->product_price }}</td>
+              <td style=" display: table-cell; vertical-align: middle; ">{{$pro->product_color }}</td>
+              <td style=" display: table-cell; text-align: center; vertical-align: middle;"><img src="public/uploads/product/{{$pro->product_image }}" height="100" width="100" style="object-fit: cover"></td>
+              <td style=" display: table-cell; text-align: center; vertical-align: middle;">{{$pro->category_name }}</td>
+              <td style=" display: table-cell; text-align: center; vertical-align: middle;">
+                <span class="text-ellipsis">
+                  @if($pro->product_status == 1) 
+                      <i style="color:green; cursor:pointer" class="fa-solid fa-eye update-pro-status" data-id="{{$pro->product_id}}" data-status="0"></i>          
+                  @else 
+                      <i style="color:red; cursor:pointer" class="fa-solid fa-eye-slash update-pro-status" data-id="{{$pro->product_id}}" data-status="1"></i>          
+                  @endif
+                </span>
+              </td>
            
-            <td>
+            <td style=" display: table-cell; text-align: center; vertical-align: middle;">
               <a href="{{URL::to('/edit-product/'.$pro->product_id)}}" class="active styling-edit" ui-toggle-class="">
-              <i class="fa-solid fa-pen-to-square"></i></a>
+              <i class="fa-solid fa-pen-to-square"></i></a><br>
               <a onclick="return confirm('Bạn có chắc là muốn xóa sản phẩm này ko?')" href="{{URL::to('/delete-product/'.$pro->product_id)}}" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-times text-danger text"></i>
-              </a>
-              <a href="{{ URL::to('/add-gallery/'.$pro->product_id) }}" ><i class="fa fa-solid fa-image" style="color: #9E75FF"></i>
+              </a><br>
+              <a href="{{ URL::to('/add-gallery/'.$pro->product_id) }}" ><i class="fa fa-solid fa-image" style="color: #9E75FF"></i></a><br>
               <a href="{{URL::to('/show-product-details/'.$pro->product_id) }}" class="active styling-edit" ui-toggle-class="">
               <i class="fa-solid fa-circle-info"></i>                        
             </a><br>
@@ -69,17 +69,10 @@
         </tbody>
       </table>
     </div>
-    <footer class="panel-footer">
-      <div class="row">
-        
-        <div class="col-sm-5 text-center">
-          <!-- <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small> -->
-        </div>
-        <div class="col-sm-7 text-right text-center-xs">                
-          <ul class="pagination pagination-sm m-t-none m-b-none">
+
+    <footer class="panel-footer" style="height: 100px; display: flex; justify-content: center; align-items: center;">
+      <div>       
           {{ $all_product->links('pagination::bootstrap-4') }}
-          </ul>
-        </div>
       </div>
     </footer>
   </div>

@@ -6,7 +6,6 @@ body
     margin-bottom: 0;
     display: flex;
     flex-direction: column;
-    font-family: 'DM Sans';
     /* font-family: 'Nunito', sans-serif; */
 }
 /*Top-bar*/
@@ -31,15 +30,15 @@ body
     height: 50px;
     width: 100%;
     display: grid;
-    grid-template-columns: 40% 0% 60%;
+    grid-template-columns: 35% 0% 65%;
 }
 
 /*LOGO*/
 .logo-img
 {
-    width: 60%;
+    width: 55%;
     height: auto;
-    margin-top: -5px;
+    margin-top: 0px;
     margin-left: 30%;
 }
 .logo-blinkiy
@@ -49,6 +48,7 @@ body
     font-family: 'Arial';
     font-style: normal;
     /* color: #DDD9CD; */
+    /* margin-left: -10%; */
     color: #EF99A2;
     font-weight: 700;
 }
@@ -56,6 +56,7 @@ body
 {
     margin-top: 29px;
     font-size: 18px;
+    /* margin-left: -10%; */
     font-family: 'Arial';
     /* font-family: 'Saira Stencil One', sans-serif; */
     color: #DAB076;
@@ -115,6 +116,7 @@ i.fa-search
     align-items: center;
 }
 
+
 /*TOP BAR OPTIONS*/
 .top-bar-options
 {
@@ -131,6 +133,29 @@ i.fa-user, i.fa-cart-shopping, i.fa-heart
     color: #EF99A2;
     font-size: 20px;
 }
+.cart-shopping-quantity
+{   
+    width: 20px;
+    height: 11.5px;
+    background-color: #F5CD92;
+    border-radius: 10px 10px 10px 10px;
+    font-size: 9px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -6px;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    /* color: #EF99A2; */
+    color: #d4868d;
+}
+#cart-shopping
+{
+    display: grid;
+    grid-template-columns: 35% 70%;
+    height: 20px;
+
+}
 .top-bar-options-object
 {
     display: flex;
@@ -145,13 +170,14 @@ i.fa-user, i.fa-cart-shopping, i.fa-heart
 .top-bar-options-object:hover .fa-user,
 .top-bar-options-object:hover .top-bar-options-object-title
 {
-    color: #DAB076;
+    color: #F4BF75;
+    /* color: #DAB076; */
 }
+
 .top-bar-options-object-title
 {
     color: #d4868d;
     text-decoration: none;
-    /* font-weight: bold; */
     font-weight: light;
     font-size: 19px;
 }
@@ -242,14 +268,13 @@ i.fa-user, i.fa-cart-shopping, i.fa-heart
 /* Mobile width < 740px */
 @media only screen and (max-width: 46.1875em)
 {
-    .top-bar
-    {
+    .top-bar {
         width: 100%;
         height: 45px;
         display: flex;
         align-items: center;
         display: grid;
-        grid-template-columns: 30% 30% 40%;
+        grid-template-columns: 30% 28% 42%;
     }
     .logo
     {
@@ -261,8 +286,9 @@ i.fa-user, i.fa-cart-shopping, i.fa-heart
     .logo-img
     {
         height: auto;
-        margin-top: -8%;
-        margin-left: 30%;
+        width: 40%;
+        margin-top: 2px;
+        margin-left: 41%;
     }
     .logo-blinkiy
     {
@@ -318,9 +344,17 @@ i.fa-user, i.fa-cart-shopping, i.fa-heart
         grid-template-columns: 33% 33% 33%;
     }
     
-    i.fa-user, i.fa-cart-shopping, i.fa-heart
+    i.fa-user, i.fa-heart
     {
-        margin-top: 5px;
+        font-size: 7px;
+    }
+    .icon_option
+    {
+        margin-top: -3px;
+    }
+    i.fa-cart-shopping
+    {
+        margin-top: 10px;
         font-size: 7px;
     }
     .top-bar-options-object-title
@@ -334,6 +368,19 @@ i.fa-user, i.fa-cart-shopping, i.fa-heart
         display: grid;
         grid-template-columns: 20% 80%;
         
+    }
+    .cart-shopping-quantity
+    {
+        width: 6px;
+        height: 5px;
+        background-color: #F5CD92;
+        border-radius: 10px 10px 10px 10px;
+        font-size: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* margin-top: 2px; */
+        margin-top: 7px;
     }
     /* MENU BAR */
     .mainmenu
@@ -455,6 +502,17 @@ i.fa-user, i.fa-cart-shopping, i.fa-heart
         display: grid;
         grid-template-columns: 20% 80%;
         
+    }
+    .cart-shopping-quantity
+    {
+        width: 16px;
+        height: 10px;
+        border-radius: 10px 10px 10px 10px;
+        font-size: 7px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: -1.25px;
     }
     /* MENU BAR */
     .mainmenu

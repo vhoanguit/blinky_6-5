@@ -6,73 +6,55 @@
       Liệt kê danh mục sản phẩm
     </div>
     <div class="table-responsive">
+    @if(Session::get('message'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Thành công',
+            text: '{{ Session::get('message') }}'
+        });
+        
+    </script>
     <?php
-        $message = Session::get('message'); // hàm get để lấy biến có tên là 'message' ở bên AdminController
-        if($message){ // neu ton tai message
-            echo '<span class="text-alert">'.$message.'</span>' ; // in ra tin nhan
-            Session::put('message',null); //cho hien thi 1 lan thoi
-        }
+        Session::put('message',null);
     ?>
+    @endif
       <table class="table table-striped b-t b-light">
         <thead>
-          <tr>
-            
-            <th>Tên danh mục</th>
-            <th>Hiển thị</th>
-            <!-- <th>Ngày thêm</th> -->
-            <th style="width:90px;">Thao tác</th>
-          </tr>
+            <tr style="height: 50px">
+              <th  style=" display: table-cell; text-align: center;  vertical-align: middle; width:50px;"></th>
+              <th  style=" display: table-cell; text-align: center;  vertical-align: middle;" >STT</th>
+              <th  style=" display: table-cell; text-align: center;  vertical-align: middle;" >Tên danh mục</th>
+              <th  style=" display: table-cell; text-align: center;  vertical-align: middle;" >Hiển thị</th>
+              <th  style=" display: table-cell; text-align: center;  vertical-align: middle;" >Thao tác</th>
+              <th  style=" display: table-cell; text-align: center;  vertical-align: middle; width:50px;"></th>
+            </tr>
         </thead>
         <tbody>
             @foreach($cate_product as $key => $cate_pro)
           <tr>
-            <td>{{$cate_pro->category_name}}</td>
-            <td><span class="text-ellipsis">                
-              @if($cate_pro->category_status == 1) 
-                  <i style="color:green; cursor:pointer" class="fa-solid fa-eye update-cate-pro-status" data-id="{{$cate_pro->category_id}}" data-status="0"></i>          
-              @else 
-                  <i style="color:red; cursor:pointer" class="fa-solid fa-eye-slash update-cate-pro-status" data-id="{{$cate_pro->category_id}}" data-status="1"></i>          
-              @endif
-            </span></td>
-            <td>
-                <a href="{{URL::to('/edit-category-product/'.$cate_pro->category_id)}}" style="font-size:16px" class="active" ui-toggle-class=""><i class="fa-solid fa-pen-to-square"></i></a>
-                <a onclick="return confirm('Bạn có chắc là muốn xóa danh mục này không ?')" href="{{URL::to('/delete-category-product/'.$cate_pro->category_id)}}" style="font-size:16px" class="active" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
+            <td></td>
+            <td style=" display: table-cell; text-align: center; vertical-align: middle;">{{$key+1 }}</td>
+            <td style=" display: table-cell; text-align: center; vertical-align: middle;">{{$cate_pro->category_name }}</td>
+            <td style=" display: table-cell; text-align: center; vertical-align: middle;">
+                <span class="text-ellipsis">
+                  @if($cate_pro->category_status == 1) 
+                    <i style="color:green; cursor: pointer" class="fa-solid fa-eye update-cate-pro-status" data-id="{{$cate_pro->category_id}}" data-status="0"></i>          
+                  @else 
+                    <i style="color:red; cursor: pointer" class="fa-solid fa-eye-slash update-cate-pro-status" data-id="{{$cate_pro->category_id}}" data-status="1"></i>          
+                  @endif
+                </span>
             </td>
+            <td style=" display: table-cell; text-align: center; vertical-align: middle;">
+            <a href="{{URL::to('/edit-category-product/'.$cate_pro->category_id)}}" class="active styling-edit" ui-toggle-class="">
+              <i class="fa-solid fa-pen-to-square"></i></a>                <a onclick="return confirm('Bạn có chắc là muốn XÓA danh mục sản phẩm này không?')" href="{{ URL::to('/delete-category-product/'.$cate_pro->category_id) }}" class="active styling-edit" ui-toggle-class=""> <i class="fa fa-times text-danger text"></i></a>
+            </td>
+            <td></td>
           </tr>
           @endforeach
         </tbody>
       </table>
-      <!-- import data -->
-      <!-- <form action="{{url('import-csv')}}" method="POST" enctype="multipart/form-data">
-          @csrf 
-          <input type="file" name="file" accept=".xlsx"><br>
-          <input type="submit" value="Import CSV" name="import_csv" class="btn btn-warning">
-      </form> -->
-      <!-- export data -->
-      <!-- <form action="{{url('export-csv')}}" method="POST" enctype="multipart/form-data">
-          @csrf 
-          <input type="submit" value="Export CSV" name="import_csv" class="btn btn-success">
-      </form> -->
     </div>
-    <footer class="panel-footer">
-      <div class="row">
-        
-        <div class="col-sm-5 text-center">
-        </div>
-        <div class="col-sm-7 text-right text-center-xs">                
-          <ul class="pagination pagination-sm m-t-none m-b-none">
-            <!-- <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
-            <li><a href="">1</a></li>
-            <li><a href="">2</a></li>
-            <li><a href="">3</a></li>
-            <li><a href="">4</a></li>
-            <li><a href=""><i class="fa fa-chevron-right"></i></a></li> -->
-            {!!$cate_product->links()!!}
-
-          </ul>
-        </div>
-      </div>
-    </footer>
   </div>
 </div>
 <script>

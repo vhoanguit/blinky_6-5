@@ -2,20 +2,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{asset('public/frontend/css/header_only.css')}}" rel="stylesheet"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script type="text/javascript" src="{{ asset('public/frontend/js/CartQuantity.js') }}"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="{{ asset('public/frontend/js/HeaderSearch.js') }}"></script>
 
     <header class="Header">
+        <input type="hidden" value="{{ $my_customer }}" id="this-customer">
+        <input type="hidden" value="{{ $cart->count() }}" id="number_of_cart">
+
+        @if ($my_customer)
+            <script>
+                window.onload = function() { countProductsInCart_Customer(); };
+            </script>
+        @else
+            <script>
+                window.onload = function() { countProductsInCart();};
+            </script>
+        @endif
         <div class="top-bar">
             <div class="logo">
                 <img class="logo-img" src="{{ asset('public/frontend/image/Logo.jpg') }}">
                 <p class="logo-blinkiy">BLINKIY</p>
                 <p class="logo-phongthuy">PHONG THỦY</p>
             </div>
-            <div class="search-bar">
+            <form id="search-form" method="get" action="{{ URL::to('/tim-kiem') }}">
+                {{ csrf_field()}}
+                <div class="search-bar">
                     <div class="search-bar-cover">
-                        <i class="fas fa-search"></i>
-                        <input type="input" class="search-bar-input" id="search-bar-input" name="search-bar-input" placeholder="Tìm kiếm"/>
+                        <i class="fas fa-search"id="search_icon"></i>
+                        <input type="input" class="search-bar-input" id="search-bar-input" 
+                            name="keywords_submit" placeholder="Tìm kiếm sản phẩm..."/>
                     </div>
                 </div>
+            </form>
            
             <div class="top-bar-options">
                 <div class="top-bar-options-object">
@@ -23,12 +42,19 @@
                     <a class="top-bar-options-object-title" href="{{ URL::to('/personal_infor') }}">Tài khoản</a>
                 </div>
                 <div class="top-bar-options-object">
-                    <i class="fa-solid fa-heart"></i>
-                    <a class="top-bar-options-object-title" href="">Yêu thích</a>
+                    <a href="" class="icon_option">
+                        <i class="fa-solid fa-heart"></i>
+                    </a>
+                    <a class="top-bar-options-object-title" href="{{ URL::to('/favourite-product') }}">Yêu thích</a>
                 </div>
                 <div class="top-bar-options-object">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    <a class="top-bar-options-object-title" href="{{URL::to('/gio-hang')}}">Giỏ hàng</a>
+                    <a href="{{ URL::to('/gio-hang') }}" >
+                        <div id="cart-shopping">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span class="cart-shopping-quantity">0</span>
+                        </div>
+                    </a>
+                    <a class="top-bar-options-object-title" href="{{ URL::to('/gio-hang') }}">Giỏ hàng</a>
                 </div>
             </div>
         </div>

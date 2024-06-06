@@ -19,18 +19,34 @@
     </head>
     <body class="antialiased">
         <header>
+            <input type="hidden" value="{{$my_customer}}" id="this-customer">
+            <input type="hidden" value="{{$cart}}" id="number_of_cart">
+
+            @if ($my_customer)
+                <script>
+                    window.onload = function() { countProductsInCart_Customer(); };
+                </script>
+            @else
+                <script>
+                    window.onload = function() { countProductsInCart();};
+                </script>
+            @endif
             <div class="top-bar">
                 <div class="logo">
                     <img class="logo-img" src="{{asset('public/frontend/image/Logo.jpg') }}"/>
                     <p class="logo-blinkiy">BLINKIY</p>
                     <p class="logo-phongthuy">PHONG THỦY</p>
                 </div>
-                <div class="search-bar">
-                    <div class="search-bar-cover">
-                        <i class="fas fa-search"></i>
-                        <input type="input" class="search-bar-input" id="search-bar-input" name="search-bar-input" placeholder="Tìm kiếm"/>
+                <form id="search-form" method="get" action="{{ URL::to('/tim-kiem') }}">
+                    {{ csrf_field() }}
+                    <div class="search-bar">
+                        <div class="search-bar-cover">
+                            <i class="fas fa-search"id="search_icon"></i>
+                            <input type="input" class="search-bar-input" id="search-bar-input" {{-- name="search-bar-input"  --}}
+                                name="keywords_submit" placeholder="Tìm kiếm sản phẩm..."/>
+                        </div>
                     </div>
-                </div>
+                </form>
                 <div class="top-bar-options">
                     <div class="top-bar-options-object">
                         <a href="{{ URL::to('/personal_infor') }}">
@@ -43,10 +59,13 @@
                         <a class="top-bar-options-object-title" href="">Yêu thích</a>
                     </div>
                     <div class="top-bar-options-object">
-                    <a href="{{ URL::to('/gio-hang') }}">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </a>                        
-                    <a class="top-bar-options-object-title" href="{{URL::to('/gio-hang')}}">Giỏ hàng</a>
+                        <a href="{{ URL::to('/gio-hang') }}" >
+                            <div id="cart-shopping">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <span class="cart-shopping-quantity">0</span>
+                            </div>
+                        </a>
+                        <a class="top-bar-options-object-title" href="{{ URL::to('/gio-hang') }}">Giỏ hàng</a>
                     </div>
                 </div>
             </div>
@@ -225,15 +244,15 @@
         <div class="news-container">
             <div class="news-container-leftside">
                 <img src="{{asset('public/frontend/image/newsimg.jpg') }}">
-                <a href="{{ URL::to('/tat-ca-bai-viet/') }}"><button class="see-more-button">
-                    Xem thêm</button></a>
+                <button type="submit" class="see-more-button" onclick="window.location.href='{{ URL::to('/tat-ca-bai-viet') }}'">Xem thêm</button>
             </div>
             <div class="news-container-rightside">
-                @foreach($all_post as $key => $baiviet)
+                @foreach($all_post as $key => $post)
                 <div class="a-news">
-                <img src="{{ URL::to('public/uploads/post/'.$baiviet->post_image) }}">
-                <a href="{{url('/bai-viet/'.$baiviet->post_slug)}}">{{$baiviet -> post_title}}</a>
-                </div>
+                        <a href="{{ URL::to('/bai-viet/'.$post->post_slug) }}"><img src="{{asset('public/uploads/post/'.$post->post_image) }}"></a>
+                        <a class="post_title" href="{{ URL::to('/bai-viet/'.$post->post_slug) }}">{{ $post->post_title }}</a>
+                        <a class="post_desc" href="{{ URL::to('/bai-viet/'.$post->post_slug) }}">{{ $post->post_desc }}</p></a>
+                    </div>
                 @endforeach
             </div>
         </div>
@@ -244,4 +263,6 @@
     @include('Footer')
     <script type="text/javascript" src="{{asset('public/frontend/js/ScriptCardSlider.js') }}"></script>
     <script type="text/javascript" src="{{asset('public/frontend/js/ScriptHomePage.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('public/frontend/js/CartQuantity.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('public/frontend/js/HeaderSearch.js') }}"></script>
 </html>

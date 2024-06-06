@@ -27,7 +27,7 @@ function createOrderItemNode(product) {
       <input type="hidden" class="order_size" value="${productSize}"\>
       <div class="order_description">${productDescription}</div>
       <div class="order_quantity">SL: ${productQuantity}</div>
-      <div class="order_price">Đơn giá: ${(productPrice * productQuantity).toLocaleString()}đ</div>
+      <div class="order_price">Thành tiền: ${(productPrice * productQuantity).toLocaleString()}đ</div>
   `;
     return orderItem;
 }
@@ -94,9 +94,14 @@ document.querySelectorAll('.quantity_values').forEach(input => {
         if (product.querySelector('.checkbox').checked) {
             updateOrderItemNode(product);
             updateAllTotal();
+            
         }
-        let cart = JSON.parse(sessionStorage.getItem('cart'));
-        if(cart) UpdatSession(this,cart,amount);
+        let login=document.getElementById('customer-id').value;
+        if(!login)
+        {
+            let cart = JSON.parse(sessionStorage.getItem('cart'));
+            if(cart) UpdatSession(this,cart,amount);
+        }
     });
 });
 
@@ -112,8 +117,14 @@ document.querySelectorAll('.decrease_button').forEach(button => {
             quantityInput.value = quantity;
             quantityInput.dispatchEvent(new Event('input'));
 
-            let cart = JSON.parse(sessionStorage.getItem('cart'));
-            if(cart) UpdatSession(this,cart,quantity);
+            // let cart = JSON.parse(sessionStorage.getItem('cart'));
+            // if(cart) UpdatSession(this,cart,quantity);
+            let login=document.getElementById('customer-id').value;
+            if(!login)
+            {
+                let cart = JSON.parse(sessionStorage.getItem('cart'));
+                if(cart) UpdatSession(this,cart,amount);
+            }
         }
 
     });
@@ -134,8 +145,12 @@ document.querySelectorAll('.increase_button').forEach(button => {
             quantityInput.value = quantity;
             quantityInput.dispatchEvent(new Event('input'));
 
-            let cart = JSON.parse(sessionStorage.getItem('cart'));
-            if(cart) UpdatSession(this,cart,quantity);
+            let login=document.getElementById('customer-id').value;
+            if(!login)
+            {
+                let cart = JSON.parse(sessionStorage.getItem('cart'));
+                if(cart) UpdatSession(this,cart,amount);
+            }
         }
     });
 });
@@ -178,8 +193,6 @@ document.querySelectorAll('.remove').forEach(removeButton => {
             cart = cart.filter(item => !(item.product_id === productid && item.product_size === productsize)) ;
             sessionStorage.setItem('cart', JSON.stringify(cart));
         }
+        countProductsInCart();
     });
 });
-
-
-

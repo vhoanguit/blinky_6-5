@@ -136,6 +136,13 @@ class HomeController extends Controller
         ->with('selectedColors',$filter)
         ->with('keywords',$keywords)->with('category_post',$category_post);
     }
+    public function your_cart(Request $request)
+    {
+        $customer = Session::get('customer_id');
 
+        $cart=DB::table('tbl_cart')->where('customer_id',$customer)->distinct()->pluck('product_id');
+        
+        return response()->json(['number' =>  $cart->count()]);
+    }
 
 }

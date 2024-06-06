@@ -4,9 +4,11 @@
     max-width: 100%;
     height: auto;
     margin-top: 2%;
-    margin-left: 1.7%;
-    font-size: 20px;
-    font-weight: bold;
+    margin-left: 3%;
+    font-size: 17px;
+    font-weight: lighter ;
+    font-family: 'Arial', sans-serif;
+    color: #D0933E;
 }
 
 .current {
@@ -19,11 +21,11 @@
 }
 
 .details {
-    font-family: 'Times New Roman', Times, serif;
+    /* font-family: 'Times New Roman', Times, serif; */
     font-size: 20px;
-    width: 60%;
+    width: 70%;
     height: auto;
-    margin: 3.75% auto;
+    margin: 3% auto;
     padding: 5%;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -32,12 +34,25 @@
 }
 
 .header_details {
-    font-size: 40px;
-    font-weight: bold;
-    margin-top: 0%;
-    padding-bottom: 1%;
+    width: 100%;
+    text-align: center;
+    font-size: 39px;
+    margin-top: -3%;
+    padding-bottom: 0%;
     color: rgba(239, 153, 162, 1);
-    font-family: "Times New Roman", Times, serif;
+    font-family: 'Paytone One', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+.login
+{
+    font-weight: bold;
+    margin-left: 1px;
+}
+
+.instruction
+{
+    font-family: 'Dongle', sans-serif;
 }
 
 .details p {
@@ -51,12 +66,11 @@
 }
 
 .details p a:hover {
-    color: rgb(228, 105, 117);
+    color: #f7b557;
+    cursor: pointer;
 }
 
-.details p a:active {
-    color: rgb(216, 48, 185);
-}
+
 
 .details label {
     display: block;
@@ -68,6 +82,14 @@
     border: 1px solid #ddd;
     border-radius: 5px;
     margin-bottom: 1.25%;
+}
+.input_container label
+{
+    margin-bottom: 10px;
+}
+.input_container span
+{
+    color: rgba(239, 153, 162, 1);
 }
 
 .input_container {
@@ -81,6 +103,27 @@
     width: 50%;
     padding: 0.5% 0;
 }
+.input_container tr
+{
+    margin-top: 5px;
+}
+.input_container label
+{
+    margin-left: 1px;
+    font-size: 19px;
+    font-family: 'Dongle', sans-serif;
+}
+.input
+{
+    height: 25px;
+    text-indent: 5px;
+    font-size: 17px;
+}
+.input::placeholder
+{
+    margin-left: 5px;
+    font-size: 17px;
+}
 
 #name,
 #address,
@@ -90,12 +133,12 @@
 
 #email,
 #phone_num {
-    width: 90%;
+    width: 92%;
 }
 
 #province,
 #district {
-    width: 92%;
+    width: 94.5%;
     resize: none;
     font-size: 18.5px;
     margin: 5% 0;
@@ -117,6 +160,7 @@ input[type="tel"]:focus {
 }
 
 select {
+    height: 40px;
     margin: 1% 0;
     width: 100%;
     padding: 1%;
@@ -131,13 +175,16 @@ select {
 .submit_button input {
     color: white;
     background-color: rgba(245, 156, 166, 0.88);
-    padding: 2% 3%;
+    margin-top: 20px;
+    padding: 1.5% 6%;
     font-size: 20px;
     font-weight: bold;
 }
 
 .submit_button input:hover {
-    background-color: rgba(236, 118, 132, 0.88) ;
+    background-color: #f7b557;
+    cursor: pointer;
+    /* background-color: rgba(236, 118, 132, 0.88) ; */
 }
 
 .submit_button input::after {

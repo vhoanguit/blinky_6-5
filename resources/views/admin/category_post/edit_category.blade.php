@@ -6,15 +6,21 @@
                         <header class="panel-heading">
                           Cập nhật danh mục bài viết
                         </header>
-                         <?php
-                            $message = Session::get('message');
-                            if($message){
-                                echo '<span class="text-alert">'.$message.'</span>';
-                                Session::put('message',null);
-                            }
-                            ?>
+                         
                         <div class="panel-body">
-
+                        @if(Session::get('message'))
+                        <script>
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Thành công',
+                                text: '{{ Session::get('message') }}'
+                            });
+                            
+                        </script>
+                        <?php
+                            Session::put('message',null);
+                        ?>
+                        @endif
                             <div class="position-center">
                                 <form role="form" action="{{URL::to('/update-category-post/'.$category_post->cate_post_id)}}" method="post">
                                     {{ csrf_field() }}

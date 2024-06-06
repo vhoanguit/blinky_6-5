@@ -6,13 +6,19 @@
                         <header class="panel-heading">
                            Thêm bài viết
                         </header>
+                        @if(Session::get('message'))
+                        <script>
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Thành công',
+                                text: '{{ Session::get('message') }}'
+                            });
+                            
+                        </script>
                         <?php
-                            $message = Session::get('message');
-                            if($message){
-                                echo '<span class="text-alert">'.$message.'</span>';
-                                Session::put('message',null);
-                            }
+                            Session::put('message',null);
                         ?>
+                        @endif
                         <div class="panel-body">
 
                             <div class="position-center">
